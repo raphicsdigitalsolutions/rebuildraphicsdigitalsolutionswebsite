@@ -1,0 +1,78 @@
+/*
+ * Raphics Digital Solutions — responsive and accessibility enhancements.
+ * Kept separate from Tailwind utilities so global browser behaviour stays easy to audit.
+ */
+
+:root {
+  --app-vh: 1vh;
+  scroll-padding-top: 6rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100%;
+}
+
+/* Account for mobile browser chrome when calculating full-height layouts. */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: calc(var(--app-vh, 1vh) * 100);
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* A visible keyboard focus is required even on custom, non-native controls. */
+:where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--brand-red, #d51f16);
+  outline-offset: 3px;
+}
+
+:where(button, input, select, textarea):disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+img,
+canvas,
+video,
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  :root {
+    scroll-padding-top: 5.25rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.25rem;
+  }
+}
+
+/* Keep the existing visual direction while respecting system motion settings. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}

@@ -62,8 +62,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       const el = document.getElementById(sectionId);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState({}, '', path);
-        window.dispatchEvent(new PopStateEvent('popstate'));
         return;
       }
     }

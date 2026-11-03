@@ -211,6 +211,15 @@ export const SelectedWorkSection: React.FC = () => {
             <div
               key={project.id}
               onClick={() => setActiveModalProject(project)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setActiveModalProject(project);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`View ${project.title} project details`}
               className="group p-6 rounded-3xl bg-neutral-950 border border-neutral-850 hover:border-[#D51F16]/60 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:shadow-[0_10px_35px_rgba(0,0,0,0.8)] relative overflow-hidden"
             >
               {/* Card Ambient Glow on Hover */}

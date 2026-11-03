@@ -23,9 +23,14 @@ app.use(express.json({ limit: '32kb' }));
 
 const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(__dirname, 'data'));
 const INQUIRIES_FILE = path.join(DATA_DIR, 'inquiries.json');
-fs.mkdirSync(DATA_DIR, { recursive: true });
+fs.mkdirSync(DATA_DIR, { recursive: true, mode: 0o700 });
 if (!fs.existsSync(INQUIRIES_FILE)) {
-  fs.writeFileSync(INQUIRIES_FILE, '[]\n', { encoding: 'utf-8', flag: 'wx' });
+  fs.writeFileSync(INQUIRIES_FILE, '[]\n', { encoding: 'utf-8', flag: 'wx', mode: 0o600 });
+} else {
+  // Inquiry files contain personal data; restrict access on supported filesystems.
+  try { fs.chmodSync(INQUIRIES_FILE, 0o600); } catch (error) {
+    console.warn('[Storage] Could not restrict inquiry file permissions:', error);
+  }
 }
 
 interface StoredInquiry {

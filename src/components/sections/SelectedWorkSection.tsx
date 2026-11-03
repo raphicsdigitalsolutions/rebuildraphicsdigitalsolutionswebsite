@@ -43,6 +43,7 @@ export const SelectedWorkSection: React.FC = () => {
         if (selectedCategory === 'Product Mockups' && proj.category !== 'Product Mockups') return false;
         if (selectedCategory === 'AI & ML' && proj.category !== 'AI & Machine Learning' && proj.category !== 'Voice & Agents') return false;
         if (selectedCategory === 'Web & SaaS' && proj.category !== 'Web & SaaS Platform') return false;
+        if (selectedCategory === 'Mobile Apps' && proj.category !== 'Mobile Applications') return false;
       }
 
       // Search query

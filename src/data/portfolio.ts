@@ -39,7 +39,8 @@ export type GitHubCategory =
   | 'AI & Machine Learning'
   | 'Web & SaaS Platform'
   | 'Voice & Agents'
-  | 'Interactive & Graphics';
+  | 'Interactive & Graphics'
+  | 'Mobile Applications';
 
 export type ProjectCategory = BehanceCategory | GitHubCategory;
 
@@ -392,7 +393,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: 'SKYCAST',
     source: 'github',
     sourceVisibility: "private",
-    category: 'Web & SaaS Platform',
+    category: 'Mobile Applications',
     status: "Private Repository",
     tagline: "Flutter weather forecast app created as an internship task.",
     overview: "The repository README describes a Flutter weather application created for Task 3 of the Auspify Technologies Flutter Development Internship. It uses Open-Meteo weather and geocoding APIs.",
@@ -428,7 +429,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: 'pixelcraft-ai-agent',
     source: 'github',
     sourceVisibility: "private",
-    category: 'Voice & Agents',
+    category: 'AI & Machine Learning',
     status: "Private Repository",
     tagline: "Knowledge-based AI customer representative prototype.",
     overview: "The repository README describes a Python and Streamlit customer-support assistant for a print packaging and brand identity agency. It uses a structured JSON knowledge base and OpenAI function calling. The source repository is private.",

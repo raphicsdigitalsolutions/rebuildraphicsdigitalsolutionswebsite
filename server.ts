@@ -54,7 +54,7 @@ setInterval(() => {
   for (const [signature, timestamp] of recentSubmissions) {
     if (now - timestamp >= DUPLICATE_WINDOW_MS) recentSubmissions.delete(signature);
   }
-}, 5 * 60 * 1000).unref();
+}, 5 * 60 * 1000);
 
 function cleanText(value: string): string {
   // Preserve legitimate punctuation and non-English names; remove control characters.

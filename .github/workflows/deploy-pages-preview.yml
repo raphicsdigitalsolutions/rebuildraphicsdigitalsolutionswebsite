@@ -3,7 +3,6 @@ name: Deploy GitHub Pages Preview
 on:
   push:
     branches:
-      - deploy/github-pages-preview
       - main
   workflow_dispatch:
 

@@ -32,6 +32,8 @@ if (siteUrl.search || siteUrl.hash) {
   throw new Error('SITE_URL must not contain a query string or fragment.');
 }
 const siteOrigin = siteUrl.origin;
+const siteBasePath = siteUrl.pathname.replace(/\/+$/, '');
+const siteBaseUrl = `${siteOrigin}${siteBasePath}`;
 
 const routes = [
   '/', '/about', '/creative', '/development', '/ai-lab',
@@ -40,7 +42,7 @@ const routes = [
 ];
 
 const entries = routes.map((route) => {
-  const location = new URL(route, siteOrigin).href;
+  const location = new URL(`${route.replace(/^\/+/, '')}`, `${siteBaseUrl}/`).href;
   return [
     '  <url>',
     `    <loc>${location}</loc>`,
@@ -57,15 +59,23 @@ const sitemap = [
 ].join('\n');
 
 fs.writeFileSync(sitemapPath, sitemap, 'utf8');
-fs.writeFileSync(robotsPath, defaultRobots + `Sitemap: ${new URL('/sitemap.xml', siteOrigin).href}\n`, 'utf8');
+fs.writeFileSync(robotsPath, defaultRobots + `Sitemap: ${new URL('sitemap.xml', `${siteBaseUrl}/`).href}\n`, 'utf8');
 
 const htmlPath = path.join(distDir, 'index.html');
 let html = fs.readFileSync(htmlPath, 'utf8');
-const canonical = `<link rel="canonical" href="${siteOrigin}/" />`;
-const ogUrl = `<meta property="og:url" content="${siteOrigin}/" />`;
+const canonical = `<link rel="canonical" href="${siteBaseUrl}/" />`;
+const ogUrl = `<meta property="og:url" content="${siteBaseUrl}/" />`;
 html = html.replace(/<link rel="canonical"[^>]*>\s*/i, '');
 html = html.replace(/<meta property="og:url"[^>]*>\s*/i, '');
 html = html.replace(/<head([^>]*)>/i, `<head$1>\n    ${canonical}\n    ${ogUrl}`);
 fs.writeFileSync(htmlPath, html, 'utf8');
 
-console.log(`[SEO] Generated sitemap, robots directive and canonical metadata for ${siteOrigin}`);
+// GitHub Pages does not rewrite client-side routes to index.html. Publishing
+// the same SPA shell as 404.html lets the client router resolve direct visits
+// and browser refreshes on nested paths.
+if (process.env.GITHUB_PAGES === 'true') {
+  fs.copyFileSync(htmlPath, path.join(distDir, '404.html'));
+  console.log('[Pages] Wrote SPA fallback page for nested routes.');
+}
+
+console.log(`[SEO] Generated sitemap, robots directive and canonical metadata for ${siteBaseUrl}`);

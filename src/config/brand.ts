@@ -24,7 +24,7 @@ export const BRAND_CONFIG = {
   
   // Official uploaded logo asset
   logo: {
-    imageSrc: '/assets/aistudio/image_e462b648.png',
+    imageSrc: `${import.meta.env.BASE_URL}assets/aistudio/image_e462b648.png`,
     alt: 'Raphics Digital Solutions - Digital Magic for Real Success',
     primaryColor: '#D51F16',
   },

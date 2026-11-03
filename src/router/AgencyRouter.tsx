@@ -32,8 +32,14 @@ const RouterContext = createContext<RouterContextType>({
 
 export const useRouter = () => useContext(RouterContext);
 
+const APP_BASE_URL = import.meta.env.BASE_URL || '/';
+const APP_BASE_PREFIX = APP_BASE_URL === '/' ? '' : APP_BASE_URL.replace(/\/+$/, '');
+
 export function parseRoute(pathname: string): RouteState {
-  const clean = pathname.toLowerCase().replace(/\/+$/, '') || '/';
+  const appPath = APP_BASE_PREFIX && pathname.startsWith(APP_BASE_PREFIX)
+    ? pathname.slice(APP_BASE_PREFIX.length) || '/'
+    : pathname;
+  const clean = appPath.toLowerCase().replace(/\/+$/, '') || '/';
 
   // Match /portfolio/:id or /project/:id
   const portfolioMatch = clean.match(/^\/(portfolio|project)\/([a-z0-9_-]+)$/);
@@ -99,9 +105,13 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return;
     }
 
-    // Push new history state
-    window.history.pushState({}, '', to);
-    setRoute(parseRoute(to));
+    // Prefix application routes when deployed below a GitHub Pages project path.
+    const targetPath = to.startsWith('/') ? to : `/${to}`;
+    const browserPath = APP_BASE_URL === '/'
+      ? targetPath
+      : `${APP_BASE_URL}${targetPath.replace(/^\/+/, '')}`;
+    window.history.pushState({}, '', browserPath);
+    setRoute(parseRoute(targetPath));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

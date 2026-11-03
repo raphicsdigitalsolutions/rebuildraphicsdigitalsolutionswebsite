@@ -155,10 +155,10 @@ function AgencyContent() {
       {/* 7. Selected Work (Real Behance Artworks & GitHub Repositories with Deep Case Studies) */}
       <SelectedWorkSection />
 
-      {/* 8. Client Testimonials & Reviews (Verified from Fiverr, Upwork, FusionArt) */}
+      {/* 8. Client Feedback & Professional Profiles (only source-confirmed reviews) */}
       <ReviewsSection />
 
-      {/* 9. Professional Credibility (Trust Built Through Real Work - Official Profiles) */}
+      {/* 9. Professional Profiles and Public Work Links */}
       <TrustSection />
 
       {/* 10. Our 5-Stage Process (Discovery, Strategy, Design, Development, Delivery) */}

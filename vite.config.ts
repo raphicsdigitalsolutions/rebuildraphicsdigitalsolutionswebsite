@@ -4,7 +4,11 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
   return {
+    // Project Pages serves the app below /<repository-name>/ rather than the domain root.
+    base: isGitHubPages ? '/rebuildraphicsdigitalsolutionswebsite/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

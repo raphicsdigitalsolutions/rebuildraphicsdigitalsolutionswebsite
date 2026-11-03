@@ -2,7 +2,7 @@ name: Website CI
 
 on:
   push:
-    branches: [main, "fix/**", "deploy/**"]
+    branches: [main, "fix/**", "deploy/**", "motion/**"]
   pull_request:
     branches: [main]
 

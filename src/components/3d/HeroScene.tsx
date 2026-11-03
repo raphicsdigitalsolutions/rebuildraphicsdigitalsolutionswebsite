@@ -344,7 +344,27 @@ export const HeroScene: React.FC = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // 9. Animation Loop with Exponential Damping & Software Gl Pacing
+    // 9. Scroll-linked camera choreography. Scroll remains native; only the scene responds.
+    const heroSection = container.closest('section');
+    let heroScrollProgress = 0;
+    let scrollFrameId = 0;
+    const updateHeroScroll = () => {
+      scrollFrameId = 0;
+      if (!heroSection || prefersReducedMotion) {
+        heroScrollProgress = 0;
+        return;
+      }
+      const rect = heroSection.getBoundingClientRect();
+      heroScrollProgress = THREE.MathUtils.clamp(-rect.top / Math.max(window.innerHeight * 0.88, 1), 0, 1);
+    };
+    const handleHeroScroll = () => {
+      if (scrollFrameId) return;
+      scrollFrameId = window.requestAnimationFrame(updateHeroScroll);
+    };
+    updateHeroScroll();
+    window.addEventListener('scroll', handleHeroScroll, { passive: true });
+
+    // 10. Animation Loop with Exponential Damping & Software Gl Pacing
     let frameId = 0;
     const clock = new THREE.Clock();
 
@@ -413,9 +433,18 @@ export const HeroScene: React.FC = () => {
 
       // Auto rotation base
       const autoY = stateRef.current.autoRotate ? elapsed * 0.4 : 0;
-      masterGroup.rotation.y = autoY + _currentRotation.y;
-      masterGroup.rotation.x = Math.sin(elapsed * 0.5) * 0.08 + _currentRotation.x;
-      masterGroup.rotation.z = Math.cos(elapsed * 0.4) * 0.05;
+      const scrollTurn = prefersReducedMotion ? 0 : heroScrollProgress * 0.48;
+      masterGroup.rotation.y = autoY + _currentRotation.y + scrollTurn;
+      masterGroup.rotation.x = Math.sin(elapsed * 0.5) * 0.08 + _currentRotation.x + heroScrollProgress * 0.12;
+      masterGroup.rotation.z = Math.cos(elapsed * 0.4) * 0.05 - heroScrollProgress * 0.08;
+
+      // As visitors move past the hero, the logo assembly pulls back and settles.
+      const targetCameraZ = 6.2 + heroScrollProgress * 1.25;
+      const targetCameraY = 0.5 - heroScrollProgress * 0.24;
+      camera.position.z = THREE.MathUtils.damp(camera.position.z, targetCameraZ, 4.5, delta);
+      camera.position.y = THREE.MathUtils.damp(camera.position.y, targetCameraY, 4.5, delta);
+      const targetScale = 1 - heroScrollProgress * 0.1;
+      masterGroup.scale.setScalar(THREE.MathUtils.damp(masterGroup.scale.x, targetScale, 4, delta));
 
       // Orbiting satellites and gimbal rings
       meshRing1.rotation.z = elapsed * 0.3;
@@ -423,7 +452,7 @@ export const HeroScene: React.FC = () => {
       satGroup.rotation.y = -elapsed * 0.6;
 
       // Floating gentle bobbing
-      masterGroup.position.y = Math.sin(elapsed * 1.2) * 0.08;
+      masterGroup.position.y = Math.sin(elapsed * 1.2) * 0.08 - heroScrollProgress * 0.22;
 
       // Pulse the central energy core
       const coreScale = 1.0 + Math.sin(elapsed * 4.0) * 0.15;
@@ -462,6 +491,8 @@ export const HeroScene: React.FC = () => {
       window.removeEventListener('pointermove', handlePointerMove);
       container.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleHeroScroll);
+      if (scrollFrameId) window.cancelAnimationFrame(scrollFrameId);
       if (isSoftwareGl) {
         clearTimeout(frameId);
       } else {

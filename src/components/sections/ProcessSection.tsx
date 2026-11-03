@@ -93,6 +93,7 @@ export const ProcessSection: React.FC = () => {
               <button
                 key={st.num}
                 onClick={() => setActiveStep(idx)}
+                aria-pressed={isCurrent}
                 className={`flex flex-col sm:flex-row items-center justify-center gap-2 py-3 px-2 sm:px-4 rounded-xl text-xs font-mono transition-all cursor-pointer ${
                   isCurrent
                     ? 'bg-[#D51F16] text-white shadow-[0_0_15px_rgba(213,31,22,0.4)]'
@@ -107,7 +108,7 @@ export const ProcessSection: React.FC = () => {
         </div>
 
         {/* Active Stage Deep Dive Card */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-neutral-950 border border-neutral-800 relative overflow-hidden">
+        <div key={steps[activeStep].num} className="process-stage-panel p-8 sm:p-12 rounded-3xl bg-neutral-950 border border-neutral-800 relative overflow-hidden" aria-live="polite">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             <div className="lg:col-span-8 space-y-4">

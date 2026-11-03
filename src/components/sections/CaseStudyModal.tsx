@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * 
  * Case Study Modal for Raphics Digital Solutions.
- * Displays comprehensive, verified project case study details:
+ * Displays source-attributed project details when documentation is available:
  * Problem, Solution, Tech Stack, Key Features, Challenges, and official external links.
  */
 
@@ -70,6 +70,13 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
       case 'Experimental Project':
       case 'Experimental':
         return 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+      case 'Public Repository':
+        return 'bg-blue-500/15 text-blue-300 border-blue-500/30';
+      case 'Public Prototype':
+        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+      case 'Published Portfolio Work':
+      case 'Private Repository':
+        return 'bg-neutral-800 text-neutral-300 border-neutral-700';
       default:
         return 'bg-neutral-800 text-neutral-300 border-neutral-700';
     }
@@ -92,7 +99,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               {project.status}
             </span>
             <span className="text-xs font-mono text-neutral-400 uppercase hidden sm:inline">
-              // {project.source === 'behance' ? 'Behance Portfolio' : 'GitHub Repository'}
+              // {project.source === 'behance' ? 'Behance Profile' : project.sourceVisibility === 'private' ? 'Private Project' : 'GitHub Repository'}
             </span>
           </div>
 
@@ -123,26 +130,33 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               {project.tagline}
             </p>
 
-            {/* Official Source Link Buttons */}
+            {/* External links are only rendered when the target is public and confirmed. */}
             <div className="pt-2 flex flex-wrap items-center gap-3">
-              <a
-                href={project.externalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-xs font-semibold tracking-wide transition-all shadow-[0_0_15px_rgba(213,31,22,0.4)]"
-              >
-                {project.source === 'github' ? (
-                  <>
-                    <Github className="w-4 h-4" />
-                    <span>View GitHub Source Code</span>
-                  </>
-                ) : (
-                  <>
-                    <ExternalLink className="w-4 h-4" />
-                    <span>View Project on Behance</span>
-                  </>
-                )}
-              </a>
+              {project.externalUrl && project.sourceVisibility !== 'private' ? (
+                <a
+                  href={project.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-xs font-semibold tracking-wide transition-all shadow-[0_0_15px_rgba(213,31,22,0.4)]"
+                >
+                  {project.source === 'github' ? (
+                    <>
+                      <Github className="w-4 h-4" />
+                      <span>View Public GitHub Repository</span>
+                    </>
+                  ) : (
+                    <>
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Open Behance Profile</span>
+                    </>
+                  )}
+                </a>
+              ) : project.sourceVisibility === 'private' ? (
+                <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-neutral-400">
+                  <Github className="w-4 h-4" />
+                  Private source — not linked publicly
+                </span>
+              ) : null}
 
               {project.liveDemoUrl && (
                 <a
@@ -172,7 +186,8 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             </p>
           </div>
 
-          {/* Problem & Solution Grid */}
+          {/* Problem & Solution Grid — shown only when documented for this project. */}
+          {(project.problem || project.solution) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800 space-y-2">
               <div className="flex items-center gap-2 text-xs font-mono text-amber-400 font-semibold">
@@ -194,8 +209,10 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               </p>
             </div>
           </div>
+          )}
 
           {/* Key Features */}
+          {project.mainFeatures.length > 0 && (
           <div className="space-y-3">
             <h3 className="text-xs font-mono uppercase tracking-wider text-[#D51F16] font-bold">
               02 // KEY SPECIFICATIONS & DELIVERABLES
@@ -212,15 +229,17 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               ))}
             </div>
           </div>
+          )}
 
-          {/* Tech Stack & Execution Details */}
+          {/* Tech Stack — only when documented in the source repository. */}
+          {project.techStack.length > 0 && (
           <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-850 space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-xs font-mono uppercase tracking-wider text-neutral-400">
-                Confirmed Stack & Tools:
+                Project Tools & Technologies:
               </h3>
               <span className="text-[11px] font-mono text-[#D51F16]">
-                OFFICIAL REPO / ARTWORK
+                PROJECT SOURCE
               </span>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -234,14 +253,17 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               ))}
             </div>
           </div>
+          )}
 
           {/* Engineering / Design Challenges Note */}
+          {project.challenges && (
           <div className="p-4 rounded-xl bg-neutral-900/40 border-l-2 border-[#D51F16] text-xs text-neutral-400 leading-relaxed">
             <strong className="text-neutral-200 font-mono block mb-1">
               Technical / Design Obstacle Overcome:
             </strong>
             {project.challenges}
           </div>
+          )}
 
           {/* Related Projects */}
           {relatedProjects.length > 0 && (
@@ -254,6 +276,15 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                   <div
                     key={rel.id}
                     onClick={() => onSelectRelated(rel)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        onSelectRelated(rel);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View ${rel.title} project details`}
                     className="p-3.5 rounded-xl bg-neutral-950 border border-neutral-850 hover:border-[#D51F16]/50 cursor-pointer transition-colors group"
                   >
                     <span className="text-[10px] font-mono text-[#D51F16] uppercase block">
@@ -278,7 +309,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
         <div className="flex items-center justify-between p-6 bg-neutral-950 border-t border-neutral-850 rounded-b-3xl text-xs text-neutral-400">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Verified Public Work &bull; Raphics Digital Solutions</span>
+            <span>Project information and source links &bull; Raphics Digital Solutions</span>
           </div>
           <button
             onClick={onClose}

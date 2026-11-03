@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
+# An absolute Sitemap URL is generated during build only when SITE_URL is configured.

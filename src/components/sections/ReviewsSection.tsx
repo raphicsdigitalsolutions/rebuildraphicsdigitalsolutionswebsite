@@ -2,17 +2,17 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  * 
- * Client Testimonials & Reviews Section for Raphics Digital Solutions.
+ * Client Feedback & Professional Profiles Section for Raphics Digital Solutions.
  * Built strictly according to Phase 2 integrity standards:
  * - Shows only verifiable reviews (zero synthetic testimonials).
- * - Provides an authentic platform verification hub linking directly to
+ * - Provides an external profile directory linking directly to
  *   the founder's official profiles on Fiverr, Upwork, FusionArt, and Behance.
  */
 
 import React, { useState } from 'react';
 import { CLIENT_REVIEWS, VERIFIED_REVIEW_PLATFORMS, ReviewPlatform } from '../../data/reviews';
 import { BRAND_CONFIG } from '../../config/brand';
-import { Star, ExternalLink, ShieldCheck, CheckCircle2, MessageSquareQuote, ArrowUpRight } from 'lucide-react';
+import { Star, ExternalLink, CheckCircle2, MessageSquareQuote, ArrowUpRight } from 'lucide-react';
 
 export const ReviewsSection: React.FC = () => {
   // Only create filters for platforms that actually have verified reviews
@@ -34,15 +34,14 @@ export const ReviewsSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-3 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-xs font-mono text-[#D51F16]">
-              <span>VERIFIED CLIENT TRUST & PROFILES</span>
+              <span>FOUNDER PROFILES & CLIENT FEEDBACK</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight font-heading text-white">
-              Authentic Feedback. <span className="text-[#D51F16]">Platform Verified.</span>
+              Professional Profiles. <span className="text-[#D51F16]">Work You Can Explore.</span>
             </h2>
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
               We uphold strict professional integrity. Rather than publishing unverified or synthetic testimonials,
-              we direct you to our founder’s public, authentic profiles where verified order histories and client ratings
-              can be audited directly.
+              we direct you to our founder’s public professional profiles and review histories where available. Ratings and order feedback are shown by the platforms themselves.
             </p>
           </div>
 
@@ -57,7 +56,7 @@ export const ReviewsSection: React.FC = () => {
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
-                All Verified ({CLIENT_REVIEWS.length})
+                Client Feedback ({CLIENT_REVIEWS.length})
               </button>
               {platformsWithReviews.map((p) => (
                 <button
@@ -87,7 +86,7 @@ export const ReviewsSection: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-300">
-                      {rev.platform} Verified
+                      {rev.platform}
                     </span>
                     {rev.rating && (
                       <div className="flex items-center gap-1">
@@ -133,9 +132,9 @@ export const ReviewsSection: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-[10px] font-mono text-[#D51F16] border border-neutral-800 font-semibold">
-                        OFFICIAL PROFILE
+                        PROFILE
                       </span>
-                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      <ExternalLink className="w-4 h-4 text-neutral-400" />
                     </div>
 
                     <h3 className="text-lg font-heading font-bold text-white group-hover:text-[#D51F16] transition-colors">
@@ -158,7 +157,7 @@ export const ReviewsSection: React.FC = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-between w-full text-xs font-mono text-neutral-300 hover:text-white group-hover:text-[#D51F16] transition-colors"
                     >
-                      <span>Audit Live Profile</span>
+                      <span>View Profile</span>
                       <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
                   </div>
@@ -169,7 +168,7 @@ export const ReviewsSection: React.FC = () => {
             {/* Informational Callout */}
             <div className="p-6 rounded-3xl bg-neutral-950 border border-neutral-850 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-400">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                <ExternalLink className="w-5 h-5 text-neutral-400 shrink-0" />
                 <span>
                   {BRAND_CONFIG.transparencyNote}
                 </span>

@@ -134,7 +134,7 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         document.title = `Service: ${route.serviceId} | ${baseTitle}`;
         break;
       case '/reviews':
-        document.title = `Client Trust & Verified Profiles | ${baseTitle}`;
+        document.title = `Client Feedback & Professional Profiles | ${baseTitle}`;
         break;
       case '/contact':
         document.title = `Start a Project | ${baseTitle}`;
@@ -148,6 +148,29 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       default:
         document.title = baseTitle;
     }
+  }, [route]);
+
+  // Keep canonical and Open Graph URLs aligned with the active client-side route.
+  useEffect(() => {
+    const canonicalBase = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const baseOrigin = canonicalBase?.href ? new URL(canonicalBase.href).origin : window.location.origin;
+    const canonicalUrl = new URL(window.location.pathname, baseOrigin).href;
+
+    let canonical = canonicalBase;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+
+    let openGraphUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    if (!openGraphUrl) {
+      openGraphUrl = document.createElement('meta');
+      openGraphUrl.setAttribute('property', 'og:url');
+      document.head.appendChild(openGraphUrl);
+    }
+    openGraphUrl.content = canonicalUrl;
   }, [route]);
 
   return (

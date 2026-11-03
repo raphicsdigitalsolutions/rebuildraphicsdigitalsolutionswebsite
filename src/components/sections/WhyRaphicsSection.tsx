@@ -20,26 +20,26 @@ export const WhyRaphicsSection: React.FC = () => {
       bulletPoints: [
         'Custom 3D product renders and accurate packaging die cuts',
         'Mathematical typography and cohesive visual hierarchies',
-        'Regulatory compliant labeling for pharma, food, and cosmetics',
+        'Packaging artwork prepared around client-supplied regulatory content; final compliance review remains with the client',
         'Brand guidelines built for scalable multi-channel expansion',
       ],
     },
     dev: {
       title: 'Digital Development',
-      sub: 'High-speed software engineered for resilience and frictionless user journeys.',
+      sub: 'Thoughtful software architecture, responsive interfaces, and practical user journeys.',
       bulletPoints: [
-        'Next.js & React full-stack applications with sub-second FCP',
+        'Responsive web applications with performance optimization',
         'Custom ERPs, inventory ledgers, and billing engines',
-        'Multi-tenant cloud deployments with Docker & Cloud Run',
-        'PostgreSQL schemas with ACID transactional compliance',
+        'Cloud deployments and integrations selected for each project',
+        'Relational database design and transaction-aware workflows',
       ],
     },
     ai: {
       title: 'Intelligent Automation',
-      sub: 'Actionable machine intelligence that eliminates enterprise operational bottlenecks.',
+      sub: 'AI-assisted workflows designed to reduce repetitive tasks and support business operations.',
       bulletPoints: [
-        'Vectorized RAG pipelines with zero hallucination source citations',
-        'Sub-500ms conversational AI voice agents with live interruption',
+        'RAG pipelines with source-attributed responses and evaluation guardrails',
+        'Realtime voice-agent experiences with streaming and interruption handling; latency depends on provider and network conditions',
         'Autonomous multi-ratio graphic creation agent workflows',
         'Automated document classification and OCR parsing',
       ],
@@ -73,6 +73,16 @@ export const WhyRaphicsSection: React.FC = () => {
           {/* Pillar 1: DESIGN */}
           <div
             onClick={() => setActivePillar('design')}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                setActivePillar('design');
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-pressed={activePillar === 'design'}
+            aria-label={`Show ${pillars.design.title} capabilities`}
             className={`p-8 rounded-3xl border cursor-pointer transition-all ${
               activePillar === 'design'
                 ? 'bg-neutral-900 border-[#D51F16] shadow-[0_0_25px_rgba(213,31,22,0.25)]'
@@ -102,6 +112,16 @@ export const WhyRaphicsSection: React.FC = () => {
           {/* Pillar 2: DEVELOPMENT */}
           <div
             onClick={() => setActivePillar('dev')}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                setActivePillar('dev');
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-pressed={activePillar === 'dev'}
+            aria-label={`Show ${pillars.dev.title} capabilities`}
             className={`p-8 rounded-3xl border cursor-pointer transition-all ${
               activePillar === 'dev'
                 ? 'bg-neutral-900 border-[#D51F16] shadow-[0_0_25px_rgba(213,31,22,0.25)]'
@@ -131,6 +151,16 @@ export const WhyRaphicsSection: React.FC = () => {
           {/* Pillar 3: INTELLIGENCE */}
           <div
             onClick={() => setActivePillar('ai')}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                setActivePillar('ai');
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-pressed={activePillar === 'ai'}
+            aria-label={`Show ${pillars.ai.title} capabilities`}
             className={`p-8 rounded-3xl border cursor-pointer transition-all ${
               activePillar === 'ai'
                 ? 'bg-neutral-900 border-[#D51F16] shadow-[0_0_25px_rgba(213,31,22,0.25)]'

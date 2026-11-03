@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       setScrolled(window.scrollY > 40);
 
       if (currentPath === '/') {
-        const sections = ['creative', 'development', 'ai-lab', 'portfolio', 'reviews', 'about', 'contact'];
+        const sections = ['about', 'creative', 'development', 'ai-lab', 'portfolio', 'reviews', 'contact'];
         for (const section of sections) {
           const el = document.getElementById(section);
           if (el) {
@@ -62,7 +62,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       const el = document.getElementById(sectionId);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState({}, '', path);
         return;
       }
     }

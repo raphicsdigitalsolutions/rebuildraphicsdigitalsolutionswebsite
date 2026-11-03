@@ -1,12 +1,8 @@
 /**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- * 
- * Centralized Logo Component for Raphics Digital Solutions.
- * Displays the original logo image asset with preserved proportions,
- * crisp rendering, and configurable display variants.
+ * Centralized logo component for Raphics Digital Solutions.
+ * The supplied wide logo is kept proportional; the emblem variant clips
+ * the left icon area without stretching or shrinking the full lockup.
  */
-
 import React from 'react';
 import { BRAND_CONFIG } from '../../config/brand';
 
@@ -23,27 +19,38 @@ export const Logo: React.FC<LogoProps> = ({
   height = 42,
   onClick,
 }) => {
+  const image = (
+    <img
+      src={BRAND_CONFIG.logo.imageSrc}
+      alt={onClick ? '' : BRAND_CONFIG.logo.alt}
+      aria-hidden={onClick ? true : undefined}
+      className="object-contain drop-shadow-[0_2px_8px_rgba(213,31,22,0.2)]"
+      style={{ height: `${height}px`, width: 'auto', maxWidth: 'none' }}
+      loading="eager"
+      decoding="async"
+    />
+  );
+
   return (
-    <div
-      onClick={onClick}
-      className={`inline-flex items-center gap-3 select-none transition-transform duration-200 hover:opacity-95 ${className}`}
-      style={{ cursor: onClick ? 'pointer' : 'default' }}
-      title={BRAND_CONFIG.name}
-    >
-      {/* Official Uploaded Logo Asset */}
-      <img
-        src={BRAND_CONFIG.logo.imageSrc}
-        alt={BRAND_CONFIG.logo.alt}
-        className="object-contain filter drop-shadow-[0_2px_8px_rgba(213,31,22,0.2)]"
-        style={{
-          height: `${height}px`,
-          width: 'auto',
-          maxWidth: variant === 'emblem' ? `${height}px` : undefined,
-          objectPosition: variant === 'emblem' ? 'left center' : 'center',
-          overflow: variant === 'emblem' ? 'hidden' : 'visible',
-        }}
-        loading="eager"
-      />
+    <div className={`inline-flex items-center select-none ${className}`} title={BRAND_CONFIG.name}>
+      {onClick ? (
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={`Go to ${BRAND_CONFIG.name} homepage`}
+          className="inline-flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D51F16]"
+        >
+          {variant === 'emblem' ? (
+            <span className="relative block overflow-hidden" style={{ width: height, height }}>
+              {image}
+            </span>
+          ) : image}
+        </button>
+      ) : variant === 'emblem' ? (
+        <span className="relative block overflow-hidden" style={{ width: height, height }} title={BRAND_CONFIG.name}>
+          {image}
+        </span>
+      ) : image}
     </div>
   );
 };

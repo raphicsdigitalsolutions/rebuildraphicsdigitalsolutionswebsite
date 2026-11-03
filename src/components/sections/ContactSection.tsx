@@ -4,7 +4,7 @@
  * 
  * Contact & Project Inquiries Section for Raphics Digital Solutions.
  * "LET'S BUILD SOMETHING THAT MATTERS."
- * Features real working backend submission to /api/contact, persistent storage,
+ * Submits inquiries to the configured website backend with validation and spam checks,
  * client & server validation, spam honeypot trap, optional budget ranges,
  * and direct email / WhatsApp links.
  */
@@ -133,7 +133,7 @@ export const ContactSection: React.FC = () => {
 
           <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
             Ready to design distinct product packaging, engineer custom business software, or deploy an AI system?
-            Submit your project details below. All inquiries are saved to our persistent database and reviewed within 24 hours.
+            Submit your project details below. For time-sensitive requests, use the direct email contact shown here.
           </p>
         </div>
 
@@ -214,7 +214,7 @@ export const ContactSection: React.FC = () => {
               <ul className="space-y-2 text-xs text-neutral-300">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Review within 24 hours by agency leadership.</span>
+                  <span>We can review project details after a successful submission.</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
@@ -229,7 +229,7 @@ export const ContactSection: React.FC = () => {
 
           </div>
 
-          {/* Right Column: Persistent Project Inquiry Form (7 cols) */}
+          {/* Right Column: Project Inquiry Form (7 cols) */}
           <div className="lg:col-span-7 p-6 sm:p-10 rounded-3xl bg-neutral-950 border border-neutral-800 shadow-2xl relative">
             
             {successData ? (
@@ -278,7 +278,7 @@ export const ContactSection: React.FC = () => {
                     Project Brief & Discovery Form
                   </h3>
                   <span className="text-xs text-neutral-400">
-                    Inquiries are saved directly to persistent storage.
+                    Your brief is sent to the website backend when it is available.
                   </span>
                 </div>
 

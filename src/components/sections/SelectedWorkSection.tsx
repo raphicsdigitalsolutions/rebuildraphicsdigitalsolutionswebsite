@@ -43,6 +43,7 @@ export const SelectedWorkSection: React.FC = () => {
         if (selectedCategory === 'Product Mockups' && proj.category !== 'Product Mockups') return false;
         if (selectedCategory === 'AI & ML' && proj.category !== 'AI & Machine Learning' && proj.category !== 'Voice & Agents') return false;
         if (selectedCategory === 'Web & SaaS' && proj.category !== 'Web & SaaS Platform') return false;
+        if (selectedCategory === 'Mobile Apps' && proj.category !== 'Mobile Applications') return false;
       }
 
       // Search query
@@ -75,6 +76,13 @@ export const SelectedWorkSection: React.FC = () => {
       case 'Experimental Project':
       case 'Experimental':
         return 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+      case 'Public Repository':
+        return 'bg-blue-500/15 text-blue-300 border-blue-500/30';
+      case 'Public Prototype':
+        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+      case 'Published Portfolio Work':
+      case 'Private Repository':
+        return 'bg-neutral-800 text-neutral-300 border-neutral-700';
       default:
         return 'bg-neutral-800 text-neutral-300 border-neutral-700';
     }
@@ -94,11 +102,10 @@ export const SelectedWorkSection: React.FC = () => {
               <span>05 // SELECTED WORK</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight font-heading text-white">
-              Real Work. <span className="text-[#D51F16]">Verified Results.</span>
+              Selected Projects. <span className="text-[#D51F16]">Creative & Technical Work.</span>
             </h2>
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-              Explore our dual pedigree: award-caliber 3D packaging designs from our Behance creative archive,
-              alongside real, documented software and AI engineering repositories on GitHub.
+              Explore selected creative projects published through Behance and software repositories hosted on GitHub. Open the original profile or repository for source material and the latest project information.
             </p>
           </div>
 
@@ -169,7 +176,7 @@ export const SelectedWorkSection: React.FC = () => {
 
           {/* Sub-category Quick Filters */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 text-xs">
-            {['all', 'Packaging', 'Label', 'Food & Beverage', 'Cosmetics', 'Product Mockups', 'AI & ML', 'Web & SaaS'].map((cat) => (
+            {['all', 'Packaging', 'Label', 'Food & Beverage', 'Cosmetics', 'Product Mockups', 'AI & ML', 'Web & SaaS', 'Mobile Apps'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -204,6 +211,15 @@ export const SelectedWorkSection: React.FC = () => {
             <div
               key={project.id}
               onClick={() => setActiveModalProject(project)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setActiveModalProject(project);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`View ${project.title} project details`}
               className="group p-6 rounded-3xl bg-neutral-950 border border-neutral-850 hover:border-[#D51F16]/60 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:shadow-[0_10px_35px_rgba(0,0,0,0.8)] relative overflow-hidden"
             >
               {/* Card Ambient Glow on Hover */}
@@ -245,7 +261,7 @@ export const SelectedWorkSection: React.FC = () => {
                   </div>
 
                   <span className="text-xs font-mono font-bold text-white tracking-wider z-10">
-                    {project.visualTheme.badgeText}
+                    {project.source === 'github' ? project.status.toUpperCase() : project.visualTheme.badgeText}
                   </span>
                 </div>
 

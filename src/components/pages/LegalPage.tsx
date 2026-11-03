@@ -50,16 +50,14 @@ export const LegalPage: React.FC<{ type: 'privacy' | 'terms' }> = ({ type }) => 
                 <p>
                   When you submit an inquiry to Raphics Digital Solutions via our project brief form,
                   we collect your name, business email, organization, service category, and project scope.
-                  This data is recorded securely in our persistent inquiry records to respond to your request.
+                  The website backend receives these details so we can respond to your request. The storage method depends on the hosting environment. Do not submit passwords or other highly sensitive information through this form.
                 </p>
 
                 <h2 className="text-base font-heading font-bold text-white pt-2">
-                  2. Confidentiality & Non-Disclosure
+                  2. Handling of Shared Information
                 </h2>
                 <p>
-                  All project briefs, client requirements, and shared proprietary materials are treated
-                  with strict professional discretion. We do not distribute, sell, or monetize client records
-                  with third-party marketing services.
+                  Information submitted through this website is used to respond to inquiries and discuss potential work. Hosting and infrastructure providers may process submitted data to operate the website. Any additional confidentiality obligations for proprietary materials should be agreed in writing before those materials are shared.
                 </p>
 
                 <h2 className="text-base font-heading font-bold text-white pt-2">
@@ -92,8 +90,7 @@ export const LegalPage: React.FC<{ type: 'privacy' | 'terms' }> = ({ type }) => 
                   3. Intellectual Property Rights
                 </h2>
                 <p>
-                  Commercial rights to delivered custom artworks and proprietary code transfer to the client
-                  upon project completion and fee clearance in accordance with the contract terms.
+                  Ownership, licensing, and transfer rights for deliverables are defined by the written agreement for each project. Do not assume that ownership transfers unless the applicable agreement explicitly says so.
                 </p>
               </>
             )}

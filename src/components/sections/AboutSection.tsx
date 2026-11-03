@@ -67,7 +67,7 @@ export const AboutSection: React.FC = () => {
               Development Expertise
             </h3>
             <p className="text-sm text-neutral-400 leading-relaxed">
-              Full-stack software built on modern TypeScript, React, and resilient database architectures. We create high-throughput web apps, custom ERPs, and real-time dashboards.
+              We build websites, web applications, custom business software, and dashboards using technologies suited to each project’s requirements.
             </p>
           </div>
 
@@ -80,7 +80,7 @@ export const AboutSection: React.FC = () => {
               AI Capabilities
             </h3>
             <p className="text-sm text-neutral-400 leading-relaxed">
-              Moving beyond toys into production intelligence. We engineer Retrieval-Augmented Generation (RAG) knowledge systems, autonomous agentic loops, and voice triage bots.
+              We develop practical AI-assisted workflows, Retrieval-Augmented Generation (RAG) knowledge systems, custom agents, and voice interfaces.
             </p>
           </div>
 
@@ -93,7 +93,7 @@ export const AboutSection: React.FC = () => {
               Global Delivery
             </h3>
             <p className="text-sm text-neutral-400 leading-relaxed">
-              Vetted on top international freelance platforms (Fiverr, Upwork, FusionArt). We maintain a proven track record of reliable delivery for clients in the US, UK, UAE, and beyond.
+              The founder maintains individual professional profiles on Fiverr, Upwork, and FusionArt. These profiles document personal freelance work and are distinct from agency-level ratings or performance metrics.
             </p>
           </div>
 
@@ -109,13 +109,11 @@ export const AboutSection: React.FC = () => {
                 <span>Transparent Professional Track Record</span>
               </div>
               <h4 className="text-2xl font-heading font-bold text-white">
-                Independent Agency Powered by Proven Creative Leadership
+                Independent Agency Built Around Creative and Technical Services
               </h4>
               <p className="text-sm text-neutral-400 leading-relaxed">
                 Raphics Digital Solutions operates as an independent, multi-disciplinary digital agency.
-                Our foundation is rooted in our founder’s verified freelance excellence &mdash; rated 5.0 across
-                leading global marketplaces &mdash; combined with our collaborative network of specialized engineers,
-                3D artists, and AI researchers.
+                Our foundation combines the founder’s creative and technical experience with Raphics Digital Solutions’ services across design, software development, and AI. Individual platform reviews and ratings remain attributed to the original profiles.
               </p>
             </div>
 

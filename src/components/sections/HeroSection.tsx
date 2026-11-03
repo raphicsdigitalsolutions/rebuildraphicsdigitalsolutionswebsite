@@ -117,15 +117,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-neutral-400 font-mono">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Platform Verified Profiles</span>
+                <span>Founder Profiles on External Platforms</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Open Source Repositories</span>
+                <span>Public GitHub Repositories</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Global Delivery</span>
+                <span>Remote Project Collaboration</span>
               </div>
             </div>
 

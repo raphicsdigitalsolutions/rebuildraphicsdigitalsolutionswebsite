@@ -10,7 +10,7 @@ Before the first deployment, open:
 
 **Repository → Settings → Pages → Build and deployment → Source → GitHub Actions**
 
-Save that setting. The preview workflow needs repository Pages administration to create/enable the Pages site; the repository automation token currently does not have that permission.
+Save that setting. The preview workflow now checks the configured Pages site and publishes the static build. If the Pages source is set to GitHub Actions, the deployment job should complete.
 
 After enabling Pages, open **Actions → Deploy GitHub Pages Preview** and choose **Run workflow** on `deploy/github-pages-preview`, or push another commit to that branch.
 
@@ -22,3 +22,6 @@ After enabling Pages, open **Actions → Deploy GitHub Pages Preview** and choos
 - The production backend, database, email notifications and final domain will be configured later for the Vercel launch.
 
 The workflow also deploys `main` after the preview setup, so future merged changes update the Pages preview automatically.
+
+
+Redeploy trigger: 2026-11-03. The preview branch was updated to request a fresh Pages deployment after the repository Pages setting was configured.

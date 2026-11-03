@@ -134,7 +134,7 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         document.title = `Service: ${route.serviceId} | ${baseTitle}`;
         break;
       case '/reviews':
-        document.title = `Client Trust & Verified Profiles | ${baseTitle}`;
+        document.title = `Client Feedback & Professional Profiles | ${baseTitle}`;
         break;
       case '/contact':
         document.title = `Start a Project | ${baseTitle}`;

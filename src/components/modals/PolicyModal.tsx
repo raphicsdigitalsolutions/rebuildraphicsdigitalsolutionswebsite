@@ -81,9 +81,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
                 2. Use of Project Materials
               </h3>
               <p>
-                Project briefs, design requirements, and reference assets provided by clients are kept
-                confidential and used only for scoping proposals and executing agreed design or engineering work.
-                We do not sell, rent, or trade your contact details or project descriptions to third parties.
+                Information submitted through this site is used to respond to inquiries and discuss potential work. Hosting and infrastructure providers may process data to operate the website. Do not submit passwords or highly sensitive information. Any specific confidentiality obligations for proprietary materials should be agreed in writing before sharing.
               </p>
 
               <h3 className="text-sm font-heading font-bold text-white pt-2">
@@ -134,9 +132,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
                 3. Intellectual Property Rights
               </h3>
               <p>
-                Ownership and usage rights of final deliverables are governed by individual project agreements
-                and transfer upon completion and settlement of project terms. Public or open-source software
-                repositories are governed by their respective repository licenses (e.g., MIT, Apache 2.0) as documented on GitHub.
+                Ownership, licensing, and usage rights for final deliverables are defined by the written agreement for each project. Public repositories remain subject to the licence displayed in the relevant repository; do not assume a specific licence without checking it.
               </p>
 
               <h3 className="text-sm font-heading font-bold text-white pt-2">

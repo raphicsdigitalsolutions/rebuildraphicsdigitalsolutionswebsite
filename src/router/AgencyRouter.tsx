@@ -150,6 +150,29 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [route]);
 
+  // Keep canonical and Open Graph URLs aligned with the active client-side route.
+  useEffect(() => {
+    const canonicalBase = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const baseOrigin = canonicalBase?.href ? new URL(canonicalBase.href).origin : window.location.origin;
+    const canonicalUrl = new URL(window.location.pathname, baseOrigin).href;
+
+    let canonical = canonicalBase;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+
+    let openGraphUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    if (!openGraphUrl) {
+      openGraphUrl = document.createElement('meta');
+      openGraphUrl.setAttribute('property', 'og:url');
+      document.head.appendChild(openGraphUrl);
+    }
+    openGraphUrl.content = canonicalUrl;
+  }, [route]);
+
   return (
     <RouterContext.Provider
       value={{

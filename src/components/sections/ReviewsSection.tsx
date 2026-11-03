@@ -2,17 +2,17 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  * 
- * Client Testimonials & Reviews Section for Raphics Digital Solutions.
+ * Client Feedback & Professional Profiles Section for Raphics Digital Solutions.
  * Built strictly according to Phase 2 integrity standards:
  * - Shows only verifiable reviews (zero synthetic testimonials).
- * - Provides an authentic platform verification hub linking directly to
+ * - Provides an external profile directory linking directly to
  *   the founder's official profiles on Fiverr, Upwork, FusionArt, and Behance.
  */
 
 import React, { useState } from 'react';
 import { CLIENT_REVIEWS, VERIFIED_REVIEW_PLATFORMS, ReviewPlatform } from '../../data/reviews';
 import { BRAND_CONFIG } from '../../config/brand';
-import { Star, ExternalLink, ShieldCheck, CheckCircle2, MessageSquareQuote, ArrowUpRight } from 'lucide-react';
+import { Star, ExternalLink, CheckCircle2, MessageSquareQuote, ArrowUpRight } from 'lucide-react';
 
 export const ReviewsSection: React.FC = () => {
   // Only create filters for platforms that actually have verified reviews
@@ -56,7 +56,7 @@ export const ReviewsSection: React.FC = () => {
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
-                All Reviews ({CLIENT_REVIEWS.length})
+                Client Feedback ({CLIENT_REVIEWS.length})
               </button>
               {platformsWithReviews.map((p) => (
                 <button
@@ -168,7 +168,7 @@ export const ReviewsSection: React.FC = () => {
             {/* Informational Callout */}
             <div className="p-6 rounded-3xl bg-neutral-950 border border-neutral-850 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-400">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                <ExternalLink className="w-5 h-5 text-neutral-400 shrink-0" />
                 <span>
                   {BRAND_CONFIG.transparencyNote}
                 </span>

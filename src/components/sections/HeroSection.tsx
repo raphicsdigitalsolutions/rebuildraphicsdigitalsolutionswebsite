@@ -38,7 +38,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="lg:col-span-7 z-10 space-y-6">
             
             {/* Top Verified Agency Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900/80 border border-neutral-800 text-xs font-mono text-neutral-300 backdrop-blur-md">
+            <div className="hero-kicker inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900/80 border border-neutral-800 text-xs font-mono text-neutral-300 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-[#D51F16]" />
               <span className="tracking-wide">CREATIVE & TECHNOLOGY AGENCY</span>
             </div>
@@ -46,20 +46,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Main Monumental Headline */}
             <div className="space-y-1">
               <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tighter uppercase font-heading text-white leading-[0.98]">
-                <span>{BRAND_CONFIG.heroHeadline.line1}</span>
+                <span className="hero-line hero-line--one">{BRAND_CONFIG.heroHeadline.line1}</span>
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-400">
-                  {BRAND_CONFIG.heroHeadline.line2}
+                  <span className="hero-line hero-line--two">{BRAND_CONFIG.heroHeadline.line2}</span>
                 </span>
                 <br />
                 <span className="text-[#D51F16] drop-shadow-[0_0_35px_rgba(213,31,22,0.45)]">
-                  {BRAND_CONFIG.heroHeadline.line3}
+                  <span className="hero-line hero-line--three">{BRAND_CONFIG.heroHeadline.line3}</span>
                 </span>
               </h1>
             </div>
 
             {/* Supporting Heading & Official Description */}
-            <div className="space-y-3 max-w-xl">
+            <div className="hero-support space-y-3 max-w-xl">
               <h2 className="text-lg sm:text-xl font-medium text-neutral-200">
                 {BRAND_CONFIG.subheading}
               </h2>
@@ -133,11 +133,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           {/* Right Column: Interactive 3D Hero Scene (5 cols) */}
           <div className="lg:col-span-5 relative w-full flex items-center justify-center">
-            <div className="relative w-full aspect-square max-w-[540px] rounded-3xl bg-neutral-950/60 border border-neutral-850 p-2 shadow-2xl backdrop-blur-sm overflow-hidden">
+            <div className="hero-visual-frame relative w-full aspect-square max-w-[540px] rounded-3xl bg-neutral-950/60 border border-neutral-850 p-2 shadow-2xl backdrop-blur-sm overflow-hidden" data-scroll-parallax="0.045">
               <HeroScene />
             </div>
           </div>
 
+        </div>
+      </div>
+
+
+      {/* Infinite capability ribbon — lightweight CSS marquee, duplicated for seamless looping. */}
+      <div className="hero-marquee relative z-10" aria-label="Raphics services">
+        <div className="hero-marquee-track" aria-hidden="true">
+          {Array.from({ length: 2 }).map((_, groupIndex) => (
+            <div className="hero-marquee-group" key={groupIndex}>
+              <span>Brand Identity</span><i className="hero-marquee-dot" />
+              <span>3D Packaging</span><i className="hero-marquee-dot" />
+              <span>Web Experiences</span><i className="hero-marquee-dot" />
+              <span>Custom Software</span><i className="hero-marquee-dot" />
+              <span>AI Agents</span><i className="hero-marquee-dot" />
+              <span>Business Automation</span><i className="hero-marquee-dot" />
+              <span>Creative Technology</span><i className="hero-marquee-dot" />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -149,7 +167,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
         <a
           href="#about"
-          className="flex items-center gap-1 text-neutral-400 hover:text-[#D51F16] transition-colors"
+          className="hero-scroll-cue flex items-center gap-1 text-neutral-400 hover:text-[#D51F16] transition-colors"
         >
           <span>Scroll to Discover</span>
           <ChevronDown className="w-3.5 h-3.5 animate-bounce" />

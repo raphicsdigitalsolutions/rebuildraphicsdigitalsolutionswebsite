@@ -20,7 +20,7 @@ jobs:
   build-and-deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://raphicsdigitalsolutions.github.io/rebuildraphicsdigitalsolutionswebsite/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout deployment branch
@@ -38,11 +38,6 @@ jobs:
           VITE_GITHUB_PAGES: 'true'
           SITE_URL: https://raphicsdigitalsolutions.github.io/rebuildraphicsdigitalsolutionswebsite
         run: bun run build
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3

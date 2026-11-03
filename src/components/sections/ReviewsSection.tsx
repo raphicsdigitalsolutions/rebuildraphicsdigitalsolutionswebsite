@@ -34,15 +34,14 @@ export const ReviewsSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-3 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-xs font-mono text-[#D51F16]">
-              <span>VERIFIED CLIENT TRUST & PROFILES</span>
+              <span>FOUNDER PROFILES & CLIENT FEEDBACK</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight font-heading text-white">
-              Authentic Feedback. <span className="text-[#D51F16]">Platform Verified.</span>
+              Professional Profiles. <span className="text-[#D51F16]">Work You Can Explore.</span>
             </h2>
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
               We uphold strict professional integrity. Rather than publishing unverified or synthetic testimonials,
-              we direct you to our founder’s public, authentic profiles where verified order histories and client ratings
-              can be audited directly.
+              we direct you to our founder’s public professional profiles and review histories where available. Ratings and order feedback are shown by the platforms themselves.
             </p>
           </div>
 
@@ -57,7 +56,7 @@ export const ReviewsSection: React.FC = () => {
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
-                All Verified ({CLIENT_REVIEWS.length})
+                All Reviews ({CLIENT_REVIEWS.length})
               </button>
               {platformsWithReviews.map((p) => (
                 <button
@@ -87,7 +86,7 @@ export const ReviewsSection: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-300">
-                      {rev.platform} Verified
+                      {rev.platform}
                     </span>
                     {rev.rating && (
                       <div className="flex items-center gap-1">
@@ -133,7 +132,7 @@ export const ReviewsSection: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-[10px] font-mono text-[#D51F16] border border-neutral-800 font-semibold">
-                        OFFICIAL PROFILE
+                        PROFILE
                       </span>
                       <ShieldCheck className="w-4 h-4 text-emerald-400" />
                     </div>
@@ -158,7 +157,7 @@ export const ReviewsSection: React.FC = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-between w-full text-xs font-mono text-neutral-300 hover:text-white group-hover:text-[#D51F16] transition-colors"
                     >
-                      <span>Audit Live Profile</span>
+                      <span>View Profile</span>
                       <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
                   </div>

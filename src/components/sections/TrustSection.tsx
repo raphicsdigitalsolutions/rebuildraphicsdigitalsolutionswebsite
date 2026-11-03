@@ -37,7 +37,7 @@ export const TrustSection: React.FC = () => {
     {
       id: 'fiverr',
       name: 'Fiverr',
-      handle: 'Freelance Design Account',
+      handle: 'Founder Profile',
       url: BRAND_CONFIG.profiles.fiverr.url,
       description: 'Individual freelance profile for product packaging, label design, and 3D visual mockups.',
       badge: 'FREELANCE PROFILE',
@@ -47,7 +47,7 @@ export const TrustSection: React.FC = () => {
     {
       id: 'upwork',
       name: 'Upwork',
-      handle: 'Professional Freelancer',
+      handle: 'Founder Profile',
       url: BRAND_CONFIG.profiles.upwork.url,
       description: 'Direct freelance contracting for brand packaging systems and custom digital design projects.',
       badge: 'FREELANCE CONTRACTING',
@@ -57,7 +57,7 @@ export const TrustSection: React.FC = () => {
     {
       id: 'fusionart',
       name: 'FusionArt',
-      handle: 'Artistic Profile',
+      handle: 'Founder Profile',
       url: BRAND_CONFIG.profiles.fusionart.url,
       description: 'Creative profile and published visual work.',
       badge: 'CREATIVE PROFILE',
@@ -69,7 +69,7 @@ export const TrustSection: React.FC = () => {
       name: 'Instagram',
       handle: '@raphicsdigitalsolutions',
       url: BRAND_CONFIG.profiles.instagram.url,
-      description: 'Visual identity explorations, 3D motion reels, and studio work in progress.',
+      description: 'Agency updates, creative work, and behind-the-scenes content shared on Instagram.',
       badge: 'SOCIAL PRESENCE',
       type: 'Design Updates',
       accent: '#EC4899',

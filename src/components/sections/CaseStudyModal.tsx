@@ -139,7 +139,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 ) : (
                   <>
                     <ExternalLink className="w-4 h-4" />
-                    <span>View Project on Behance</span>
+                    <span>Open Behance Profile</span>
                   </>
                 )}
               </a>
@@ -217,7 +217,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
           <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-850 space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-xs font-mono uppercase tracking-wider text-neutral-400">
-                Confirmed Stack & Tools:
+                Project Tools & Technologies:
               </h3>
               <span className="text-[11px] font-mono text-[#D51F16]">
                 OFFICIAL REPO / ARTWORK
@@ -278,7 +278,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
         <div className="flex items-center justify-between p-6 bg-neutral-950 border-t border-neutral-850 rounded-b-3xl text-xs text-neutral-400">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Verified Public Work &bull; Raphics Digital Solutions</span>
+            <span>Public portfolio and repository links &bull; Raphics Digital Solutions</span>
           </div>
           <button
             onClick={onClose}

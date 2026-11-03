@@ -52,6 +52,9 @@ export const HeroScene: React.FC = () => {
     const container = mountRef.current;
     if (!container) return;
 
+    // Read motion preference before any scroll callback can access it.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // 1. Software WebGL Guard (read from GPU renderer string, not user agent)
     const isSoftwareGl = (() => {
       try {
@@ -385,7 +388,6 @@ export const HeroScene: React.FC = () => {
     }
 
     // Reduced motion check
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       stateRef.current.autoRotate = false;
       setAutoRotate(false);

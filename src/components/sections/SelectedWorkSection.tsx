@@ -97,7 +97,7 @@ export const SelectedWorkSection: React.FC = () => {
               Real Work. <span className="text-[#D51F16]">Verified Results.</span>
             </h2>
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-              Explore selected creative projects published through Behance and software repositories hosted on GitHub. Project details and status should be confirmed from their original sources.
+              Explore selected creative projects published through Behance and software repositories hosted on GitHub. Open the original profile or repository for source material and the latest project information.
             </p>
           </div>
 

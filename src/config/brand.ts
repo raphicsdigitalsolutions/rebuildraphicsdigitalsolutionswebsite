@@ -43,7 +43,7 @@ export const BRAND_CONFIG = {
     borderDark: '#222222',
   },
 
-  // Official verified profiles & links (authentic profiles of founder Atta Ur Rehman)
+  // Public professional profiles supplied by the founder. Marketplace profiles belong to the founder, not automatically to the agency.
   profiles: {
     behance: {
       name: 'Behance',
@@ -91,10 +91,11 @@ export const BRAND_CONFIG = {
 
   // Transparent governance disclaimer
   transparencyNote:
-    'Client reviews and freelance project histories on Fiverr, Upwork, and FusionArt reflect the verified individual professional record of founder Atta Ur Rehman, distinct from Raphics Digital Solutions as an independent collective agency.',
+    'External marketplace profiles represent the founder’s individual professional presence. They should not be interpreted as agency-wide ratings, certifications, or endorsements.',
 
   // Contact & Inquiries (verified channels only, zero fake placeholder phone numbers)
   contact: {
+    // Founder-provided contact email. Replace with a domain email when configured.
     email: 'attaurrehmanseo3@gmail.com',
     whatsapp: {
       // Only active if a real verified phone number is supplied via environment variable

@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
+  const isGitHubPagesPreview = import.meta.env.VITE_GITHUB_PAGES === 'true';
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',

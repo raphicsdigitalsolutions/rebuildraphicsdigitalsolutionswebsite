@@ -70,4 +70,12 @@ html = html.replace(/<meta property="og:url"[^>]*>\s*/i, '');
 html = html.replace(/<head([^>]*)>/i, `<head$1>\n    ${canonical}\n    ${ogUrl}`);
 fs.writeFileSync(htmlPath, html, 'utf8');
 
+// GitHub Pages does not rewrite client-side routes to index.html. Publishing
+// the same SPA shell as 404.html lets the client router resolve direct visits
+// and browser refreshes on nested paths.
+if (process.env.GITHUB_PAGES === 'true') {
+  fs.copyFileSync(htmlPath, path.join(distDir, '404.html'));
+  console.log('[Pages] Wrote SPA fallback page for nested routes.');
+}
+
 console.log(`[SEO] Generated sitemap, robots directive and canonical metadata for ${siteBaseUrl}`);

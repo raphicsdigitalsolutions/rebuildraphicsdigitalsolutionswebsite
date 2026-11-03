@@ -138,7 +138,7 @@ app.post('/api/contact', (req: Request, res: Response) => {
     if (typeof projectBudget !== 'string' || projectBudget.length > 100) {
       return res.status(400).json({ error: 'Please select a valid budget range.' });
     }
-    if (typeof preferredContactMethod !== 'string' || !['Email', 'WhatsApp'].includes(preferredContactMethod)) {
+    if (typeof preferredContactMethod !== 'string' || !['Email', 'Google Meet / Zoom', 'WhatsApp'].includes(preferredContactMethod)) {
       return res.status(400).json({ error: 'Please select a valid contact method.' });
     }
 

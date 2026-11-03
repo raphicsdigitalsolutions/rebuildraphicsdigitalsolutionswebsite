@@ -75,6 +75,13 @@ export const SelectedWorkSection: React.FC = () => {
       case 'Experimental Project':
       case 'Experimental':
         return 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+      case 'Public Repository':
+        return 'bg-blue-500/15 text-blue-300 border-blue-500/30';
+      case 'Public Prototype':
+        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+      case 'Published Portfolio Work':
+      case 'Private Repository':
+        return 'bg-neutral-800 text-neutral-300 border-neutral-700';
       default:
         return 'bg-neutral-800 text-neutral-300 border-neutral-700';
     }

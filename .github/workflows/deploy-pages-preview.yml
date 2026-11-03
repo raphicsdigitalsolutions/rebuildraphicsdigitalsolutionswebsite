@@ -1,0 +1,53 @@
+name: Deploy GitHub Pages Preview
+
+on:
+  push:
+    branches:
+      - deploy/github-pages-preview
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages-preview
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout preview branch
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build static GitHub Pages preview
+        env:
+          GITHUB_PAGES: 'true'
+          VITE_GITHUB_PAGES: 'true'
+          SITE_URL: https://raphicsdigitalsolutions.github.io/rebuildraphicsdigitalsolutionswebsite
+        run: bun run build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - name: Deploy preview
+        id: deployment
+        uses: actions/deploy-pages@v4

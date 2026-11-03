@@ -232,7 +232,26 @@ export const ContactSection: React.FC = () => {
           {/* Right Column: Project Inquiry Form (7 cols) */}
           <div className="lg:col-span-7 p-6 sm:p-10 rounded-3xl bg-neutral-950 border border-neutral-800 shadow-2xl relative">
             
-            {successData ? (
+            {isGitHubPagesPreview ? (
+              <div className="py-10 text-center space-y-5">
+                <div className="w-16 h-16 rounded-full bg-[#D51F16]/10 border border-[#D51F16]/30 flex items-center justify-center mx-auto text-[#D51F16]">
+                  <Mail className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-heading font-bold text-white">
+                  Preview Mode — Contact Form Offline
+                </h3>
+                <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
+                  This GitHub Pages preview is a static website, so it does not run the inquiry API. The form will be connected when the production backend is configured.
+                </p>
+                <a
+                  href={`mailto:${BRAND_CONFIG.contact.email}?subject=${encodeURIComponent('Project inquiry — Raphics Digital Solutions')}`}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-sm font-semibold transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Email Raphics Digital Solutions</span>
+                </a>
+              </div>
+            ) : successData ? (
               <div className="py-12 text-center space-y-4 animate-fade-in">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
                   <CheckCircle2 className="w-8 h-8" />

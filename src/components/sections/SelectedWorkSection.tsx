@@ -252,7 +252,7 @@ export const SelectedWorkSection: React.FC = () => {
                   </div>
 
                   <span className="text-xs font-mono font-bold text-white tracking-wider z-10">
-                    {project.visualTheme.badgeText}
+                    {project.source === 'github' ? project.status.toUpperCase() : project.visualTheme.badgeText}
                   </span>
                 </div>
 

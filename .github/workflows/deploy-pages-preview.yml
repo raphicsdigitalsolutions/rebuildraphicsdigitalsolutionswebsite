@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - deploy/github-pages-preview
+      - main
   workflow_dispatch:
 
 permissions:
@@ -22,7 +23,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout preview branch
+      - name: Checkout deployment branch
         uses: actions/checkout@v4
 
       - name: Setup Bun

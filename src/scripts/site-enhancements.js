@@ -94,11 +94,15 @@ function bindCardTilt(card) {
     const maxTilt = 3.6;
     card.style.setProperty('--card-tilt-x', `${((x - 0.5) * maxTilt * 2).toFixed(2)}deg`);
     card.style.setProperty('--card-tilt-y', `${((0.5 - y) * maxTilt * 2).toFixed(2)}deg`);
+    card.style.setProperty('--spotlight-x', `${(x * 100).toFixed(1)}%`);
+    card.style.setProperty('--spotlight-y', `${(y * 100).toFixed(1)}%`);
   }, { passive: true });
 
   card.addEventListener('pointerleave', () => {
     card.style.setProperty('--card-tilt-x', '0deg');
     card.style.setProperty('--card-tilt-y', '0deg');
+    card.style.setProperty('--spotlight-x', '50%');
+    card.style.setProperty('--spotlight-y', '50%');
   }, { passive: true });
 }
 
@@ -124,6 +128,11 @@ function decorateSection(section) {
       card.setAttribute('data-tilt', '');
       bindCardTilt(card);
     }
+  });
+
+  // Register explicitly authored parallax elements such as the 3D hero frame.
+  section.querySelectorAll('[data-scroll-parallax]').forEach((element) => {
+    if (element instanceof HTMLElement) parallaxTargets.add(element);
   });
 
   // Give the large out-of-focus red lighting fields a slower scroll depth.

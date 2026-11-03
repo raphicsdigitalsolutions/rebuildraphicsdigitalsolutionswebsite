@@ -276,6 +276,15 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                   <div
                     key={rel.id}
                     onClick={() => onSelectRelated(rel)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        onSelectRelated(rel);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View ${rel.title} project details`}
                     className="p-3.5 rounded-xl bg-neutral-950 border border-neutral-850 hover:border-[#D51F16]/50 cursor-pointer transition-colors group"
                   >
                     <span className="text-[10px] font-mono text-[#D51F16] uppercase block">

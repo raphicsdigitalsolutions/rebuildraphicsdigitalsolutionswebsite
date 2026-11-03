@@ -134,7 +134,7 @@ export const ReviewsSection: React.FC = () => {
                       <span className="px-2.5 py-0.5 rounded-full bg-neutral-900 text-[10px] font-mono text-[#D51F16] border border-neutral-800 font-semibold">
                         PROFILE
                       </span>
-                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      <ExternalLink className="w-4 h-4 text-neutral-400" />
                     </div>
 
                     <h3 className="text-lg font-heading font-bold text-white group-hover:text-[#D51F16] transition-colors">

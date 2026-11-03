@@ -102,7 +102,7 @@ export const SelectedWorkSection: React.FC = () => {
               <span>05 // SELECTED WORK</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight font-heading text-white">
-              Real Work. <span className="text-[#D51F16]">Verified Results.</span>
+              Selected Projects. <span className="text-[#D51F16]">Creative & Technical Work.</span>
             </h2>
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
               Explore selected creative projects published through Behance and software repositories hosted on GitHub. Open the original profile or repository for source material and the latest project information.
@@ -176,7 +176,7 @@ export const SelectedWorkSection: React.FC = () => {
 
           {/* Sub-category Quick Filters */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 text-xs">
-            {['all', 'Packaging', 'Label', 'Food & Beverage', 'Cosmetics', 'Product Mockups', 'AI & ML', 'Web & SaaS'].map((cat) => (
+            {['all', 'Packaging', 'Label', 'Food & Beverage', 'Cosmetics', 'Product Mockups', 'AI & ML', 'Web & SaaS', 'Mobile Apps'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}

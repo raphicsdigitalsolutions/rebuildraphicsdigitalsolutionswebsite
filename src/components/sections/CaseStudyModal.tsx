@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * 
  * Case Study Modal for Raphics Digital Solutions.
- * Displays comprehensive, verified project case study details:
+ * Displays source-attributed project details when documentation is available:
  * Problem, Solution, Tech Stack, Key Features, Challenges, and official external links.
  */
 

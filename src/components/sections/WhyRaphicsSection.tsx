@@ -73,6 +73,16 @@ export const WhyRaphicsSection: React.FC = () => {
           {/* Pillar 1: DESIGN */}
           <div
             onClick={() => setActivePillar('design')}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                setActivePillar('design');
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-pressed={activePillar === 'design'}
+            aria-label={`Show ${pillars.design.title} capabilities`}
             className={`p-8 rounded-3xl border cursor-pointer transition-all ${
               activePillar === 'design'
                 ? 'bg-neutral-900 border-[#D51F16] shadow-[0_0_25px_rgba(213,31,22,0.25)]'
@@ -102,6 +112,16 @@ export const WhyRaphicsSection: React.FC = () => {
           {/* Pillar 2: DEVELOPMENT */}
           <div
             onClick={() => setActivePillar('dev')}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                setActivePillar('dev');
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-pressed={activePillar === 'dev'}
+            aria-label={`Show ${pillars.dev.title} capabilities`}
             className={`p-8 rounded-3xl border cursor-pointer transition-all ${
               activePillar === 'dev'
                 ? 'bg-neutral-900 border-[#D51F16] shadow-[0_0_25px_rgba(213,31,22,0.25)]'
@@ -131,6 +151,16 @@ export const WhyRaphicsSection: React.FC = () => {
           {/* Pillar 3: INTELLIGENCE */}
           <div
             onClick={() => setActivePillar('ai')}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                setActivePillar('ai');
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-pressed={activePillar === 'ai'}
+            aria-label={`Show ${pillars.ai.title} capabilities`}
             className={`p-8 rounded-3xl border cursor-pointer transition-all ${
               activePillar === 'ai'
                 ? 'bg-neutral-900 border-[#D51F16] shadow-[0_0_25px_rgba(213,31,22,0.25)]'

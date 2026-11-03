@@ -239,7 +239,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 Project Tools & Technologies:
               </h3>
               <span className="text-[11px] font-mono text-[#D51F16]">
-                OFFICIAL REPO / ARTWORK
+                PROJECT SOURCE
               </span>
             </div>
             <div className="flex flex-wrap gap-2">

@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       setScrolled(window.scrollY > 40);
 
       if (currentPath === '/') {
-        const sections = ['services', 'portfolio'];
+        const sections = ['services', 'capabilities', 'portfolio', 'about'];
         for (const section of sections) {
           const el = document.getElementById(section);
           if (el) {
@@ -48,6 +48,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
   const navLinks = [
     { label: 'Services', path: '/services', id: 'services' },
+    { label: 'Creative', path: '/creative', id: 'creative' },
+    { label: 'Development', path: '/development', id: 'development' },
+    { label: 'AI Lab', path: '/ai-lab', id: 'ai-lab' },
     { label: 'Work', path: '/portfolio', id: 'portfolio' },
     { label: 'About', path: '/about', id: 'about' },
   ];
@@ -85,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7 px-2">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 px-2">
             {navLinks.map((link) => {
               const isActive =
                 currentPath === link.path || (currentPath === '/' && activeSection === link.id);
@@ -93,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.path, link.id)}
-                  className={`border-b py-2 text-xs font-medium tracking-wide transition-colors cursor-pointer ${
+                  className={`border-b py-2 text-[11px] xl:text-xs font-medium tracking-wide transition-colors cursor-pointer ${
                     isActive
                       ? 'border-[#D51F16] text-white'
                       : 'border-transparent text-neutral-400 hover:border-neutral-600 hover:text-white'
@@ -141,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
               }}
               className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-xs font-semibold tracking-wide transition-all duration-200 shadow-[0_0_20px_rgba(213,31,22,0.35)] hover:shadow-[0_0_30px_rgba(213,31,22,0.55)] cursor-pointer"
             >
-              <span>Start a Project</span>
+              <span>Contact</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
           </div>

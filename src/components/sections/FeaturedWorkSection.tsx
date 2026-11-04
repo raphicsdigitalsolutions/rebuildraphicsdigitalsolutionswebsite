@@ -93,7 +93,7 @@ export const FeaturedWorkSection: React.FC = () => {
                   <div>
                     <p className="mb-2 text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-500">{project.category}</p>
                     <h3 className="text-lg font-medium tracking-tight text-white sm:text-xl">{project.title}</h3>
-                    <p className="mt-2 max-w-lg text-xs leading-6 text-neutral-500">{project.tagline}</p>
+                    <p className="mt-2 max-w-lg text-xs leading-6 text-neutral-500">{project.source === 'behance' ? 'Selected creative work from the published portfolio.' : project.tagline}</p>
                   </div>
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/65 transition-all duration-300 group-hover:border-[#d51f16] group-hover:bg-[#d51f16] group-hover:text-white">
                     <ArrowUpRight className="h-4 w-4" />

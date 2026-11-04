@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  ArrowLeft, ArrowRight, ArrowUpRight, Box, CheckCircle2,
-  ChevronDown, Code2, Cpu, ExternalLink, Layers3,
-  Mail, MapPin, MessageSquare, Package, Palette, Phone, Search,
-  ShieldCheck, Sparkles, Workflow, Zap, Filter
+  ArrowLeft, ArrowRight, ArrowUpRight, Box, Brush, CheckCircle2,
+  ChevronDown, Code2, Compass, Cpu, Database, ExternalLink, Layers3,
+  Mail, MapPin, MessageSquare, Mic, Package, Palette, Phone, Search,
+  ShieldCheck, Sparkles, Workflow, Zap, Filter, DollarSign, Briefcase, Award, Gamepad
 } from 'lucide-react';
 import { BRAND_CONFIG } from '../../config/brand';
 import { CREATIVE_SERVICES, DEVELOPMENT_SERVICES, AI_SERVICES } from '../../data/services';
@@ -193,7 +193,7 @@ function ServiceCard({ service, navigate }: { service: ServiceItem; navigate: Na
 function ProjectVisual({ project }: { project: PortfolioProject }) {
   const code = project.source === 'github';
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-    Box, Sparkles, Package, Cpu, Code2, Layers3, Workflow, Zap, ShieldCheck, Database, MessageSquare, Mic, Gamepad2, DollarSign, Briefcase, Compass, Award,
+    Box, Sparkles, Package, Cpu, Code2, Layers3, Workflow, Zap, ShieldCheck, Database, MessageSquare, Mic, Gamepad, DollarSign, Briefcase, Compass, Award,
   };
   const Icon = iconMap[project.visualTheme.icon] ?? (code ? Code2 : Package);
   return (

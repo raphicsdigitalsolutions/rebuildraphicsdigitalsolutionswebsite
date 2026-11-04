@@ -53,7 +53,7 @@ export const FeaturedWorkSection: React.FC = () => {
                       <div className="relative flex h-[220px] w-[150px] flex-col items-center justify-center overflow-hidden border border-white/35 bg-gradient-to-br from-white/15 via-neutral-900 to-black shadow-2xl sm:h-[255px] sm:w-[174px]" style={{ transform: 'perspective(800px) rotateY(-13deg) rotateX(4deg)' }}>
                         <div className="absolute inset-x-0 top-0 h-2" style={{ background: visual.accent }} />
                         <div className="mt-4 text-[8px] font-mono tracking-[0.22em] text-white/70">RDS / CONCEPT</div>
-                        <div className="mt-8 text-center text-2xl font-semibold tracking-tight text-white">NUTRA<span style={{ color: visual.accent }}>LIFE</span></div>
+                        <div className="mt-8 text-center text-[10px] font-mono font-semibold tracking-[0.2em] text-white">PACKAGING<span style={{ color: visual.accent }}> / STUDY</span></div>
                         <div className="mt-2 h-px w-16 bg-white/60" />
                         <div className="mt-3 text-[7px] uppercase tracking-[0.16em] text-white/60">Daily essentials</div>
                         <div className="absolute bottom-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm text-white">+</div>

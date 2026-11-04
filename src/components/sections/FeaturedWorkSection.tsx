@@ -4,15 +4,15 @@ import { PORTFOLIO_PROJECTS } from '../../data/portfolio';
 import { useRouter } from '../../router/AgencyRouter';
 
 const FEATURED_IDS = [
-  'nutralife-mens-gummies',
-  'northforge-body-wash',
+  'customchatgpt',
   'customraggpt',
+  'rashid-traders-works',
 ];
 
 const VISUALS: Record<string, { eyebrow: string; accent: string; layout: 'pack' | 'browser' }> = {
-  'nutralife-mens-gummies': { eyebrow: 'PACKAGING / BRAND SYSTEM', accent: '#a9231b', layout: 'pack' },
-  'northforge-body-wash': { eyebrow: 'PRODUCT / PACKAGING', accent: '#aa6b2d', layout: 'pack' },
-  customraggpt: { eyebrow: 'AI / DOCUMENT INTELLIGENCE', accent: '#d51f16', layout: 'browser' },
+  customchatgpt: { eyebrow: 'AI / ASSISTANT WORKSPACE', accent: '#d51f16', layout: 'browser' },
+  customraggpt: { eyebrow: 'AI / DOCUMENT INTELLIGENCE', accent: '#aa2b24', layout: 'browser' },
+  'rashid-traders-works': { eyebrow: 'BUSINESS / OPERATIONS SOFTWARE', accent: '#8e2924', layout: 'browser' },
 };
 
 export const FeaturedWorkSection: React.FC = () => {
@@ -65,18 +65,18 @@ export const FeaturedWorkSection: React.FC = () => {
                     <div className="relative z-10 w-[min(82%,520px)] overflow-hidden rounded-xl border border-white/20 bg-[#101114] shadow-[0_30px_80px_rgba(0,0,0,.55)] transition-transform duration-700 group-hover:-translate-y-2 group-hover:scale-[1.02]">
                       <div className="flex h-9 items-center gap-1.5 border-b border-white/10 bg-[#191a1e] px-3">
                         <i className="h-2 w-2 rounded-full bg-[#d51f16]" /><i className="h-2 w-2 rounded-full bg-white/35" /><i className="h-2 w-2 rounded-full bg-white/20" />
-                        <span className="ml-3 text-[8px] font-mono text-white/35">knowledge.studio / workspace</span>
+                        <span className="ml-3 text-[8px] font-mono text-white/35">raphics / project preview</span>
                       </div>
                       <div className="grid grid-cols-[88px_1fr] gap-3 p-4 sm:grid-cols-[112px_1fr] sm:p-6">
                         <div className="space-y-2 border-r border-white/10 pr-3">
                           {['Library','Sources','History','Settings'].map((item, i) => <div key={item} className={`rounded px-2 py-1.5 text-[8px] ${i===0?'bg-[#d51f16]/20 text-white':'text-white/35'}`}>{item}</div>)}
                         </div>
                         <div>
-                          <div className="text-sm font-semibold text-white sm:text-lg">Ask your knowledge base.</div>
+                          <div className="text-sm font-semibold text-white sm:text-lg">{project.title}</div>
                           <div className="mt-2 h-2 w-4/5 rounded bg-white/10" />
                           <div className="mt-1 h-2 w-3/5 rounded bg-white/10" />
                           <div className="mt-5 rounded-lg border border-white/10 bg-white/[0.04] p-3">
-                            <div className="mb-2 flex items-center gap-2 text-[8px] text-[#ff827a]"><Sparkles className="h-3 w-3" /> SOURCE-GROUNDED RESPONSE</div>
+                            <div className="mb-2 flex items-center gap-2 text-[8px] text-[#ff827a]"><Sparkles className="h-3 w-3" /> ILLUSTRATIVE INTERFACE PREVIEW</div>
                             <div className="h-2 w-full rounded bg-white/15" /><div className="mt-2 h-2 w-4/5 rounded bg-white/10" /><div className="mt-2 h-2 w-2/3 rounded bg-white/10" />
                           </div>
                         </div>

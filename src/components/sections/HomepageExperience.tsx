@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  ArrowRight, ArrowUpRight, Box, Brush, Code2, Cpu, ChevronDown,
+  ArrowUpRight, Brush, Code2, Cpu, ChevronDown,
   Layers3, MoveUpRight, Package, Sparkles, Workflow, Globe2,
   MessageSquare, ShieldCheck, Zap
 } from 'lucide-react';
@@ -80,7 +80,7 @@ function ProjectVisual({ project }: { project: PortfolioProject }) {
           </div>
           <div className="packaging-art__shadow" />
         </div>
-        <span className="portfolio-visual__note">Behance portfolio artwork · Open source profile</span>
+        <span className="portfolio-visual__note">Conceptual packaging illustration · Source: Behance</span>
       </div>
     );
   }
@@ -184,6 +184,9 @@ export const HomepageExperience: React.FC = () => {
                     <h3>{card.title}</h3>
                     <p>{card.intro}</p>
                     <div className="capability-tags">{card.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                    <ul className="capability-service-list">
+                      {card.services.slice(0, 3).map((service) => <li key={service.id}>{service.name}</li>)}
+                    </ul>
                     <button onClick={() => navigate(card.path)} className="text-link">
                       {card.link}<ArrowUpRight className="h-4 w-4" />
                     </button>

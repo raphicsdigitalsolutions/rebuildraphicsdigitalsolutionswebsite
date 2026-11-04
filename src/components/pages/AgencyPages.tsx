@@ -194,7 +194,7 @@ function ServiceCard({ service, navigate }: { service: ServiceItem; navigate: Na
 function ProjectVisual({ project }: { project: PortfolioProject }) {
   const code = project.source === 'github';
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-    Box, Sparkles, Package, Cpu, Code2, Layers3, Workflow, Zap, ShieldCheck,
+    Box, Sparkles, Package, Cpu, Code2, Layers3, Workflow, Zap, ShieldCheck, Database, MessageSquare, Mic, Gamepad2, DollarSign, Briefcase, Compass, Award,
   };
   const Icon = iconMap[project.visualTheme.icon] ?? (code ? Code2 : Package);
   return (
@@ -270,7 +270,11 @@ function HomePage({ navigate }: { navigate: Navigate }) {
   return <>
     <PageHero path="/" navigate={navigate} home />
     <section className="agency-proof-strip"><div className="agency-wrap"><span>CREATIVE THINKING</span><i /><span>DIGITAL ENGINEERING</span><i /><span>INTELLIGENT TECHNOLOGY</span><i /><span>ONE CONNECTED STUDIO</span></div></section>
-    <section className="agency-section"><div className="agency-wrap"><SectionHeading index="01" kicker="WHAT WE BRING TOGETHER" title={<>One studio. <em>Three ways to move forward.</em></>} body="From a distinctive first impression to the systems that keep a business moving, connect your important work with one creative technology partner."/><div className="agency-capability-grid">{ALL_GROUPS.filter((group)=>['branding','packaging','development','ai-automation'].includes(group.id)).filter((group)=>['branding','development','ai-automation'].includes(group.id)).map((group,index)=><CapabilityCard key={group.id} group={group} number={'0'+(index+1)} navigate={navigate}/>)}</div><div className="agency-all-services"><div><Kicker>FULL SERVICE CAPABILITIES</Kicker><p>Brand identity, packaging, labels, print, web design, custom software, CRM dashboards, AI assistants and business automation.</p></div><button className="agency-text-link" onClick={()=>navigate('/services')}>View all services <ArrowUpRight /></button></div></div></section>
+    <section className="agency-section"><div className="agency-wrap"><SectionHeading index="01" kicker="WHAT WE BRING TOGETHER" title={<>One studio. <em>Three ways to move forward.</em></>} body="From a distinctive first impression to the systems that keep a business moving, connect your important work with one creative technology partner."/><div className="agency-capability-grid">{[
+        { id: 'creative-studio', title: 'Creative Studio', subtitle: 'Brand, packaging and visuals', description: 'Distinctive identities, product packaging, label systems, 3D product visuals and print collateral for brands that need to stand apart.', badge: 'CREATIVE', iconName: 'Palette', items: CREATIVE_SERVICES.flatMap((group)=>group.items) },
+        { id: 'development', title: 'Digital Development', subtitle: 'Websites, software and platforms', description: 'Responsive websites, web applications, CRM dashboards, custom business software and e-commerce experiences.', badge: 'DEVELOPMENT', iconName: 'Code2', items: DEVELOPMENT_SERVICES },
+        { id: 'ai-automation', title: 'AI & Automation', subtitle: 'Assistants, agents and workflows', description: 'Knowledge-based chatbots, RAG systems, voice-agent experiences and business automation built around practical use cases.', badge: 'AI & AUTOMATION', iconName: 'Cpu', items: AI_SERVICES },
+      ].map((group,index)=><CapabilityCard key={group.id} group={group} number={'0'+(index+1)} navigate={navigate}/>)}</div><div className="agency-all-services"><div><Kicker>FULL SERVICE CAPABILITIES</Kicker><p>Brand identity, packaging, labels, print, web design, custom software, CRM dashboards, AI assistants and business automation.</p></div><button className="agency-text-link" onClick={()=>navigate('/services')}>View all services <ArrowUpRight /></button></div></div></section>
     <section className="agency-section agency-section--services"><div className="agency-wrap"><SectionHeading index="02" kicker="SELECTED SERVICES" title={<>What we can <em>help you make.</em></>} body="A practical overview of our most requested creative and technical services."/><div className="agency-service-grid">{[...CREATIVE_SERVICES.flatMap((g)=>g.items).slice(0,4),...DEVELOPMENT_SERVICES.slice(0,2),...AI_SERVICES.slice(0,2)].map((service)=><ServiceCard key={service.id} service={service} navigate={navigate}/>)}</div></div></section>
     <section className="agency-section agency-section--portfolio"><div className="agency-wrap"><SectionHeading index="03" kicker="SELECTED WORK" title={<>Ideas, <em>made tangible.</em></>} body="Explore real project records, creative portfolio work and software experiments. Preview artwork is clearly labelled where source screenshots are not available."/><div className="agency-project-grid">{FEATURED_PROJECTS.slice(0,8).map((project)=><ProjectCard key={project.id} project={project} navigate={navigate}/>)}</div><div className="agency-section-end"><span>CREATIVE WORK VIA BEHANCE · PUBLIC CODE VIA GITHUB</span><button className="agency-text-link" onClick={()=>navigate('/portfolio')}>Explore all projects <ArrowUpRight /></button></div></div></section>
     <ProcessSection /><WhySection navigate={navigate}/><TrustBand navigate={navigate}/><FaqSection/><ContactStrip navigate={navigate}/>
@@ -329,7 +333,7 @@ function ReviewsPage({ navigate }: { navigate: Navigate }) {
   </>;
 }
 
-function ContactPage() {
+function ContactPage({ navigate }: { navigate: Navigate }) {
   const [form,setForm]=useState({name:'',email:'',company:'',service:'Brand identity & packaging',budget:'',description:'',preferred:'Email'});
   const [error,setError]=useState('');
   const [prepared,setPrepared]=useState(false);
@@ -342,7 +346,7 @@ function ContactPage() {
     window.location.href=url;setPrepared(true);
   };
   return <>
-    <PageHero path="/contact" navigate={()=>{}}/>
+    <PageHero path="/contact" navigate={navigate}/>
     <section className="agency-section"><div className="agency-wrap"><SectionHeading index="01" kicker="CONTACT & PROJECT INQUIRIES" title={<>Let's talk about <em>what comes next.</em></>} body="Use the project brief to give us context, or contact the studio directly through the channels below."/><div className="agency-contact-layout"><div className="agency-contact-details">
       <a href={'mailto:'+BRAND_CONFIG.contact.email}><Mail/><span><small>EMAIL</small><b>{BRAND_CONFIG.contact.email}</b></span><ArrowUpRight/></a>
       <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageSquare/><span><small>UK WHATSAPP · MESSAGES ONLY</small><b>{BRAND_CONFIG.contact.whatsapp.display}</b></span><ArrowUpRight/></a>
@@ -392,7 +396,7 @@ export function AgencyPages({ path, projectId, serviceId, navigate }: { path: st
   if(path==='/')return <HomePage navigate={navigate}/>;
   if(path==='/services/:id')return <ServiceDetail id={serviceId} navigate={navigate}/>;
   if(path==='/portfolio/:id')return <ProjectDetail id={projectId} navigate={navigate}/>;
-  if(path==='/contact')return <ContactPage/>;
+  if(path==='/contact')return <ContactPage navigate={navigate}/>;
   if(path==='/about')return <AboutPage navigate={navigate}/>;
   if(path==='/reviews')return <ReviewsPage navigate={navigate}/>;
   if(path==='/portfolio')return <PortfolioPage navigate={navigate}/>;

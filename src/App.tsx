@@ -13,6 +13,7 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
 import { HomepageExperience } from './components/sections/HomepageExperience';
+import { ScrollServicesExperience } from './components/sections/ScrollServicesExperience';
 import { AboutSection } from './components/sections/AboutSection';
 import { CreativeStudioSection } from './components/sections/CreativeStudioSection';
 import { DevelopmentStudioSection } from './components/sections/DevelopmentStudioSection';
@@ -136,6 +137,7 @@ function AgencyContent() {
         onExploreWork={() => navigate('/portfolio')}
         onStartProject={() => navigate('/contact')}
       />
+      <ScrollServicesExperience onOpenService={navigate} />
       <HomepageExperience />
     </>
   );

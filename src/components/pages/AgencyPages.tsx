@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
-  ArrowLeft, ArrowRight, ArrowUpRight, Box, Brush, CheckCircle2,
-  ChevronDown, Code2, Cpu, ExternalLink, Github, Globe2, Layers3,
+  ArrowLeft, ArrowRight, ArrowUpRight, Box, CheckCircle2,
+  ChevronDown, Code2, Cpu, ExternalLink, Layers3,
   Mail, MapPin, MessageSquare, Package, Palette, Phone, Search,
-  ShieldCheck, Sparkles, Workflow, Zap, Filter, X
+  ShieldCheck, Sparkles, Workflow, Zap, Filter
 } from 'lucide-react';
 import { BRAND_CONFIG } from '../../config/brand';
 import { CREATIVE_SERVICES, DEVELOPMENT_SERVICES, AI_SERVICES } from '../../data/services';
@@ -40,7 +40,6 @@ const ALL_GROUPS: ServiceCategoryGroup[] = [
 
 const ALL_SERVICES = ALL_GROUPS.flatMap((group) => group.items);
 const FEATURED_PROJECTS = PORTFOLIO_PROJECTS.filter((project) => project.featured);
-const PUBLIC_PROJECTS = PORTFOLIO_PROJECTS.filter((project) => project.sourceVisibility !== 'private' && project.externalUrl);
 const CATEGORY_OPTIONS = ['All', 'Packaging Design', 'Label Design', 'Branding & Identity', 'AI & Machine Learning', 'Web & SaaS Platform', 'Voice & Agents', 'Interactive & Graphics', 'Mobile Applications'];
 
 const pageCopy: Record<string, { kicker: string; title: string; accent: string; intro: string; tags: string[] }> = {
@@ -283,14 +282,20 @@ function HomePage({ navigate }: { navigate: Navigate }) {
 
 function ServicesPage({ path, navigate }: { path: string; navigate: Navigate }) {
   const group = path === '/creative' ? CREATIVE_SERVICES : path === '/development' ? [{ id:'development',title:'Digital Development',subtitle:'Websites, software and business platforms',description:'Digital products engineered around your workflows.',badge:'DEVELOPMENT',iconName:'Code2',items:DEVELOPMENT_SERVICES }] : path === '/ai-lab' ? [{ id:'ai-automation',title:'AI & Automation',subtitle:'Practical intelligence for daily work',description:'AI assistants, retrieval systems, agents and connected automations.',badge:'AI & AUTOMATION',iconName:'Cpu',items:AI_SERVICES }] : ALL_GROUPS;
-  const copy = pageCopy[path];
-  const all = group.flatMap((item)=>item.items);
+  const relatedProjects = path === '/creative'
+    ? PORTFOLIO_PROJECTS.filter((project) => project.source === 'behance')
+    : path === '/development'
+      ? PORTFOLIO_PROJECTS.filter((project) => project.category === 'Web & SaaS Platform' || project.category === 'Mobile Applications')
+      : path === '/ai-lab'
+        ? PORTFOLIO_PROJECTS.filter((project) => project.category === 'AI & Machine Learning' || project.category === 'Voice & Agents')
+        : FEATURED_PROJECTS;
   return <>
     <PageHero path={path} navigate={navigate}/>
     <section className="agency-section"><div className="agency-wrap"><SectionHeading index="01" kicker="CAPABILITY OVERVIEW" title={<>The work behind <em>the outcome.</em></>} body="Explore each service, the practical deliverables and the tools that may support the work."/>
       {group.map((category,index)=><div className="agency-service-category" key={category.id}><div className="agency-service-category__head"><span>0{index+1} / {category.badge}</span><div><h2>{category.title}</h2><p>{category.description}</p></div></div><div className="agency-service-grid">{category.items.map((service)=><ServiceCard key={service.id} service={service} navigate={navigate}/>)}</div></div>)}
       <div className="agency-service-note"><ShieldCheck/><div><b>Scope is confirmed before work begins.</b><p>Deliverables, technical choices, production requirements and timelines are agreed against the specific project brief.</p></div></div>
     </div></section>
+    <section className="agency-section agency-section--portfolio"><div className="agency-wrap"><SectionHeading index="02" kicker="RELATED WORK" title={<>See how the capability <em>takes shape.</em></>} body="Browse related entries from the creative archive and software portfolio. Availability and source status are labelled on every project."/><div className="agency-project-grid">{relatedProjects.slice(0,6).map((project)=><ProjectCard key={project.id} project={project} navigate={navigate}/>)}</div></div></section>
     <ProcessSection/><ContactStrip navigate={navigate}/>
   </>;
 }
@@ -393,6 +398,29 @@ function NotFound({ navigate }: { navigate: Navigate }) {
 }
 
 export function AgencyPages({ path, projectId, serviceId, navigate }: { path: string; projectId?: string; serviceId?: string; navigate: Navigate }) {
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.add('agency-motion-on');
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
+      targets.forEach((target) => target.classList.add('is-visible'));
+      return () => root.classList.remove('agency-motion-on');
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    targets.forEach((target) => observer.observe(target));
+    return () => {
+      observer.disconnect();
+      root.classList.remove('agency-motion-on');
+    };
+  }, [path, projectId, serviceId]);
+
   if(path==='/')return <HomePage navigate={navigate}/>;
   if(path==='/services/:id')return <ServiceDetail id={serviceId} navigate={navigate}/>;
   if(path==='/portfolio/:id')return <ProjectDetail id={projectId} navigate={navigate}/>;

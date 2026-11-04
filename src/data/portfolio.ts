@@ -458,7 +458,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: 'customchatgpt',
-    title: 'customchatgpt',
+    title: "NEXORA AI",
     source: 'github',
     sourceVisibility: "public",
     category: 'AI & Machine Learning',
@@ -480,8 +480,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "OpenAI API"
     ],
     challenges: "",
+    liveDemoUrl: "https://attanexora-ai.streamlit.app/",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/customchatgpt',
-    featured: false,
+    featured: "true",
     visualTheme: {
       primaryColor: '#06B6D4',
       gradient: 'from-cyan-600/30 via-neutral-900 to-black',
@@ -491,7 +492,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: 'customraggpt',
-    title: 'customraggpt',
+    title: "NEXORA Knowledge Studio",
     source: 'github',
     sourceVisibility: "public",
     category: 'AI & Machine Learning',
@@ -513,7 +514,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/customraggpt',
-    featured: true,
+    featured: "true",
     visualTheme: {
       primaryColor: '#D51F16',
       gradient: 'from-red-600/30 via-neutral-900 to-black',
@@ -523,13 +524,13 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: 'nova-voice-agent',
-    title: 'nova-voice-agent',
+    title: "AI Voice Agent — In Development",
     source: 'github',
     sourceVisibility: "private",
     category: 'Voice & Agents',
-    status: "Private Repository",
-    tagline: "Nova — 3D realtime voice studio built as a Streamlit application.",
-    overview: "The repository README describes a single-file Streamlit voice agent with a Three.js animated orb, browser-side WebRTC connection and live transcript. Each browser user supplies an API key; the repository is private.",
+    status: "Development Project",
+    tagline: "An AI voice-agent project currently in development; no public source repository or live demo is available yet.",
+    overview: "This voice-agent project is still being developed. It is shown as an in-progress capability preview only; a public GitHub repository and demonstration will be added when it is ready.",
     problem: "",
     solution: "",
     mainFeatures: [
@@ -548,7 +549,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "",
     externalUrl: "",
-    featured: true,
+    featured: "true",
     visualTheme: {
       primaryColor: '#A855F7',
       gradient: 'from-purple-600/30 via-neutral-900 to-black',
@@ -558,7 +559,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: 'rashid-traders-works',
-    title: 'rashid-traders-works',
+    title: "Rashid Traders Works",
     source: 'github',
     sourceVisibility: "private",
     category: 'Web & SaaS Platform',
@@ -591,8 +592,40 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     },
   },
   {
+    id: 'echoes-of-the-lost-realm',
+    title: 'Echoes of the Lost Realm',
+    source: 'github',
+    sourceVisibility: 'private',
+    category: 'Interactive & Graphics',
+    status: 'Development Project',
+    tagline: 'A cinematic 3D adventure game in active development.',
+    overview: 'An adventure prototype set in an ancient jungle temple. The current development direction is a Unity 6.3 LTS third-person experience with a Guardian encounter, relic objectives, a gate puzzle and mobile-oriented controls.',
+    problem: '',
+    solution: '',
+    mainFeatures: [
+      'Ancient jungle-temple setting and third-person adventure direction',
+      'Three relic objectives and a Sun / Serpent / Moon gate puzzle',
+      'Guardian boss encounter and mobile touch-control direction',
+      'Menu, settings, save / continue and credits flow'
+    ],
+    techStack: [
+      'Unity 6.3 LTS',
+      'Unity Editor',
+      'Flutter / Dart prototype preserved as a reference'
+    ],
+    challenges: 'The repository notes that the Unity source is still being developed and statically validated. It is not yet a tested Unity Editor build or a publish-ready game; a release build still requires editor compilation and device verification.',
+    externalUrl: '',
+    featured: true,
+    visualTheme: {
+      primaryColor: '#D51F16',
+      gradient: 'from-red-700/30 via-neutral-900 to-black',
+      badgeText: 'IN DEVELOPMENT',
+      icon: 'Gamepad2',
+    },
+  },
+  {
     id: 'mediguide-ai',
-    title: 'MediGuide-AI',
+    title: "MediGuide AI",
     source: 'github',
     sourceVisibility: "public",
     category: 'AI & Machine Learning',
@@ -617,7 +650,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "The repository README warns that its emergency keyword check is not exhaustive and local SQLite caching is unencrypted. It must not be used with real patient data.",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/MediGuide-AI',
-    featured: false,
+    featured: "true",
     visualTheme: {
       primaryColor: '#14B8A6',
       gradient: 'from-teal-600/30 via-neutral-900 to-black',
@@ -627,7 +660,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: 'finwise-ai',
-    title: 'FinWise-AI',
+    title: "FinWise AI",
     source: 'github',
     sourceVisibility: "public",
     category: 'Web & SaaS Platform',
@@ -652,7 +685,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "The README warns that SQLite caching stores prompts and responses in plaintext. Use fictional demonstration data only; never enter bank credentials or account numbers.",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/FinWise-AI',
-    featured: false,
+    featured: "true",
     visualTheme: {
       primaryColor: '#6366F1',
       gradient: 'from-indigo-600/30 via-neutral-900 to-black',

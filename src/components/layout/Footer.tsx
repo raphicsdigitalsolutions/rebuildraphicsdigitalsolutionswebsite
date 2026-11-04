@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = () => {
           
           {/* Column 1 & 2: Brand Identity & Vision */}
           <div className="lg:col-span-2 space-y-4">
-            <Logo variant="stacked" height={150} onClick={() => navigate('/')} />
+            <Logo variant="stacked" height={108} onClick={() => navigate('/')} />
             <p className="text-neutral-400 text-sm leading-relaxed max-w-sm mt-3">
               {BRAND_CONFIG.heroDescription}
             </p>

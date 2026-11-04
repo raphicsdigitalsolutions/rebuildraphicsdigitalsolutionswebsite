@@ -12,6 +12,10 @@ import { RouterProvider, useRouter } from './router/AgencyRouter';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
+import { ScrollServicesExperience } from './components/sections/ScrollServicesExperience';
+import { FeaturedWorkSection } from './components/sections/FeaturedWorkSection';
+import { ApproachSection } from './components/sections/ApproachSection';
+import { ClosingCTASection } from './components/sections/ClosingCTASection';
 import { AboutSection } from './components/sections/AboutSection';
 import { CreativeStudioSection } from './components/sections/CreativeStudioSection';
 import { DevelopmentStudioSection } from './components/sections/DevelopmentStudioSection';
@@ -128,44 +132,17 @@ function AgencyContent() {
     );
   }
 
-  // Default: Full Cinematic Agency Homepage
+  // Focused editorial homepage: one hero, one scroll-linked service story, work, approach and contact.
   return (
     <>
-      {/* 1. Cinematic Full-Screen 3D Hero */}
       <HeroSection
         onExploreWork={() => navigate('/portfolio')}
         onStartProject={() => navigate('/contact')}
       />
-
-      {/* 2. About Raphics & 4 Core Pillars */}
-      <AboutSection />
-
-      {/* 3. Creative Studio (Branding, Packaging, Print, Digital Design + 3D Product Visualizer) */}
-      <CreativeStudioSection />
-
-      {/* 4. Digital Development Studio (Web Apps, Custom CRM, Software Architecture) */}
-      <DevelopmentStudioSection />
-
-      {/* 5. AI & Automation Lab (3D Neural Nodes, RAG Systems, Voice Agents & Live Simulator) */}
-      <AILabSection />
-
-      {/* 6. Why Raphics (Design -> Development -> Intelligence Synergy) */}
-      <WhyRaphicsSection />
-
-      {/* 7. Selected Work (Real Behance Artworks & GitHub Repositories with Deep Case Studies) */}
-      <SelectedWorkSection />
-
-      {/* 8. Client Feedback & Professional Profiles (only source-confirmed reviews) */}
-      <ReviewsSection />
-
-      {/* 9. Professional Profiles and Public Work Links */}
-      <TrustSection />
-
-      {/* 10. Our 5-Stage Process (Discovery, Strategy, Design, Development, Delivery) */}
-      <ProcessSection />
-
-      {/* 11. Contact & Project Inquiries (Real backend /api/contact endpoint) */}
-      <ContactSection />
+      <ScrollServicesExperience onOpenService={navigate} />
+      <FeaturedWorkSection />
+      <ApproachSection />
+      <ClosingCTASection />
     </>
   );
 }

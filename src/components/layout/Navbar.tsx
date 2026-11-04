@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       setScrolled(window.scrollY > 40);
 
       if (currentPath === '/') {
-        const sections = ['about', 'creative', 'development', 'ai-lab', 'portfolio', 'reviews', 'contact'];
+        const sections = ['services', 'portfolio'];
         for (const section of sections) {
           const el = document.getElementById(section);
           if (el) {
@@ -47,11 +47,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
   }, [currentPath]);
 
   const navLinks = [
-    { label: 'Creative', path: '/creative', id: 'creative' },
-    { label: 'Development', path: '/development', id: 'development' },
-    { label: 'AI & Automation', path: '/ai-lab', id: 'ai-lab' },
-    { label: 'Selected Work', path: '/portfolio', id: 'portfolio' },
-    { label: 'Client Reviews', path: '/reviews', id: 'reviews' },
+    { label: 'Services', path: '/services', id: 'services' },
+    { label: 'Work', path: '/portfolio', id: 'portfolio' },
     { label: 'About', path: '/about', id: 'about' },
   ];
 
@@ -88,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1.5 p-1 rounded-full bg-neutral-900/60 border border-neutral-800/80 backdrop-blur-md px-3">
+          <nav className="hidden lg:flex items-center gap-7 px-2">
             {navLinks.map((link) => {
               const isActive =
                 currentPath === link.path || (currentPath === '/' && activeSection === link.id);
@@ -96,10 +93,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.path, link.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all cursor-pointer ${
+                  className={`border-b py-2 text-xs font-medium tracking-wide transition-colors cursor-pointer ${
                     isActive
-                      ? 'bg-[#D51F16] text-white shadow-[0_0_15px_rgba(213,31,22,0.4)]'
-                      : 'text-neutral-300 hover:text-white hover:bg-neutral-800/60'
+                      ? 'border-[#D51F16] text-white'
+                      : 'border-transparent text-neutral-400 hover:border-neutral-600 hover:text-white'
                   }`}
                 >
                   {link.label}

@@ -243,6 +243,8 @@ export const ScrollServicesExperience: React.FC<ScrollServicesExperienceProps> =
       scrollProgress = getStoryProgress(rect.top, section.offsetHeight, window.innerHeight);
       const nextStage = getStoryStage(scrollProgress);
       setActiveStage((current) => current === nextStage ? current : nextStage);
+      // Reduced-motion users still get scroll-linked chapter changes, rendered once per scroll frame.
+      if (reducedMotion && visible && !frameId) frameId = window.requestAnimationFrame(animate);
     };
 
     const scheduleScroll = () => {
@@ -330,7 +332,7 @@ export const ScrollServicesExperience: React.FC<ScrollServicesExperienceProps> =
         <div className="sticky top-20 z-10 flex h-[31vh] min-h-[220px] flex-col justify-center bg-[#080808]/90 lg:top-0 lg:h-screen lg:bg-transparent">
           <div className="relative h-full w-full">
             <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(213,31,22,0.12),transparent_68%)] blur-2xl" />
-            <div ref={canvasRef} className="relative z-10 h-full w-full" aria-hidden="true" />
+            <div ref={canvasRef} className="scroll-story-visual relative z-10 h-full w-full" aria-hidden="true" />
             <div className="absolute bottom-1 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap text-[9px] font-mono uppercase tracking-[0.2em] text-neutral-500">
               <span className="h-px w-6 bg-[#D51F16]" /> Scroll to transform <span className="h-px w-6 bg-[#D51F16]" />
             </div>

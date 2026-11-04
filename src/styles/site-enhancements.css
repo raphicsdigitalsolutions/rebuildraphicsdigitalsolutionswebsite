@@ -116,6 +116,29 @@ html.js-enhanced[data-motion-preference="full"] [data-reveal].is-visible {
   animation: fallback-orbit 12s linear infinite;
 }
 
+/* WebGL fallback for the sticky scroll story. */
+.scroll-story-visual[data-webgl="unavailable"]::before,
+.scroll-story-visual[data-webgl="unavailable"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(62%, 250px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(213,31,22,.55);
+  border-radius: 42% 58% 57% 43% / 43% 42% 58% 57%;
+  box-shadow: 0 0 42px rgba(213,31,22,.12), inset 0 0 36px rgba(255,255,255,.035);
+  transform: translate(-50%,-50%) rotate(-25deg);
+  animation: fallback-orbit 18s linear infinite;
+}
+.scroll-story-visual[data-webgl="unavailable"]::after {
+  width: min(76%, 310px);
+  border-color: rgba(230,230,230,.24);
+  border-radius: 50%;
+  transform: translate(-50%,-50%) rotate(55deg) scaleY(.48);
+  animation-duration: 26s;
+}
+
 /* Scroll story: a clean pinned 3D object and clear editorial chapters. */
 #services {
   scroll-margin-top: 0;

@@ -243,6 +243,8 @@ export const ScrollServicesExperience: React.FC<ScrollServicesExperienceProps> =
       scrollProgress = getStoryProgress(rect.top, section.offsetHeight, window.innerHeight);
       const nextStage = getStoryStage(scrollProgress);
       setActiveStage((current) => current === nextStage ? current : nextStage);
+      // Reduced-motion users still get scroll-linked chapter changes, rendered once per scroll frame.
+      if (reducedMotion && visible && !frameId) frameId = window.requestAnimationFrame(animate);
     };
 
     const scheduleScroll = () => {

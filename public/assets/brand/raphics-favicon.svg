@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="88" fill="#080808"/>
+<svg x="54" y="54" width="404" height="404" viewBox="610 600 405 405">
+
+
+<title id="title">Raphics Digital Solutions — Logo Icon</title><defs><linearGradient id="markRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DE2E26"/><stop offset="1" stop-color="#AA2C24"/></linearGradient></defs>
+<g fill="url(#markRed)">
+<rect x="625.9" y="612.44" width="87.07" height="88.45"/>
+<path d="M775.66 612.44H1000.3V738.69H838.06L775.3 675.93Z"/>
+<path d="M751.08 738.69H838.06L999.56 900.19V988.33H909.92L750.48 828.89Z"/>
+<path d="M624.45 762.35H686.85L751.21 826.71V988.33H624.45Z"/>
+</g>
+</svg></svg>

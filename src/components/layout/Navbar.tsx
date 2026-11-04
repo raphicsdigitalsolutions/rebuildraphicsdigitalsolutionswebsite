@@ -194,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
               <span>WhatsApp Message — UK</span>
             </a>
             <button
-              onClick={() => handleNavClick('/contact', 'contact')
+              onClick={() => handleNavClick('/contact', 'contact')}
               className="w-full py-3.5 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(213,31,22,0.4)] cursor-pointer"
             >
               <span>Start a Project</span>

@@ -15,6 +15,8 @@ import confetti from 'canvas-confetti';
 import {
   Mail,
   MessageSquare,
+  Phone,
+  MapPin,
   Send,
   CheckCircle2,
   AlertCircle,
@@ -171,38 +173,53 @@ export const ContactSection: React.FC = () => {
                 </div>
               </a>
 
-              {/* WhatsApp (only active if real number is configured) */}
-              {BRAND_CONFIG.contact.whatsapp.isConfigured && BRAND_CONFIG.contact.whatsapp.whatsappUrl ? (
-                <a
-                  href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-neutral-900/70 border border-neutral-850 hover:border-emerald-500/50 transition-all group"
-                >
-                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-mono font-bold text-white">WhatsApp Messaging</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-emerald-400 transition-colors" />
-                    </div>
-                    <p className="text-xs text-neutral-400 leading-tight">
-                      Instant project triage and voice notes.
-                    </p>
-                    <span className="text-[11px] font-mono text-emerald-400 block pt-1">
-                      {BRAND_CONFIG.contact.whatsapp.display}
-                    </span>
-                  </div>
-                </a>
-              ) : (
-                <div className="p-4 rounded-2xl bg-neutral-900/40 border border-neutral-850 text-xs text-neutral-400 space-y-1">
-                  <span className="text-neutral-300 font-mono font-semibold block">Need immediate consultation?</span>
-                  <p className="text-neutral-400 leading-relaxed">
-                    Submit the discovery brief or email directly. Dedicated messaging lines are provided upon initial consultation.
-                  </p>
+              {/* UK WhatsApp — messaging only */}
+              <a
+                href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 p-4 rounded-2xl bg-neutral-900/70 border border-neutral-850 hover:border-[#D51F16]/50 transition-all group"
+              >
+                <div className="p-3 rounded-xl bg-[#D51F16]/10 border border-[#D51F16]/20 text-[#D51F16]">
+                  <MessageSquare className="w-5 h-5" />
                 </div>
-              )}
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-mono font-bold text-white">WhatsApp Message — UK</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-[#D51F16] transition-colors" />
+                  </div>
+                  <p className="text-xs text-neutral-400 leading-tight">Message our UK WhatsApp line. This number is for messaging, not calls.</p>
+                  <span className="text-[11px] font-mono text-neutral-300 block pt-1">{BRAND_CONFIG.contact.whatsapp.display}</span>
+                </div>
+              </a>
+
+              {/* Pakistan local WhatsApp and calls */}
+              <div className="rounded-2xl bg-neutral-900/50 border border-neutral-850 p-4 space-y-3">
+                <div>
+                  <div className="text-xs font-mono font-bold text-white">Pakistan Local Contact</div>
+                  <p className="mt-1 text-xs text-neutral-400">WhatsApp and direct calls on the local number.</p>
+                  <span className="mt-1 block text-[11px] font-mono text-neutral-300">{BRAND_CONFIG.contact.localPhone.display}</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <a href={BRAND_CONFIG.contact.localPhone.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 px-3 py-2 text-[11px] text-neutral-200 transition-colors hover:border-[#D51F16] hover:text-white">
+                    <MessageSquare className="h-3.5 w-3.5 text-[#D51F16]" /> WhatsApp
+                  </a>
+                  <a href={BRAND_CONFIG.contact.localPhone.telUrl} className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 px-3 py-2 text-[11px] text-neutral-200 transition-colors hover:border-[#D51F16] hover:text-white">
+                    <Phone className="h-3.5 w-3.5 text-[#D51F16]" /> Call Local Number
+                  </a>
+                </div>
+              </div>
+
+              {/* UK business location */}
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-neutral-900/40 border border-neutral-850">
+                <div className="p-3 rounded-xl bg-[#D51F16]/10 border border-[#D51F16]/20 text-[#D51F16]">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs font-mono font-bold text-white">Business Location</span>
+                  <p className="text-xs text-neutral-300">{BRAND_CONFIG.contact.address}</p>
+                </div>
+              </div>
 
             </div>
 

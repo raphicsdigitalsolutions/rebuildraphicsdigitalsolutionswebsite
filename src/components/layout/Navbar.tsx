@@ -184,6 +184,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
               <Mail className="w-4 h-4 text-[#D51F16]" />
               <span>{BRAND_CONFIG.contact.email}</span>
             </a>
+            <a
+              href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 rounded-xl border border-neutral-800 text-neutral-200 font-medium text-sm flex items-center justify-center gap-2 hover:border-[#D51F16]/60"
+            >
+              <MessageSquare className="w-4 h-4 text-[#D51F16]" />
+              <span>WhatsApp Message — UK</span>
+            </a>
             <button
               onClick={() => handleNavClick('/contact', 'contact')}
               className="w-full py-3.5 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(213,31,22,0.4)] cursor-pointer"

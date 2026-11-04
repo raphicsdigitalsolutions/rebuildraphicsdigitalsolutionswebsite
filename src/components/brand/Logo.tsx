@@ -19,13 +19,20 @@ export const Logo: React.FC<LogoProps> = ({
   height = 42,
   onClick,
 }) => {
+  const imageSrc =
+    variant === 'stacked'
+      ? BRAND_CONFIG.logo.stackedImageSrc
+      : variant === 'emblem'
+        ? BRAND_CONFIG.logo.iconImageSrc
+        : BRAND_CONFIG.logo.imageSrc;
+
   const image = (
     <img
-      src={BRAND_CONFIG.logo.imageSrc}
+      src={imageSrc}
       alt={onClick ? '' : BRAND_CONFIG.logo.alt}
       aria-hidden={onClick ? true : undefined}
       className="object-contain drop-shadow-[0_2px_8px_rgba(213,31,22,0.2)]"
-      style={{ height: `${height}px`, width: 'auto', maxWidth: 'none' }}
+      style={{ height: `${height}px`, width: variant === 'emblem' ? `${height}px` : 'auto', maxWidth: 'none' }}
       loading="eager"
       decoding="async"
     />
@@ -41,13 +48,13 @@ export const Logo: React.FC<LogoProps> = ({
           className="inline-flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D51F16]"
         >
           {variant === 'emblem' ? (
-            <span className="relative block overflow-hidden" style={{ width: height, height }}>
+            <span className="relative block" style={{ width: height, height }}>
               {image}
             </span>
           ) : image}
         </button>
       ) : variant === 'emblem' ? (
-        <span className="relative block overflow-hidden" style={{ width: height, height }} title={BRAND_CONFIG.name}>
+        <span className="relative block" style={{ width: height, height }} title={BRAND_CONFIG.name}>
           {image}
         </span>
       ) : image}

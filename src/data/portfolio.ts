@@ -482,7 +482,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     challenges: "",
     liveDemoUrl: "https://attanexora-ai.streamlit.app/",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/customchatgpt',
-    featured: "true",
+    featured: true,
     visualTheme: {
       primaryColor: '#06B6D4',
       gradient: 'from-cyan-600/30 via-neutral-900 to-black',
@@ -514,7 +514,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/customraggpt',
-    featured: "true",
+    featured: true,
     visualTheme: {
       primaryColor: '#D51F16',
       gradient: 'from-red-600/30 via-neutral-900 to-black',
@@ -549,7 +549,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "",
     externalUrl: "",
-    featured: "true",
+    featured: true,
     visualTheme: {
       primaryColor: '#A855F7',
       gradient: 'from-purple-600/30 via-neutral-900 to-black',
@@ -650,7 +650,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "The repository README warns that its emergency keyword check is not exhaustive and local SQLite caching is unencrypted. It must not be used with real patient data.",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/MediGuide-AI',
-    featured: "true",
+    featured: true,
     visualTheme: {
       primaryColor: '#14B8A6',
       gradient: 'from-teal-600/30 via-neutral-900 to-black',
@@ -685,7 +685,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     challenges: "The README warns that SQLite caching stores prompts and responses in plaintext. Use fictional demonstration data only; never enter bank credentials or account numbers.",
     externalUrl: 'https://github.com/raphicsdigitalsolutions/FinWise-AI',
-    featured: "true",
+    featured: true,
     visualTheme: {
       primaryColor: '#6366F1',
       gradient: 'from-indigo-600/30 via-neutral-900 to-black',

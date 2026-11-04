@@ -4,11 +4,11 @@ import {
   Layers3, MoveUpRight, Package, Sparkles, Workflow, Globe2,
   MessageSquare, ShieldCheck, Zap
 } from 'lucide-react';
-import { useRouter } from '../router/AgencyRouter';
-import { BRAND_CONFIG } from '../config/brand';
-import { CREATIVE_SERVICES, DEVELOPMENT_SERVICES, AI_SERVICES } from '../data/services';
-import { getHomepageProjects, HOME_FAQS } from '../data/homepage';
-import type { PortfolioProject } from '../data/portfolio';
+import { useRouter } from '../../router/AgencyRouter';
+import { BRAND_CONFIG } from '../../config/brand';
+import { CREATIVE_SERVICES, DEVELOPMENT_SERVICES, AI_SERVICES } from '../../data/services';
+import { getHomepageProjects, HOME_FAQS } from '../../data/homepage';
+import type { PortfolioProject } from '../../data/portfolio';
 
 const capabilityCards = [
   {

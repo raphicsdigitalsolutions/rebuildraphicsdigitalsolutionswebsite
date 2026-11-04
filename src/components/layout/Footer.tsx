@@ -10,7 +10,7 @@ import React from 'react';
 import { Logo } from '../brand/Logo';
 import { BRAND_CONFIG } from '../../config/brand';
 import { useRouter } from '../../router/AgencyRouter';
-import { Mail, MessageSquare, ArrowUpRight, ShieldCheck } from 'lucide-react';
+import { Mail, MessageSquare, Phone, MapPin, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
 interface FooterProps {
   onOpenPrivacy?: () => void;
@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = () => {
           
           {/* Column 1 & 2: Brand Identity & Vision */}
           <div className="lg:col-span-2 space-y-4">
-            <Logo height={44} onClick={() => navigate('/')} />
+            <Logo variant="stacked" height={150} onClick={() => navigate('/')} />
             <p className="text-neutral-400 text-sm leading-relaxed max-w-sm mt-3">
               {BRAND_CONFIG.heroDescription}
             </p>
@@ -139,29 +139,22 @@ export const Footer: React.FC<FooterProps> = () => {
               Direct Contact
             </h4>
             <div className="space-y-2.5 text-sm">
-              <a
-                href={`mailto:${BRAND_CONFIG.contact.email}`}
-                className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 text-neutral-300 hover:text-white transition-all text-xs"
-              >
-                <Mail className="w-4 h-4 text-[#D51F16]" />
-                <span className="truncate">{BRAND_CONFIG.contact.email}</span>
+              <a href={`mailto:${BRAND_CONFIG.contact.email}`} className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 text-neutral-300 hover:text-white transition-all text-xs">
+                <Mail className="w-4 h-4 text-[#D51F16]" /><span className="truncate">{BRAND_CONFIG.contact.email}</span>
               </a>
-
-              {BRAND_CONFIG.contact.whatsapp.isConfigured && BRAND_CONFIG.contact.whatsapp.whatsappUrl && (
-                <a
-                  href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-emerald-500/50 text-neutral-300 hover:text-white transition-all text-xs"
-                >
-                  <MessageSquare className="w-4 h-4 text-emerald-400" />
-                  <span>WhatsApp Messaging</span>
-                </a>
-              )}
-
-              <div className="pt-2 text-[11px] text-neutral-400">
-                Independent Creative, Software & AI Agency.
+              <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 text-neutral-300 hover:text-white transition-all text-xs">
+                <MessageSquare className="w-4 h-4 text-[#D51F16]" /><span>WhatsApp Message — UK</span>
+              </a>
+              <a href={BRAND_CONFIG.contact.localPhone.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 text-neutral-300 hover:text-white transition-all text-xs">
+                <MessageSquare className="w-4 h-4 text-[#D51F16]" /><span>WhatsApp — Pakistan</span>
+              </a>
+              <a href={BRAND_CONFIG.contact.localPhone.telUrl} className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 text-neutral-300 hover:text-white transition-all text-xs">
+                <Phone className="w-4 h-4 text-[#D51F16]" /><span>Call {BRAND_CONFIG.contact.localPhone.display}</span>
+              </a>
+              <div className="flex items-start gap-2 pt-2 text-[11px] leading-5 text-neutral-400">
+                <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D51F16]" /><span>{BRAND_CONFIG.contact.address}</span>
               </div>
+              <div className="pt-2 text-[11px] text-neutral-400">Independent Creative, Software & AI Agency.</div>
             </div>
           </div>
         </div>

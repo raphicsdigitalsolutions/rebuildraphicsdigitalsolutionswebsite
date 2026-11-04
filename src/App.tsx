@@ -12,10 +12,8 @@ import { RouterProvider, useRouter } from './router/AgencyRouter';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
+import { HomepageExperience } from './components/sections/HomepageExperience';
 import { ScrollServicesExperience } from './components/sections/ScrollServicesExperience';
-import { FeaturedWorkSection } from './components/sections/FeaturedWorkSection';
-import { ApproachSection } from './components/sections/ApproachSection';
-import { ClosingCTASection } from './components/sections/ClosingCTASection';
 import { AboutSection } from './components/sections/AboutSection';
 import { CreativeStudioSection } from './components/sections/CreativeStudioSection';
 import { DevelopmentStudioSection } from './components/sections/DevelopmentStudioSection';
@@ -140,9 +138,7 @@ function AgencyContent() {
         onStartProject={() => navigate('/contact')}
       />
       <ScrollServicesExperience onOpenService={navigate} />
-      <FeaturedWorkSection />
-      <ApproachSection />
-      <ClosingCTASection />
+      <HomepageExperience />
     </>
   );
 }

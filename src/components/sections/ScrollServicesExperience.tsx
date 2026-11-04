@@ -329,7 +329,7 @@ export const ScrollServicesExperience: React.FC<ScrollServicesExperienceProps> =
   return (
     <section id="services" ref={sectionRef} className="relative bg-[#080808] border-t border-white/[0.06]">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-7 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
-        <div className="sticky top-20 z-10 flex h-[31vh] min-h-[220px] flex-col justify-center bg-[#080808]/90 lg:top-0 lg:h-screen lg:bg-transparent">
+        <div className="sticky top-20 z-10 flex h-[31vh] min-h-[220px] flex-col justify-center bg-[#080808]/90 lg:top-[11vh] lg:h-[78vh] lg:bg-transparent">
           <div className="relative h-full w-full">
             <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(213,31,22,0.12),transparent_68%)] blur-2xl" />
             <div ref={canvasRef} className="scroll-story-visual relative z-10 h-full w-full" aria-hidden="true" />
@@ -347,7 +347,7 @@ export const ScrollServicesExperience: React.FC<ScrollServicesExperienceProps> =
         </div>
 
         <div className="relative">
-          <div className="py-16 lg:min-h-[72vh] lg:flex lg:flex-col lg:justify-center lg:py-0">
+          <div className="py-16 lg:min-h-[54vh] lg:flex lg:flex-col lg:justify-center lg:py-0">
             <p className="mb-5 text-[10px] font-mono uppercase tracking-[0.24em] text-[#d9534c]">What we bring together</p>
             <h2 className="max-w-xl text-3xl font-semibold leading-[1.12] tracking-tight text-white sm:text-5xl">
               One partner for the whole digital picture.
@@ -358,7 +358,7 @@ export const ScrollServicesExperience: React.FC<ScrollServicesExperienceProps> =
           </div>
 
           {STORY_STAGES.map((stage) => (
-            <article key={stage.number} className="flex min-h-[58vh] flex-col justify-center border-t border-white/[0.08] py-12 lg:min-h-screen">
+            <article key={stage.number} className="flex min-h-[58vh] flex-col justify-center border-t border-white/[0.08] py-12 lg:min-h-[72vh]">
               <div className="mb-7 flex items-center gap-3 text-[10px] font-mono uppercase tracking-[0.22em] text-neutral-500">
                 <span className="text-[#d9534c]">{stage.number}</span>
                 <span className="h-px w-8 bg-neutral-700" />

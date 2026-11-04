@@ -144,6 +144,7 @@ function AgencyContent() {
       <ApproachSection />
       <ClosingCTASection />
     </>
+  );
 }
 
 export default function App() {

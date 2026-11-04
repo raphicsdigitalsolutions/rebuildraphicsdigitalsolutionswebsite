@@ -6,7 +6,12 @@
  * Verified brand assets, official profiles, color palette, and contact channels.
  */
 
-// Environment-backed or configurable settings
+// Vite supplies BASE_URL in the browser/build; Node-based tests use the root fallback.
+const assetBaseUrl =
+  typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL
+    ? import.meta.env.BASE_URL
+    : '/';
+
 export const BRAND_CONFIG = {
   name: 'Raphics Digital Solutions',
   shortName: 'Raphics',
@@ -22,9 +27,9 @@ export const BRAND_CONFIG = {
   
   // Official uploaded logo asset
   logo: {
-    imageSrc: `${import.meta.env.BASE_URL}assets/brand/raphics-main-logo.svg`,
-    stackedImageSrc: `${import.meta.env.BASE_URL}assets/brand/raphics-stacked-logo.svg`,
-    iconImageSrc: `${import.meta.env.BASE_URL}assets/brand/raphics-logo-icon.svg`,
+    imageSrc: `${assetBaseUrl}assets/brand/raphics-main-logo.svg`,
+    stackedImageSrc: `${assetBaseUrl}assets/brand/raphics-stacked-logo.svg`,
+    iconImageSrc: `${assetBaseUrl}assets/brand/raphics-logo-icon.svg`,
     alt: 'Raphics Digital Solutions - Digital Magic for Real Success',
     primaryColor: '#D51F16',
   },

@@ -7,8 +7,6 @@
  */
 
 // Environment-backed or configurable settings
-const envWhatsApp = typeof import.meta !== 'undefined' && import.meta.env ? (import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined) : undefined;
-
 export const BRAND_CONFIG = {
   name: 'Raphics Digital Solutions',
   shortName: 'Raphics',
@@ -24,7 +22,9 @@ export const BRAND_CONFIG = {
   
   // Official uploaded logo asset
   logo: {
-    imageSrc: `${import.meta.env.BASE_URL}assets/aistudio/image_e462b648.png`,
+    imageSrc: `${import.meta.env.BASE_URL}assets/brand/raphics-main-logo.svg`,
+    stackedImageSrc: `${import.meta.env.BASE_URL}assets/brand/raphics-stacked-logo.svg`,
+    iconImageSrc: `${import.meta.env.BASE_URL}assets/brand/raphics-logo-icon.svg`,
     alt: 'Raphics Digital Solutions - Digital Magic for Real Success',
     primaryColor: '#D51F16',
   },
@@ -80,12 +80,26 @@ export const BRAND_CONFIG = {
       role: 'Creative Arts Showcase',
       description: 'Visual identity and digital design portfolio verification.',
     },
+    linkedin: {
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/company/raphicsdigitalsolutions/',
+      handle: 'raphicsdigitalsolutions',
+      role: 'Agency Company Page',
+      description: 'Official company profile and professional updates.',
+    },
     instagram: {
       name: 'Instagram',
-      url: 'https://www.instagram.com/raphicsdigitalsolutions',
+      url: 'https://www.instagram.com/raphicsdigitalsolutions/',
       handle: '@raphicsdigitalsolutions',
       role: 'Agency Social Presence',
-      description: 'Design explorations, project sneak peeks, and creative experiments.',
+      description: 'Design work, project updates and creative experiments.',
+    },
+    facebook: {
+      name: 'Facebook',
+      url: 'https://www.facebook.com/share/1FjPtSmTFd/',
+      handle: 'Raphics Digital Solutions',
+      role: 'Agency Social Presence',
+      description: 'Official Facebook page and contact updates.',
     },
   },
 
@@ -93,20 +107,25 @@ export const BRAND_CONFIG = {
   transparencyNote:
     'External marketplace profiles represent the founder’s individual professional presence. They should not be interpreted as agency-wide ratings, certifications, or endorsements.',
 
-  // Contact & Inquiries (verified channels only, zero fake placeholder phone numbers)
+  // Official contact routes supplied for the UK and Pakistan.
   contact: {
-    // Founder-provided contact email. Replace with a domain email when configured.
-    email: 'attaurrehmanseo3@gmail.com',
+    email: 'info.raphicsdigital@gmail.com',
+    address: 'Tring, HP23 4JX, United Kingdom',
     whatsapp: {
-      // Only active if a real verified phone number is supplied via environment variable
-      isConfigured: Boolean(envWhatsApp && envWhatsApp.trim().length > 5),
-      number: envWhatsApp || '',
-      display: envWhatsApp || 'Available upon inquiry',
-      whatsappUrl: envWhatsApp
-        ? `https://wa.me/${envWhatsApp.replace(/[^0-9]/g, '')}?text=Hello%20Raphics%20Digital%20Solutions!%20I%20would%20like%20to%20discuss%20a%20new%20project.`
-        : null,
+      isConfigured: true,
+      number: '+44 7760 891431',
+      display: '+44 7760 891431',
+      whatsappUrl: 'https://wa.me/447760891431?text=Hello%20Raphics%20Digital%20Solutions!%20I%20would%20like%20to%20discuss%20a%20new%20project.',
+      purpose: 'WhatsApp messaging only',
     },
-    location: 'Remote Studio & Digital Engineering Lab',
+    localPhone: {
+      number: '03014518439',
+      display: '0301 4518439',
+      telUrl: 'tel:03014518439',
+      whatsappUrl: 'https://wa.me/923014518439?text=Hello%20Raphics%20Digital%20Solutions!%20I%20would%20like%20to%20discuss%20a%20new%20project.',
+      purpose: 'Pakistan local calls and WhatsApp',
+    },
+    location: 'Tring, HP23 4JX, United Kingdom',
     availability: 'Accepting select new projects for 2026-2027',
   },
 

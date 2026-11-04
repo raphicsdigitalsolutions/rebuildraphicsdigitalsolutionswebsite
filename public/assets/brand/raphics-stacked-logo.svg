@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 400 960 490" role="img" aria-labelledby="title">
+<title id="title">Raphics Digital Solutions — Secondary Logo</title><defs><linearGradient id="markRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DE2E26"/><stop offset="1" stop-color="#AA2C24"/></linearGradient></defs>
+<g fill="url(#markRed)">
+<rect x="80.14" y="416.92" width="87.07" height="88.45"/>
+<path d="M229.89 416.92H454.53V543.16H292.3L229.53 480.4Z"/>
+<path d="M205.31 543.16H292.3L453.79 704.66V792.81H364.16L204.71 633.36Z"/>
+<path d="M78.69 566.82H141.09L205.44 631.18V792.81H78.69Z"/>
+</g>
+<g fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" text-anchor="middle">
+<text x="510" y="837.85" font-size="26.34" font-weight="700">Raphics Digital Solutions</text>
+<text x="510" y="863.51" font-size="18.83">Digital Magic For Real Success</text>
+</g></svg>

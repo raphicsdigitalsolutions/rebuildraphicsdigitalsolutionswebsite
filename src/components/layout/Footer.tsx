@@ -79,9 +79,6 @@ export const Footer: React.FC = () => {
             <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span><small>UK WHATSAPP · MESSAGES</small><b>{BRAND_CONFIG.contact.whatsapp.display}</b></span><ArrowUpRight /></a>
             <a href={BRAND_CONFIG.contact.localPhone.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span><small>PAKISTAN WHATSAPP</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight /></a>
             <a href={BRAND_CONFIG.contact.localPhone.telUrl}><Phone /><span><small>PAKISTAN CALLS</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight /></a>
-            <a className="raphics-footer__address" href="https://www.google.com/maps/search/?api=1&query=Tring%20HP23%204JX%20United%20Kingdom" target="_blank" rel="noopener noreferrer">
-              <MapPin /><span><small>BUSINESS ADDRESS</small><b>{BRAND_CONFIG.contact.address}</b></span><ArrowUpRight />
-            </a>
             <div className="raphics-footer__social">
               <span>FOLLOW THE AGENCY</span>
               <div>
@@ -95,6 +92,9 @@ export const Footer: React.FC = () => {
                 })}
               </div>
             </div>
+            <a className="raphics-footer__address" href="https://www.google.com/maps/search/?api=1&query=Tring%20HP23%204JX%20United%20Kingdom" target="_blank" rel="noopener noreferrer">
+              <MapPin /><span><small>BUSINESS ADDRESS</small><b>{BRAND_CONFIG.contact.address}</b></span><ArrowUpRight />
+            </a>
           </div>
         </div>
 

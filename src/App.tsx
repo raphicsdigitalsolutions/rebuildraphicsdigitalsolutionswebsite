@@ -5,7 +5,7 @@ import { Footer } from './components/layout/Footer';
 import { AgencyPages } from './components/pages/AgencyPages';
 import { LegalPage } from './components/pages/LegalPage';
 import { BRAND_CONFIG } from './config/brand';
-import { MessageSquare } from 'lucide-react';
+import { WhatsAppIcon } from './components/brand/WhatsAppIcon';
 
 function AgencyContent() {
   const { currentPath, projectId, serviceId, navigate } = useRouter();
@@ -40,7 +40,7 @@ export default function App() {
               rel="noopener noreferrer"
               title="Message Raphics Digital Solutions on WhatsApp"
             >
-              <MessageSquare />
+              <WhatsAppIcon className="h-4 w-4" />
               <span>WhatsApp</span>
             </a>
           </aside>

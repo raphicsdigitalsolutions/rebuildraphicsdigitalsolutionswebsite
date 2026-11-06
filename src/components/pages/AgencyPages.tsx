@@ -13,6 +13,7 @@ import { VERIFIED_REVIEW_PLATFORMS } from '../../data/reviews';
 import { HOME_FAQS } from '../../data/homepage';
 import { getProjectContentSections, getProjectSourceLabel, buildInquiryMailto } from '../../utils/site-content';
 import { MinimalHeroVisual } from '../3d/MinimalHeroVisual';
+import { WhatsAppIcon } from '../brand/WhatsAppIcon';
 
 type Navigate = (path: string) => void;
 
@@ -91,6 +92,20 @@ const pageCopy: Record<string, { kicker: string; title: string; accent: string; 
     accent: 'Open profiles. Real attribution.',
     intro: 'We do not manufacture client quotations, review scores or ratings. Visit the original profiles to see the feedback and published work currently displayed on each platform.',
     tags: ['Behance', 'GitHub', 'Fiverr', 'Upwork'],
+  },
+  '/process': {
+    kicker: 'THE RAPHICS APPROACH',
+    title: 'A clearer path from brief to delivery.',
+    accent: 'Thoughtful at every stage.',
+    intro: 'Every project starts with understanding what needs to change. We shape the direction, agree the scope, build and refine the work, then prepare the handover.',
+    tags: ['Discover', 'Plan', 'Create & build', 'Launch'],
+  },
+  '/faq': {
+    kicker: 'FREQUENTLY ASKED QUESTIONS',
+    title: 'A few useful answers before we begin.',
+    accent: 'Start with clarity.',
+    intro: 'Find out how Raphics approaches design, development, AI projects, project scoping and communication.',
+    tags: ['Services', 'Projects', 'Delivery', 'Contact'],
   },
   '/contact': {
     kicker: 'START A PROJECT',
@@ -266,7 +281,7 @@ function FaqSection() {
 }
 
 function ContactStrip({ navigate }: { navigate: Navigate }) {
-  return <section className="agency-contact-strip"><div className="agency-contact-strip__orb" /><div className="agency-wrap" data-reveal><Kicker>HAVE A PROJECT IN MIND?</Kicker><h2>Let's make something <em>worth remembering.</em></h2><p>Tell us what you want to design, build or improve. We’ll help shape the next step.</p><div className="agency-hero__actions"><button className="agency-button agency-button--primary" onClick={()=>navigate('/contact')}>Start a project <ArrowUpRight /></button><a className="agency-button agency-button--quiet" href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageSquare /> WhatsApp message</a></div><span className="agency-contact-strip__email">{BRAND_CONFIG.contact.email} · {BRAND_CONFIG.contact.address}</span></div></section>;
+  return <section className="agency-contact-strip"><div className="agency-contact-strip__orb" /><div className="agency-wrap" data-reveal><Kicker>HAVE A PROJECT IN MIND?</Kicker><h2>Let's make something <em>worth remembering.</em></h2><p>Tell us what you want to design, build or improve. We’ll help shape the next step.</p><div className="agency-hero__actions"><button className="agency-button agency-button--primary" onClick={()=>navigate('/contact')}>Start a project <ArrowUpRight /></button><a className="agency-button agency-button--quiet" href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" /> WhatsApp message</a></div><span className="agency-contact-strip__email">{BRAND_CONFIG.contact.email} · {BRAND_CONFIG.contact.address}</span></div></section>;
 }
 
 function HomePage({ navigate }: { navigate: Navigate }) {
@@ -281,6 +296,31 @@ function HomePage({ navigate }: { navigate: Navigate }) {
     <section className="agency-section agency-section--services"><div className="agency-wrap"><SectionHeading index="02" kicker="SELECTED SERVICES" title={<>What we can <em>help you make.</em></>} body="A practical overview of our most requested creative and technical services."/><div className="agency-service-grid">{['brand-identity','product-packaging','label-design','3d-product-visualization','website-development','custom-crm-dashboards','custom-ai-chatbots','rag-systems'].map((id)=>ALL_SERVICES.find((service)=>service.id===id)).filter((service): service is ServiceItem => Boolean(service)).map((service)=><ServiceCard key={service.id} service={service} navigate={navigate}/>)}</div></div></section>
     <section className="agency-section agency-section--portfolio"><div className="agency-wrap"><SectionHeading index="03" kicker="SELECTED WORK" title={<>Ideas, <em>made tangible.</em></>} body="Explore real project records, creative portfolio work and software experiments. Preview artwork is clearly labelled where source screenshots are not available."/><div className="agency-project-grid">{FEATURED_PROJECTS.slice(0,8).map((project)=><ProjectCard key={project.id} project={project} navigate={navigate}/>)}</div><div className="agency-section-end"><span>CREATIVE WORK VIA BEHANCE · PUBLIC CODE VIA GITHUB</span><button className="agency-text-link" onClick={()=>navigate('/portfolio')}>Explore all projects <ArrowUpRight /></button></div></div></section>
     <ProcessSection /><WhySection navigate={navigate}/><TrustBand navigate={navigate}/><FaqSection/><ContactStrip navigate={navigate}/>
+  </>;
+}
+
+function ProcessPage({ navigate }: { navigate: Navigate }) {
+  const preparations = [
+    ['The goal', 'What should improve for the business or the people using the result?'],
+    ['The audience', 'Who is the work for, and what should they understand or do?'],
+    ['The material', 'Share existing brand assets, copy, product details, technical notes or examples that are relevant to the brief.'],
+    ['The constraints', 'Tell us about formats, integrations, deadlines, approvals and any non-negotiable requirements.'],
+  ];
+  return <>
+    <PageHero path="/process" navigate={navigate}/>
+    <ProcessSection/>
+    <section className="agency-section agency-section--why"><div className="agency-wrap"><SectionHeading index="02" kicker="PREPARING A GOOD BRIEF" title={<>A strong start makes <em>better decisions possible.</em></>} body="You do not need a complete specification before contacting us. A little context helps us ask the right questions and define the next step."/><div className="agency-process-prep-grid">{preparations.map(([title,description],index)=><article key={title} data-reveal><span>0{index+1}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
+    <section className="agency-section"><div className="agency-wrap agency-process-commitment"><div><Kicker>PROJECT CLARITY</Kicker><h2>Agree the important details <em>before work begins.</em></h2><p>Scope, deliverables, review points, responsibilities and the expected handover are discussed against the actual project. Timelines and pricing are confirmed after the brief is understood—not guessed from a generic package.</p></div><div className="agency-process-commitment__points"><span><CheckCircle2/> Defined scope and deliverables</span><span><CheckCircle2/> Agreed feedback and approval points</span><span><CheckCircle2/> Clear project communication</span><span><CheckCircle2/> Practical handover expectations</span></div></div></section>
+    <ContactStrip navigate={navigate}/>
+  </>;
+}
+
+function FaqPage({ navigate }: { navigate: Navigate }) {
+  return <>
+    <PageHero path="/faq" navigate={navigate}/>
+    <FaqSection/>
+    <section className="agency-section"><div className="agency-wrap agency-faq-page__links"><button className="agency-text-link" onClick={()=>navigate('/services')}>Explore services <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/process')}>How we work <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/contact')}>Ask about your project <ArrowUpRight/></button></div></section>
+    <ContactStrip navigate={navigate}/>
   </>;
 }
 
@@ -358,8 +398,8 @@ function ContactPage({ navigate }: { navigate: Navigate }) {
     <PageHero path="/contact" navigate={navigate}/>
     <section className="agency-section"><div className="agency-wrap"><SectionHeading index="01" kicker="CONTACT & PROJECT INQUIRIES" title={<>Let's talk about <em>what comes next.</em></>} body="Use the project brief to give us context, or contact the studio directly through the channels below."/><div className="agency-contact-layout"><div className="agency-contact-details">
       <a href={'mailto:'+BRAND_CONFIG.contact.email}><Mail/><span><small>EMAIL</small><b>{BRAND_CONFIG.contact.email}</b></span><ArrowUpRight/></a>
-      <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageSquare/><span><small>UK WHATSAPP · MESSAGES ONLY</small><b>{BRAND_CONFIG.contact.whatsapp.display}</b></span><ArrowUpRight/></a>
-      <a href={BRAND_CONFIG.contact.localPhone.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageSquare/><span><small>PAKISTAN WHATSAPP</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight/></a>
+      <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" /><span><small>UK WHATSAPP · MESSAGES ONLY</small><b>{BRAND_CONFIG.contact.whatsapp.display}</b></span><ArrowUpRight/></a>
+      <a href={BRAND_CONFIG.contact.localPhone.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" /><span><small>PAKISTAN WHATSAPP</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight/></a>
       <a href={BRAND_CONFIG.contact.localPhone.telUrl}><Phone/><span><small>PAKISTAN CALLS</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight/></a>
       <div className="agency-contact-address"><MapPin/><span><small>BUSINESS LOCATION</small><b>{BRAND_CONFIG.contact.address}</b></span></div>
       <div className="agency-contact-response"><ShieldCheck/><div><b>What happens next?</b><p>Your brief opens as a prepared email. Review it, attach any relevant files and send it using your email app.</p></div></div>
@@ -429,6 +469,8 @@ export function AgencyPages({ path, projectId, serviceId, navigate }: { path: st
   if(path==='/services/:id')return <ServiceDetail id={serviceId} navigate={navigate}/>;
   if(path==='/portfolio/:id')return <ProjectDetail id={projectId} navigate={navigate}/>;
   if(path==='/contact')return <ContactPage navigate={navigate}/>;
+  if(path==='/process')return <ProcessPage navigate={navigate}/>;
+  if(path==='/faq')return <FaqPage navigate={navigate}/>;
   if(path==='/about')return <AboutPage navigate={navigate}/>;
   if(path==='/reviews')return <ReviewsPage navigate={navigate}/>;
   if(path==='/portfolio')return <PortfolioPage navigate={navigate}/>;

@@ -63,6 +63,8 @@ export function parseRoute(pathname: string): RouteState {
   const validRoutes = [
     '/',
     '/about',
+    '/process',
+    '/faq',
     '/creative',
     '/development',
     '/ai-lab',
@@ -121,6 +123,12 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     switch (route.path) {
       case '/about':
         document.title = `About Us | ${baseTitle}`;
+        break;
+      case '/process':
+        document.title = `How We Work | ${baseTitle}`;
+        break;
+      case '/faq':
+        document.title = `Frequently Asked Questions | ${baseTitle}`;
         break;
       case '/creative':
         document.title = `Creative Studio & 3D Packaging | ${baseTitle}`;

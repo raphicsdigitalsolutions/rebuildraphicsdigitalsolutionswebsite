@@ -28,7 +28,7 @@ export const FOOTER_PAGE_LINKS = [
 ] as const;
 
 export function getFooterSocialLinks(
-  profiles: Record<string, FooterSocialProfile>,
+  profiles: { linkedin?: FooterSocialProfile; facebook?: FooterSocialProfile; instagram?: FooterSocialProfile },
 ): FooterSocialLink[] {
   const socialKeys = ['linkedin', 'facebook', 'instagram'] as const;
   return socialKeys.flatMap((key) => {

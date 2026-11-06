@@ -13,6 +13,7 @@ import { VERIFIED_REVIEW_PLATFORMS } from '../../data/reviews';
 import { HOME_FAQS } from '../../data/homepage';
 import { getProjectContentSections, getProjectSourceLabel, buildInquiryMailto } from '../../utils/site-content';
 import { MinimalHeroVisual } from '../3d/MinimalHeroVisual';
+import { WhatsAppIcon } from '../brand/WhatsAppIcon';
 
 type Navigate = (path: string) => void;
 
@@ -280,7 +281,7 @@ function FaqSection() {
 }
 
 function ContactStrip({ navigate }: { navigate: Navigate }) {
-  return <section className="agency-contact-strip"><div className="agency-contact-strip__orb" /><div className="agency-wrap" data-reveal><Kicker>HAVE A PROJECT IN MIND?</Kicker><h2>Let's make something <em>worth remembering.</em></h2><p>Tell us what you want to design, build or improve. We’ll help shape the next step.</p><div className="agency-hero__actions"><button className="agency-button agency-button--primary" onClick={()=>navigate('/contact')}>Start a project <ArrowUpRight /></button><a className="agency-button agency-button--quiet" href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageSquare /> WhatsApp message</a></div><span className="agency-contact-strip__email">{BRAND_CONFIG.contact.email} · {BRAND_CONFIG.contact.address}</span></div></section>;
+  return <section className="agency-contact-strip"><div className="agency-contact-strip__orb" /><div className="agency-wrap" data-reveal><Kicker>HAVE A PROJECT IN MIND?</Kicker><h2>Let's make something <em>worth remembering.</em></h2><p>Tell us what you want to design, build or improve. We’ll help shape the next step.</p><div className="agency-hero__actions"><button className="agency-button agency-button--primary" onClick={()=>navigate('/contact')}>Start a project <ArrowUpRight /></button><a className="agency-button agency-button--quiet" href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" /> WhatsApp message</a></div><span className="agency-contact-strip__email">{BRAND_CONFIG.contact.email} · {BRAND_CONFIG.contact.address}</span></div></section>;
 }
 
 function HomePage({ navigate }: { navigate: Navigate }) {
@@ -317,7 +318,8 @@ function ProcessPage({ navigate }: { navigate: Navigate }) {
 function FaqPage({ navigate }: { navigate: Navigate }) {
   return <>
     <PageHero path="/faq" navigate={navigate}/>
-    <section className="agency-section"><div className="agency-wrap agency-faq-page"><SectionHeading index="01" kicker="ANSWERS BEFORE THE BRIEF" title={<>Know what to expect. <em>Then let's talk.</em></>} body="These answers explain the types of work Raphics takes on and how a project normally moves forward."/><FaqSection/><div className="agency-faq-page__links"><button className="agency-text-link" onClick={()=>navigate('/services')}>Explore services <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/process')}>How we work <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/contact')}>Ask about your project <ArrowUpRight/></button></div></div></section>
+    <FaqSection/>
+    <section className="agency-section"><div className="agency-wrap agency-faq-page__links"><button className="agency-text-link" onClick={()=>navigate('/services')}>Explore services <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/process')}>How we work <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/contact')}>Ask about your project <ArrowUpRight/></button></div></section>
     <ContactStrip navigate={navigate}/>
   </>;
 }
@@ -396,8 +398,8 @@ function ContactPage({ navigate }: { navigate: Navigate }) {
     <PageHero path="/contact" navigate={navigate}/>
     <section className="agency-section"><div className="agency-wrap"><SectionHeading index="01" kicker="CONTACT & PROJECT INQUIRIES" title={<>Let's talk about <em>what comes next.</em></>} body="Use the project brief to give us context, or contact the studio directly through the channels below."/><div className="agency-contact-layout"><div className="agency-contact-details">
       <a href={'mailto:'+BRAND_CONFIG.contact.email}><Mail/><span><small>EMAIL</small><b>{BRAND_CONFIG.contact.email}</b></span><ArrowUpRight/></a>
-      <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageSquare/><span><small>UK WHATSAPP · MESSAGES ONLY</small><b>{BRAND_CONFIG.contact.whatsapp.display}</b></span><ArrowUpRight/></a>
-      <a href={BRAND_CONFIG.contact.localPhone.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageSquare/><span><small>PAKISTAN WHATSAPP</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight/></a>
+      <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" /><span><small>UK WHATSAPP · MESSAGES ONLY</small><b>{BRAND_CONFIG.contact.whatsapp.display}</b></span><ArrowUpRight/></a>
+      <a href={BRAND_CONFIG.contact.localPhone.whatsappUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-4 w-4" /><span><small>PAKISTAN WHATSAPP</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight/></a>
       <a href={BRAND_CONFIG.contact.localPhone.telUrl}><Phone/><span><small>PAKISTAN CALLS</small><b>{BRAND_CONFIG.contact.localPhone.display}</b></span><ArrowUpRight/></a>
       <div className="agency-contact-address"><MapPin/><span><small>BUSINESS LOCATION</small><b>{BRAND_CONFIG.contact.address}</b></span></div>
       <div className="agency-contact-response"><ShieldCheck/><div><b>What happens next?</b><p>Your brief opens as a prepared email. Review it, attach any relevant files and send it using your email app.</p></div></div>

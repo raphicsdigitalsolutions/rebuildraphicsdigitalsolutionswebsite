@@ -524,7 +524,7 @@ html.agency-motion-on [data-reveal].is-visible { opacity:1; transform:translate3
 }
 .raphics-footer__logo img {
   display:block; width:auto !important; max-width:min(100%,350px) !important;
-  height:auto !important; max-height:68px; object-fit:contain; object-position:left center;
+  height:62px !important; max-height:62px; object-fit:contain; object-position:left center;
 }
 .raphics-footer__brand > p {
   max-width:390px; color:#999; font-size:12px; line-height:1.9;
@@ -654,7 +654,7 @@ html.agency-motion-on [data-reveal].is-visible { opacity:1; transform:translate3
   .raphics-footer { padding-top:48px; }
   .raphics-footer__main { grid-template-columns:1fr 1fr; width:calc(100% - 36px); gap:30px 20px; padding-bottom:34px; }
   .raphics-footer__brand { grid-column:1/-1; max-width:560px; }
-  .raphics-footer__logo img { max-height:59px; max-width:min(100%,330px) !important; }
+  .raphics-footer__logo img { height:56px !important; max-height:56px; max-width:min(100%,330px) !important; }
   .raphics-footer__contact { grid-column:1/-1; max-width:none; }
   .raphics-footer__bottom { width:calc(100% - 36px); align-items:flex-start; }
   .raphics-footer__independent { width:100%; }

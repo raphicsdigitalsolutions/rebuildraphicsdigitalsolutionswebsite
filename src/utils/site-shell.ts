@@ -1,3 +1,6 @@
+export const BRAND_HOME_PATH = '/' as const;
+export const FOOTER_PAGE_LINK_ICON_POSITION = 'inline' as const;
+
 export interface FooterSocialProfile {
   name: string;
   url: string;

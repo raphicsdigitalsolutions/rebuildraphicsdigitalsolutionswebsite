@@ -92,6 +92,20 @@ const pageCopy: Record<string, { kicker: string; title: string; accent: string; 
     intro: 'We do not manufacture client quotations, review scores or ratings. Visit the original profiles to see the feedback and published work currently displayed on each platform.',
     tags: ['Behance', 'GitHub', 'Fiverr', 'Upwork'],
   },
+  '/process': {
+    kicker: 'THE RAPHICS APPROACH',
+    title: 'A clearer path from brief to delivery.',
+    accent: 'Thoughtful at every stage.',
+    intro: 'Every project starts with understanding what needs to change. We shape the direction, agree the scope, build and refine the work, then prepare the handover.',
+    tags: ['Discover', 'Plan', 'Create & build', 'Launch'],
+  },
+  '/faq': {
+    kicker: 'FREQUENTLY ASKED QUESTIONS',
+    title: 'A few useful answers before we begin.',
+    accent: 'Start with clarity.',
+    intro: 'Find out how Raphics approaches design, development, AI projects, project scoping and communication.',
+    tags: ['Services', 'Projects', 'Delivery', 'Contact'],
+  },
   '/contact': {
     kicker: 'START A PROJECT',
     title: 'Tell us what you want to make possible.',
@@ -284,6 +298,30 @@ function HomePage({ navigate }: { navigate: Navigate }) {
   </>;
 }
 
+function ProcessPage({ navigate }: { navigate: Navigate }) {
+  const preparations = [
+    ['The goal', 'What should improve for the business or the people using the result?'],
+    ['The audience', 'Who is the work for, and what should they understand or do?'],
+    ['The material', 'Share existing brand assets, copy, product details, technical notes or examples that are relevant to the brief.'],
+    ['The constraints', 'Tell us about formats, integrations, deadlines, approvals and any non-negotiable requirements.'],
+  ];
+  return <>
+    <PageHero path="/process" navigate={navigate}/>
+    <ProcessSection/>
+    <section className="agency-section agency-section--why"><div className="agency-wrap"><SectionHeading index="02" kicker="PREPARING A GOOD BRIEF" title={<>A strong start makes <em>better decisions possible.</em></>} body="You do not need a complete specification before contacting us. A little context helps us ask the right questions and define the next step."/><div className="agency-process-prep-grid">{preparations.map(([title,description],index)=><article key={title} data-reveal><span>0{index+1}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
+    <section className="agency-section"><div className="agency-wrap agency-process-commitment"><div><Kicker>PROJECT CLARITY</Kicker><h2>Agree the important details <em>before work begins.</em></h2><p>Scope, deliverables, review points, responsibilities and the expected handover are discussed against the actual project. Timelines and pricing are confirmed after the brief is understood—not guessed from a generic package.</p></div><div className="agency-process-commitment__points"><span><CheckCircle2/> Defined scope and deliverables</span><span><CheckCircle2/> Agreed feedback and approval points</span><span><CheckCircle2/> Clear project communication</span><span><CheckCircle2/> Practical handover expectations</span></div></div></section>
+    <ContactStrip navigate={navigate}/>
+  </>;
+}
+
+function FaqPage({ navigate }: { navigate: Navigate }) {
+  return <>
+    <PageHero path="/faq" navigate={navigate}/>
+    <section className="agency-section"><div className="agency-wrap agency-faq-page"><SectionHeading index="01" kicker="ANSWERS BEFORE THE BRIEF" title={<>Know what to expect. <em>Then let's talk.</em></>} body="These answers explain the types of work Raphics takes on and how a project normally moves forward."/><FaqSection/><div className="agency-faq-page__links"><button className="agency-text-link" onClick={()=>navigate('/services')}>Explore services <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/process')}>How we work <ArrowUpRight/></button><button className="agency-text-link" onClick={()=>navigate('/contact')}>Ask about your project <ArrowUpRight/></button></div></div></section>
+    <ContactStrip navigate={navigate}/>
+  </>;
+}
+
 function ServicesPage({ path, navigate }: { path: string; navigate: Navigate }) {
   const group = path === '/creative' ? CREATIVE_SERVICES : path === '/development' ? [{ id:'development',title:'Digital Development',subtitle:'Websites, software and business platforms',description:'Digital products engineered around your workflows.',badge:'DEVELOPMENT',iconName:'Code2',items:DEVELOPMENT_SERVICES }] : path === '/ai-lab' ? [{ id:'ai-automation',title:'AI & Automation',subtitle:'Practical intelligence for daily work',description:'AI assistants, retrieval systems, agents and connected automations.',badge:'AI & AUTOMATION',iconName:'Cpu',items:AI_SERVICES }] : ALL_GROUPS;
   const relatedProjects = path === '/creative'
@@ -429,6 +467,8 @@ export function AgencyPages({ path, projectId, serviceId, navigate }: { path: st
   if(path==='/services/:id')return <ServiceDetail id={serviceId} navigate={navigate}/>;
   if(path==='/portfolio/:id')return <ProjectDetail id={projectId} navigate={navigate}/>;
   if(path==='/contact')return <ContactPage navigate={navigate}/>;
+  if(path==='/process')return <ProcessPage navigate={navigate}/>;
+  if(path==='/faq')return <FaqPage navigate={navigate}/>;
   if(path==='/about')return <AboutPage navigate={navigate}/>;
   if(path==='/reviews')return <ReviewsPage navigate={navigate}/>;
   if(path==='/portfolio')return <PortfolioPage navigate={navigate}/>;

@@ -10,6 +10,7 @@ import { WhatsAppIcon } from '../brand/WhatsAppIcon';
 import { BRAND_CONFIG } from '../../config/brand';
 import { useRouter } from '../../router/AgencyRouter';
 import {
+  BRAND_HOME_PATH,
   FOOTER_CAPABILITY_LINKS,
   FOOTER_PAGE_LINKS,
   getFooterSocialLinks,
@@ -44,9 +45,12 @@ export const Footer: React.FC = () => {
         <div className="raphics-footer__glow" aria-hidden="true" />
         <div className="raphics-footer__main">
           <div className="raphics-footer__brand">
-            <button type="button" onClick={() => navigate('/')} className="raphics-footer__logo" aria-label="Raphics Digital Solutions home">
-              <Logo variant="full" height={62} />
-            </button>
+            <Logo
+              variant="full"
+              height={62}
+              className="raphics-footer__logo"
+              onClick={() => navigate(BRAND_HOME_PATH)}
+            />
             <p>{BRAND_CONFIG.heroDescription}</p>
             <div className="raphics-footer__tagline">
               <span>OUR PROMISE</span>
@@ -67,8 +71,14 @@ export const Footer: React.FC = () => {
           <nav className="raphics-footer__column" aria-label="Explore Raphics">
             <h2>Explore</h2>
             {FOOTER_PAGE_LINKS.filter((link) => !['/privacy', '/terms'].includes(link.path)).map((link) => (
-              <button key={link.path} type="button" onClick={() => navigate(link.path)}>
-                {link.label}<ArrowUpRight />
+              <button
+                key={link.path}
+                type="button"
+                className="raphics-footer__explore-link"
+                onClick={() => navigate(link.path)}
+              >
+                <span>{link.label}</span>
+                <ArrowUpRight aria-hidden="true" />
               </button>
             ))}
           </nav>

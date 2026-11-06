@@ -679,3 +679,52 @@ html.agency-motion-on [data-reveal].is-visible { opacity:1; transform:translate3
   .raphics-back-top { transition:none; }
   .agency-process-prep-grid article { transition:none; }
 }
+
+
+/* Explore navigation: keep the arrow on the same baseline as its label. */
+.raphics-footer__column > button.graphics-footer__explore-link,
+.raphics-footer__column > button.raphics-footer__explore-link {
+  display:inline-flex;
+  width:fit-content;
+  min-height:28px;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+  gap:9px;
+  padding:2px 0;
+  white-space:nowrap;
+}
+.raphics-footer__column > button.raphics-footer__explore-link > span {
+  display:inline-block;
+  line-height:1.45;
+}
+.raphics-footer__column > button.raphics-footer__explore-link > svg {
+  display:block;
+  flex:0 0 auto;
+  width:12px;
+  height:12px;
+  margin:0;
+  color:#df554d;
+  transition:transform .25s ease,color .25s ease;
+}
+.raphics-footer__column > button.raphics-footer__explore-link:hover > svg {
+  color:#ff786f;
+  transform:translate(2px,-2px);
+}
+.raphics-footer__logo {
+  display:inline-flex;
+  width:fit-content;
+  align-items:center;
+  justify-content:flex-start;
+  vertical-align:top;
+  cursor:pointer;
+}
+.raphics-footer__logo button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+.raphics-footer__logo img {
+  display:block;
+  object-position:left center;
+}

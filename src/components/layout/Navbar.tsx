@@ -13,6 +13,7 @@ import { BRAND_CONFIG } from '../../config/brand';
 import { useRouter } from '../../router/AgencyRouter';
 import { Menu, X, ArrowUpRight, Mail } from 'lucide-react';
 import { WhatsAppIcon } from '../brand/WhatsAppIcon';
+import { BRAND_HOME_PATH } from '../../utils/site-shell';
 
 interface NavbarProps {
   onOpenContactModal?: () => void;
@@ -83,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
           <div className="flex items-center gap-3">
             <Logo
               height={scrolled ? 36 : 42}
-              onClick={() => navigate('/')}
+              onClick={() => navigate(BRAND_HOME_PATH)}
             />
           </div>
 

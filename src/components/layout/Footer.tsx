@@ -3,7 +3,7 @@
  * Agency-only social links; founder marketplace profiles remain on the Reviews page.
  */
 import React, { useEffect, useState } from 'react';
-import { ArrowUp, ArrowUpRight, Mail, MapPin, Phone, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowUp, ArrowUpRight, Mail, MapPin, Phone, ShieldCheck } from 'lucide-react';
 import { Linkedin, Facebook, Instagram } from 'lucide-react';
 import { Logo } from '../brand/Logo';
 import { WhatsAppIcon } from '../brand/WhatsAppIcon';

@@ -1,8 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  BRAND_HOME_PATH,
   FOOTER_CAPABILITY_LINKS,
   FOOTER_PAGE_LINKS,
+  FOOTER_PAGE_LINK_ICON_POSITION,
   getFooterSocialLinks,
   getScrollProgress,
   shouldShowBackToTop,
@@ -51,4 +53,12 @@ test('back-to-top appears only after meaningful page scrolling', () => {
   assert.equal(shouldShowBackToTop(0), false);
   assert.equal(shouldShowBackToTop(480), false);
   assert.equal(shouldShowBackToTop(481), true);
+});
+
+test('both brand logo controls navigate to the home route', () => {
+  assert.equal(BRAND_HOME_PATH, '/');
+});
+
+test('footer explore link icons are configured to sit inline with their labels', () => {
+  assert.equal(FOOTER_PAGE_LINK_ICON_POSITION, 'inline');
 });

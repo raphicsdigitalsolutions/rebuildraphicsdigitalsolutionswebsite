@@ -11,7 +11,8 @@ import React, { useState, useEffect } from 'react';
 import { Logo } from '../brand/Logo';
 import { BRAND_CONFIG } from '../../config/brand';
 import { useRouter } from '../../router/AgencyRouter';
-import { Menu, X, ArrowUpRight, MessageSquare, Mail } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Mail } from 'lucide-react';
+import { WhatsAppIcon } from '../brand/WhatsAppIcon';
 
 interface NavbarProps {
   onOpenContactModal?: () => void;
@@ -28,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       setScrolled(window.scrollY > 40);
 
       if (currentPath === '/') {
-        const sections = ['services', 'capabilities', 'portfolio', 'about'];
+        const sections = ['services', 'portfolio', 'process', 'about', 'faq'];
         for (const section of sections) {
           const el = document.getElementById(section);
           if (el) {
@@ -48,11 +49,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
   const navLinks = [
     { label: 'Services', path: '/services', id: 'services' },
-    { label: 'Creative', path: '/creative', id: 'creative' },
-    { label: 'Development', path: '/development', id: 'development' },
-    { label: 'AI Lab', path: '/ai-lab', id: 'ai-lab' },
-    { label: 'Work', path: '/portfolio', id: 'portfolio' },
+    { label: 'Our Work', path: '/portfolio', id: 'portfolio' },
+    { label: 'Process', path: '/process', id: 'process' },
     { label: 'About', path: '/about', id: 'about' },
+    { label: 'FAQs', path: '/faq', id: 'faq' },
   ];
 
   const handleNavClick = (path: string, sectionId: string) => {
@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                 className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-700 bg-neutral-900/40 transition-colors"
                 title="Chat directly on WhatsApp"
               >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
                 <span>WhatsApp</span>
               </a>
             ) : (
@@ -152,6 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
             className="lg:hidden p-2 rounded-xl text-neutral-300 hover:text-white hover:bg-neutral-900 border border-neutral-800 cursor-pointer"
             aria-label="Toggle navigation menu"
           >
@@ -193,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
               rel="noopener noreferrer"
               className="w-full py-3 rounded-xl border border-neutral-800 text-neutral-200 font-medium text-sm flex items-center justify-center gap-2 hover:border-[#D51F16]/60"
             >
-              <MessageSquare className="w-4 h-4 text-[#D51F16]" />
+              <WhatsAppIcon className="w-4 h-4 text-[#D51F16]" />
               <span>WhatsApp Message — UK</span>
             </a>
             <button

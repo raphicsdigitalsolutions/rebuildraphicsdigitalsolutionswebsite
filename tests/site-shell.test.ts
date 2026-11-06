@@ -30,7 +30,7 @@ test('footer social links contain only the agency LinkedIn, Facebook and Instagr
 });
 
 test('footer navigation links all primary pages including the dedicated process page and legal pages', () => {
-  const paths = FOOTER_PAGE_LINKS.map((link) => link.path);
+  const paths: string[] = FOOTER_PAGE_LINKS.map((link) => link.path);
   for (const requiredPath of ['/services', '/portfolio', '/process', '/about', '/reviews', '/contact', '/privacy', '/terms']) {
     assert.ok(paths.includes(requiredPath), `Missing footer route: ${requiredPath}`);
   }

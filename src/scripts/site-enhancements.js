@@ -119,6 +119,11 @@ function decorateSection(section) {
     if (intro) addReveal(intro, 110, 'up');
   }
 
+  // Register authored reveal elements even when they aren't direct grid children (such as timeline list items).
+  section.querySelectorAll('[data-reveal]').forEach((element, index) => {
+    if (element instanceof HTMLElement) addReveal(element, (index % 5) * 55, element.dataset.reveal || 'up');
+  });
+
   const gridItems = section.querySelectorAll('.grid > div, .grid > button, .grid > article');
   gridItems.forEach((item, index) => {
     const card = item instanceof HTMLElement ? item : null;

@@ -11,7 +11,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Logo } from '../brand/Logo';
 import { BRAND_CONFIG } from '../../config/brand';
 import { useRouter } from '../../router/AgencyRouter';
-import { Menu, X, ArrowUpRight, MessageSquare, Mail } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Mail } from 'lucide-react';
 
 interface NavbarProps {
   onOpenContactModal?: () => void;
@@ -66,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
       if (currentPath === '/') {
         let nextActiveSection = 'hero';
-        const sections = ['services', 'portfolio'];
+        const sections = ['about', 'services', 'portfolio', 'process'];
         for (const section of sections) {
           const el = document.getElementById(section);
           if (el) {
@@ -110,24 +110,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-[#080808]/90 backdrop-blur-xl border-b border-neutral-850 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
-            : 'bg-transparent py-5'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <header className="floating-nav fixed left-0 right-0 top-3 z-50 px-3 sm:top-5 sm:px-5">
+        <div className={`floating-nav-shell mx-auto flex max-w-[1160px] items-center justify-between gap-3 rounded-full border px-3 py-2.5 transition-all duration-300 sm:px-5 ${scrolled ? 'is-scrolled' : ''}`}>
           {/* Centralized Brand Logo */}
           <div className="flex items-center gap-3">
-            <Logo
-              height={scrolled ? 36 : 42}
-              onClick={() => navigate('/')}
-            />
+            <Logo variant="emblem" height={scrolled ? 34 : 38} onClick={() => navigate('/')} />
+            <span className="floating-nav-wordmark"><strong>RAPHICS</strong><small>DIGITAL SOLUTIONS</small></span>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7 px-2">
+          <nav className="hidden lg:flex items-center gap-1 rounded-full border border-white/[0.06] bg-black/20 px-1.5 py-1">
             {navLinks.map((link) => {
               const isActive =
                 currentPath === link.path || (currentPath === '/' && activeSection === link.id);
@@ -135,10 +127,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.path, link.id)}
-                  className={`border-b py-2 text-xs font-medium tracking-wide transition-colors cursor-pointer ${
+                  className={`rounded-full px-4 py-2 text-xs font-medium tracking-wide transition-colors cursor-pointer ${
                     isActive
-                      ? 'border-[#D51F16] text-white'
-                      : 'border-transparent text-neutral-400 hover:border-neutral-600 hover:text-white'
+                      ? 'bg-white/[0.08] text-white'
+                      : 'text-neutral-400 hover:bg-white/[0.05] hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -149,29 +141,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
-            {/* Direct Email or WhatsApp */}
-            {BRAND_CONFIG.contact.whatsapp.isConfigured && BRAND_CONFIG.contact.whatsapp.whatsappUrl ? (
-              <a
-                href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-700 bg-neutral-900/40 transition-colors"
-                title={`Open a WhatsApp message to ${BRAND_CONFIG.contact.whatsapp.display}; this number is not for calls`}
-              >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
-                <span>UK WhatsApp message</span>
-              </a>
-            ) : (
-              <a
-                href={`mailto:${BRAND_CONFIG.contact.email}`}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-700 bg-neutral-900/40 transition-colors"
-                title="Send inquiry email"
-              >
-                <Mail className="w-3.5 h-3.5 text-[#D51F16]" />
-                <span>Email Us</span>
-              </a>
-            )}
-
             {/* Primary Start Project CTA */}
             <button
               onClick={() => {
@@ -181,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                   handleNavClick('/contact', 'contact');
                 }
               }}
-              className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-xs font-semibold tracking-wide transition-all duration-200 shadow-[0_0_20px_rgba(213,31,22,0.35)] hover:shadow-[0_0_30px_rgba(213,31,22,0.55)] cursor-pointer"
+              className="group flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-semibold tracking-wide text-[#101010] transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-200 cursor-pointer"
             >
               <span>Start a Project</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

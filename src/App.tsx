@@ -149,6 +149,7 @@ function AgencyContent() {
         onExploreWork={() => navigate('/work')}
         onStartProject={() => navigate('/contact')}
       />
+      <AboutSection />
       <ScrollServicesExperience onOpenService={navigate} />
       <FeaturedWorkSection />
       <ApproachSection />

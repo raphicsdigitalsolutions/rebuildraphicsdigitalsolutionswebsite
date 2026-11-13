@@ -69,8 +69,9 @@ const revealObserver = 'IntersectionObserver' in window
   : null;
 
 function addReveal(element, delay = 0, direction = 'up') {
-  if (!(element instanceof HTMLElement) || element.dataset.reveal) return;
-  element.dataset.reveal = direction;
+  if (!(element instanceof HTMLElement) || element.dataset.revealBound) return;
+  if (!element.dataset.reveal) element.dataset.reveal = direction;
+  element.dataset.revealBound = 'true';
   element.style.setProperty('--reveal-delay', `${Math.min(delay, 420)}ms`);
 
   if (motionQuery.matches || !revealObserver) {

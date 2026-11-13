@@ -65,20 +65,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       setScrolled(window.scrollY > 40);
 
       if (currentPath === '/') {
+        let nextActiveSection = 'hero';
         const sections = ['services', 'portfolio'];
         for (const section of sections) {
           const el = document.getElementById(section);
           if (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top <= 200 && rect.bottom >= 200) {
-              setActiveSection(section);
+              nextActiveSection = section;
               break;
             }
           }
         }
+        setActiveSection(nextActiveSection);
       }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentPath]);

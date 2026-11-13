@@ -57,13 +57,28 @@ html.js-enhanced[data-motion-preference="full"] [data-reveal].is-visible {
   transform: translate3d(0,0,0);
 }
 
-/* Fine-line grid used only in the hero background. */
-.hero-editorial-grid {
-  background-image:
-    linear-gradient(to right, rgba(255,255,255,.028) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,.028) 1px, transparent 1px);
-  background-size: 76px 76px;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,.4), transparent 82%);
+.hero-atmosphere {
+  background:
+    radial-gradient(ellipse at 50% 58%, rgba(126, 17, 13, .24), transparent 31%),
+    radial-gradient(ellipse at 50% 14%, rgba(213, 31, 22, .085), transparent 38%),
+    radial-gradient(ellipse at 50% 108%, rgba(72, 16, 14, .14), transparent 42%),
+    linear-gradient(105deg, #080808 12%, #0a0909 54%, #0b0808 100%);
+}
+
+.hero-horizon {
+  background: linear-gradient(180deg, transparent, rgba(8,8,8,.56) 58%, #080808 100%);
+}
+
+.hero-word-muted { color: #85817f; }
+.hero-word-accent {
+  color: #d51f16;
+  text-shadow: 0 8px 48px rgba(213,31,22,.17);
+}
+
+.hero-art-halo {
+  background: radial-gradient(circle, rgba(151,25,19,.23), rgba(76,15,13,.08) 38%, transparent 72%);
+  filter: blur(22px);
+  transform: scale(1.1);
 }
 
 .home-hero-enter {
@@ -99,22 +114,23 @@ html.js-enhanced[data-motion-preference="full"] [data-reveal].is-visible {
 }
 
 .minimal-hero-visual canvas {
-  filter: drop-shadow(0 22px 45px rgba(0,0,0,.25));
+  filter: drop-shadow(0 28px 48px rgba(0,0,0,.42));
 }
 
-.minimal-hero-visual [data-webgl="unavailable"]::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(56%, 230px);
-  aspect-ratio: 1;
-  border: 2px solid rgba(213,31,22,.65);
-  border-radius: 42% 58% 57% 43% / 43% 42% 58% 57%;
-  box-shadow: 0 0 50px rgba(213,31,22,.12), inset 0 0 40px rgba(255,255,255,.035);
-  transform: translate(-50%,-50%) rotate(-28deg);
-  animation: fallback-orbit 12s linear infinite;
+.hero-sculpture-aura {
+  background: radial-gradient(circle, rgba(213,31,22,.18), rgba(76,18,15,.09) 44%, transparent 72%);
+  filter: blur(32px);
 }
+
+.hero-static-sculpture {
+  opacity: 0;
+  display: grid;
+  place-items: center;
+}
+
+.minimal-hero-visual[data-webgl="unavailable"] .hero-static-sculpture { opacity: 1; }
+.minimal-hero-visual[data-webgl="unavailable"] .hero-sculpture-aura { display: none; }
+.minimal-hero-visual[data-webgl="unavailable"] canvas { display: none; }
 
 /* WebGL fallback for the sticky scroll story. */
 .scroll-story-visual[data-webgl="unavailable"]::before,
@@ -130,6 +146,17 @@ html.js-enhanced[data-motion-preference="full"] [data-reveal].is-visible {
   box-shadow: 0 0 42px rgba(213,31,22,.12), inset 0 0 36px rgba(255,255,255,.035);
   transform: translate(-50%,-50%) rotate(-25deg);
   animation: fallback-orbit 18s linear infinite;
+}
+
+.scroll-story-atmosphere {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(92, 19, 16, .19), transparent 38%),
+    linear-gradient(100deg, rgba(255,255,255,.018), transparent 40%, rgba(255,255,255,.012));
+}
+
+.scroll-story-stage-glow {
+  background: radial-gradient(circle, rgba(177,36,28,.16), rgba(66,18,15,.06) 45%, transparent 72%);
+  filter: blur(28px);
 }
 .scroll-story-visual[data-webgl="unavailable"]::after {
   width: min(76%, 310px);
@@ -164,6 +191,9 @@ html.js-enhanced[data-motion-preference="full"] [data-reveal].is-visible {
 #services article:hover::before {
   transform: scaleX(1);
 }
+
+#services article[data-active="true"]::before { transform: scaleX(1); }
+#services article[data-active="true"] .scroll-story-number { color: #f07870; }
 
 #services button {
   text-underline-offset: 5px;
@@ -242,8 +272,8 @@ img, canvas, video, svg { max-width: 100%; }
   :root { scroll-padding-top: 5.25rem; }
   section[id] { scroll-margin-top: 5.25rem; }
   #services { scroll-margin-top: 0; }
-  .hero-editorial-grid { background-size: 52px 52px; }
-  .home-hero-art { max-width: 390px; margin-top: -1rem; }
+  .home-hero-art { max-width: 390px; margin-top: 0; }
+  .hero-art-halo { inset: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

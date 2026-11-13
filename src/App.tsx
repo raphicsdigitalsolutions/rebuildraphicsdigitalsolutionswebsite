@@ -180,10 +180,10 @@ export default function App() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Send a WhatsApp message to ${BRAND_CONFIG.contact.whatsapp.display}; messaging only`}
-              className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs shadow-[0_8px_25px_rgba(16,185,129,0.35)] transition-all duration-200 hover:scale-105"
+              className="flex items-center gap-2.5 rounded-full border border-white/15 bg-[#151515]/95 px-4 py-3 text-xs font-medium text-white shadow-[0_8px_28px_rgba(0,0,0,.36)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-400/40 hover:bg-[#1b1b1b]"
               title={`Send a WhatsApp message to ${BRAND_CONFIG.contact.whatsapp.display}; this number is not for calls`}
             >
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4 text-emerald-400" />
               <span className="hidden sm:inline font-mono">WhatsApp message</span>
             </a>
           </aside>

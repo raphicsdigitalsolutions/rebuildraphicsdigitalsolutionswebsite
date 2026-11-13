@@ -4,7 +4,7 @@
  * 
  * RAPHICS DIGITAL SOLUTIONS
  * Premium 3D Creative Technology Agency Website
- * "Digital Magic for Real Success."
+ * "Digital Magic For Real Success."
  */
 
 import React from 'react';
@@ -22,11 +22,11 @@ import { DevelopmentStudioSection } from './components/sections/DevelopmentStudi
 import { AILabSection } from './components/sections/AILabSection';
 import { WhyRaphicsSection } from './components/sections/WhyRaphicsSection';
 import { SelectedWorkSection } from './components/sections/SelectedWorkSection';
-import { ReviewsSection } from './components/sections/ReviewsSection';
-import { TrustSection } from './components/sections/TrustSection';
 import { ProcessSection } from './components/sections/ProcessSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { ProjectDetailPage } from './components/pages/ProjectDetailPage';
+import { FAQPage } from './components/pages/FAQPage';
+import { NotFoundPage } from './components/pages/NotFoundPage';
 import { ServiceDetailPage } from './components/pages/ServiceDetailPage';
 import { LegalPage } from './components/pages/LegalPage';
 import { BRAND_CONFIG } from './config/brand';
@@ -35,8 +35,8 @@ import { MessageSquare } from 'lucide-react';
 function AgencyContent() {
   const { currentPath, projectId, serviceId, navigate } = useRouter();
 
-  // 1. Individual Project Detail Page: /portfolio/:id or /project/:id
-  if (currentPath === '/portfolio/:id' && projectId) {
+  // 1. Individual project details: /work/:id and legacy aliases.
+  if (currentPath === '/work/:id' && projectId) {
     return <ProjectDetailPage projectId={projectId} />;
   }
 
@@ -105,7 +105,7 @@ function AgencyContent() {
     );
   }
 
-  if (currentPath === '/portfolio') {
+  if (currentPath === '/work') {
     return (
       <div className="pt-20">
         <SelectedWorkSection />
@@ -114,11 +114,19 @@ function AgencyContent() {
     );
   }
 
-  if (currentPath === '/reviews') {
+  if (currentPath === '/process') {
     return (
       <div className="pt-20">
-        <ReviewsSection />
-        <TrustSection />
+        <ProcessSection />
+        <ContactSection />
+      </div>
+    );
+  }
+
+  if (currentPath === '/faq') {
+    return (
+      <div className="pt-20">
+        <FAQPage />
         <ContactSection />
       </div>
     );
@@ -132,11 +140,13 @@ function AgencyContent() {
     );
   }
 
+  if (currentPath === '/404') return <NotFoundPage />;
+
   // Focused editorial homepage: one hero, one scroll-linked service story, work, approach and contact.
   return (
     <>
       <HeroSection
-        onExploreWork={() => navigate('/portfolio')}
+        onExploreWork={() => navigate('/work')}
         onStartProject={() => navigate('/contact')}
       />
       <ScrollServicesExperience onOpenService={navigate} />
@@ -164,16 +174,17 @@ export default function App() {
 
         {/* Floating WhatsApp Quick Action (Only if configured with real verified number) */}
         {BRAND_CONFIG.contact.whatsapp.isConfigured && BRAND_CONFIG.contact.whatsapp.whatsappUrl && (
-          <aside aria-label="Direct WhatsApp Contact" className="fixed bottom-6 right-6 z-40">
+          <aside aria-label="WhatsApp messaging" className="fixed bottom-6 right-6 z-40">
             <a
               href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Send a WhatsApp message to ${BRAND_CONFIG.contact.whatsapp.display}; messaging only`}
               className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs shadow-[0_8px_25px_rgba(16,185,129,0.35)] transition-all duration-200 hover:scale-105"
-              title="Direct WhatsApp Chat with Raphics Agency"
+              title={`Send a WhatsApp message to ${BRAND_CONFIG.contact.whatsapp.display}; this number is not for calls`}
             >
               <MessageSquare className="w-4 h-4" />
-              <span className="hidden sm:inline font-mono">Chat on WhatsApp</span>
+              <span className="hidden sm:inline font-mono">WhatsApp message</span>
             </a>
           </aside>
         )}

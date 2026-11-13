@@ -1,199 +1,86 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- * 
- * Official Footer for Raphics Digital Solutions.
- * Verified profiles, router integration, contact channels, and legal links.
- */
-
 import React from 'react';
+import { Facebook, Instagram, Mail, MapPin, MessageSquare, PhoneCall, ShieldCheck, Linkedin } from 'lucide-react';
 import { Logo } from '../brand/Logo';
 import { BRAND_CONFIG } from '../../config/brand';
 import { useRouter } from '../../router/AgencyRouter';
-import { Mail, MessageSquare, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
-interface FooterProps {
-  onOpenPrivacy?: () => void;
-  onOpenTerms?: () => void;
-}
+const socials = [
+  { name: 'LinkedIn', href: BRAND_CONFIG.socials.linkedin, Icon: Linkedin },
+  { name: 'Instagram', href: BRAND_CONFIG.socials.instagram, Icon: Instagram },
+  { name: 'Facebook', href: BRAND_CONFIG.socials.facebook, Icon: Facebook },
+];
 
-export const Footer: React.FC<FooterProps> = () => {
-  const currentYear = 2026;
+export const Footer: React.FC = () => {
   const { navigate } = useRouter();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#060606] border-t border-neutral-900 pt-16 pb-12 overflow-hidden text-neutral-400">
-      {/* Background Subtle Ambient Red Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-[#D51F16]/10 to-transparent pointer-events-none blur-3xl" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-neutral-900">
-          
-          {/* Column 1 & 2: Brand Identity & Vision */}
-          <div className="lg:col-span-2 space-y-4">
-            <Logo height={44} onClick={() => navigate('/')} />
-            <p className="text-neutral-400 text-sm leading-relaxed max-w-sm mt-3">
-              {BRAND_CONFIG.heroDescription}
-            </p>
-            <div className="pt-2 flex flex-col gap-2 font-mono text-xs text-neutral-400">
-              <div className="flex items-center gap-2">
-                <span className="text-[#D51F16] font-bold">TAGLINE:</span>
-                <span className="text-neutral-200">"{BRAND_CONFIG.tagline}"</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[#D51F16] font-bold">STATUS:</span>
-                <span className="text-emerald-400 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  {BRAND_CONFIG.contact.availability}
-                </span>
-              </div>
-            </div>
+    <footer className="border-t border-white/10 bg-[#080808] py-14 text-neutral-400 sm:py-16">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid gap-10 border-b border-white/10 pb-10 sm:grid-cols-2 xl:grid-cols-[1.25fr_.8fr_.8fr_1.3fr]">
+          <div className="space-y-4">
+            <Logo height={48} onClick={() => navigate('/')} />
+            <p className="max-w-sm text-sm leading-7 text-neutral-400">Creative design, digital development, and practical AI automation for businesses.</p>
+            <p className="text-xs font-mono text-neutral-500">{BRAND_CONFIG.tagline}</p>
           </div>
 
-          {/* Column 3: The 5 Core Experiences */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-neutral-200 font-semibold">
-              Core Capabilities
-            </h4>
+          <nav aria-label="Services" className="space-y-3">
+            <h2 className="text-[10px] font-mono uppercase tracking-[0.18em] text-white">Services</h2>
             <ul className="space-y-2 text-sm">
-              <li>
-                <button
-                  onClick={() => navigate('/creative')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  Creative Studio
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate('/development')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  Digital Development
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate('/ai-lab')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  AI & Automation Lab
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate('/portfolio')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  Selected Work
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate('/reviews')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  Client Trust & Reviews
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate('/services')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  All Services
-                </button>
-              </li>
+              <li><button onClick={() => navigate('/services/creative-studio')} className="hover:text-white">Creative Studio</button></li>
+              <li><button onClick={() => navigate('/services/digital-development')} className="hover:text-white">Digital Development</button></li>
+              <li><button onClick={() => navigate('/services/ai-automation')} className="hover:text-white">AI & Automation</button></li>
             </ul>
-          </div>
+          </nav>
 
-          {/* Column 4: Official Verified Profiles */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-neutral-200 font-semibold">
-              Verified Profiles
-            </h4>
+          <nav aria-label="Explore" className="space-y-3">
+            <h2 className="text-[10px] font-mono uppercase tracking-[0.18em] text-white">Explore</h2>
             <ul className="space-y-2 text-sm">
-              {Object.entries(BRAND_CONFIG.profiles).map(([key, item]) => (
-                <li key={key}>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-1.5 hover:text-white transition-colors"
-                  >
-                    <span>{item.name}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-neutral-600 group-hover:text-[#D51F16] transition-colors" />
-                  </a>
-                </li>
-              ))}
+              <li><button onClick={() => navigate('/work')} className="hover:text-white">Work</button></li>
+              <li><button onClick={() => navigate('/about')} className="hover:text-white">About</button></li>
+              <li><button onClick={() => navigate('/process')} className="hover:text-white">Process</button></li>
+              <li><button onClick={() => navigate('/faq')} className="hover:text-white">FAQ</button></li>
+              <li><button onClick={() => navigate('/contact')} className="hover:text-white">Contact</button></li>
             </ul>
-          </div>
+          </nav>
 
-          {/* Column 5: Direct Communication */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-neutral-200 font-semibold">
-              Direct Contact
-            </h4>
-            <div className="space-y-2.5 text-sm">
-              <a
-                href={`mailto:${BRAND_CONFIG.contact.email}`}
-                className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 text-neutral-300 hover:text-white transition-all text-xs"
-              >
-                <Mail className="w-4 h-4 text-[#D51F16]" />
-                <span className="truncate">{BRAND_CONFIG.contact.email}</span>
+            <h2 className="text-[10px] font-mono uppercase tracking-[0.18em] text-white">Contact</h2>
+            <div className="space-y-2 text-xs">
+              <a href={`mailto:${BRAND_CONFIG.contact.email}`} className="flex items-center gap-2 text-neutral-300 hover:text-white">
+                <Mail className="h-4 w-4 text-[#D51F16]" /> {BRAND_CONFIG.contact.email}
               </a>
-
-              {BRAND_CONFIG.contact.whatsapp.isConfigured && BRAND_CONFIG.contact.whatsapp.whatsappUrl && (
-                <a
-                  href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-emerald-500/50 text-neutral-300 hover:text-white transition-all text-xs"
-                >
-                  <MessageSquare className="w-4 h-4 text-emerald-400" />
-                  <span>WhatsApp Messaging</span>
-                </a>
-              )}
-
-              <div className="pt-2 text-[11px] text-neutral-400">
-                Independent Creative, Software & AI Agency.
-              </div>
+              <a href={BRAND_CONFIG.contact.whatsapp.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-neutral-300 hover:text-white">
+                <MessageSquare className="h-4 w-4 text-emerald-400" /> UK WhatsApp messages · {BRAND_CONFIG.contact.whatsapp.display}
+              </a>
+              <a href={BRAND_CONFIG.contact.phone.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-neutral-300 hover:text-white">
+                <MessageSquare className="h-4 w-4 text-emerald-400" /> Pakistan WhatsApp · {BRAND_CONFIG.contact.phone.display}
+              </a>
+              <a href={BRAND_CONFIG.contact.phone.telUrl} className="flex items-center gap-2 text-neutral-300 hover:text-white">
+                <PhoneCall className="h-4 w-4 text-[#D51F16]" /> Pakistan calls · {BRAND_CONFIG.contact.phone.display}
+              </a>
             </div>
+
+            <div className="flex items-center gap-2 pt-1" aria-label="Official agency social accounts">
+              {socials.map(({ name, href, Icon }) => (
+                <a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={name} className="inline-flex h-9 w-9 items-center justify-center border border-white/10 text-neutral-300 transition-colors hover:border-[#D51F16] hover:text-white">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+
+            <a href={BRAND_CONFIG.contact.locationUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 pt-1 text-xs text-neutral-400 hover:text-white">
+              <MapPin className="h-4 w-4 shrink-0 text-[#D51F16]" /> {BRAND_CONFIG.contact.location}
+            </a>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Legal Navigation */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#D51F16]" />
-            <span>
-              &copy; {currentYear} {BRAND_CONFIG.name}. All Rights Reserved.
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-6 text-neutral-400">
-            <button
-              onClick={() => navigate('/privacy')}
-              className="hover:text-neutral-300 transition-colors cursor-pointer"
-            >
-              Privacy Policy
-            </button>
-            <button
-              onClick={() => navigate('/terms')}
-              className="hover:text-neutral-300 transition-colors cursor-pointer"
-            >
-              Terms & Conditions
-            </button>
-            <button
-              onClick={scrollToTop}
-              className="hover:text-[#D51F16] transition-colors cursor-pointer flex items-center gap-1"
-            >
-              Back to Top &uarr;
-            </button>
+        <div className="flex flex-col items-center justify-between gap-4 pt-6 text-xs sm:flex-row">
+          <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-[#D51F16]" /> © {currentYear} {BRAND_CONFIG.name}</span>
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <button onClick={() => navigate('/privacy')} className="hover:text-white">Privacy Policy</button>
+            <button onClick={() => navigate('/terms')} className="hover:text-white">Terms & Conditions</button>
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white">Back to top ↑</button>
           </div>
         </div>
       </div>

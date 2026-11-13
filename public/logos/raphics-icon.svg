@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="610 600 405 405" role="img" aria-label="Raphics Digital Solutions logo icon"><ns0:style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_00000023251235042016482300000012223640740655252145_);}
+	.st2{fill:url(#SVGID_00000003067654557411317140000009508995988346607023_);}
+	.st3{fill:url(#SVGID_00000106106369350094137330000009639567604967641238_);}
+	.st4{fill:#010101;}
+	.st5{font-family:'MADETOMMY-Bold';}
+	.st6{font-size:50.8956px;}
+	.st7{font-family:'MADETOMMY';}
+	.st8{font-size:36.382px;}
+	.st9{fill:url(#SVGID_00000129925521358368879290000015657536708638017192_);}
+	.st10{fill:url(#SVGID_00000024716382601278834670000012609572043899278209_);}
+	.st11{fill:url(#SVGID_00000081614968403969945000000008639983517802745986_);}
+	.st12{fill:url(#SVGID_00000018218599382336114100000002720538215515817900_);}
+	.st13{fill:url(#SVGID_00000100370866236241682140000018223541657655215036_);}
+	.st14{fill:url(#SVGID_00000144302671803566374820000000094825776011247251_);}
+	.st15{fill:url(#SVGID_00000149383682110831807970000009576954737839993522_);}
+	.st16{fill:url(#SVGID_00000165230053086392516990000010863388217888767119_);}
+	.st17{font-size:26.3361px;}
+	.st18{font-size:18.8259px;}
+	.st19{font-size:36.0472px;}
+</ns0:style><ns0:g>
+	
+		<ns0:linearGradient id="SVGID_00000053524176893131267530000011709462288090561668_" gradientUnits="userSpaceOnUse" x1="986.2822" y1="977.9128" x2="673.6662" y2="660.9549">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	
+		<ns0:rect x="625.9" y="612.44" style="fill:url(#SVGID_00000053524176893131267530000011709462288090561668_);" width="87.07" height="88.45" />
+	
+		<ns0:linearGradient id="SVGID_00000061465570297637276560000001089243664190001597_" gradientUnits="userSpaceOnUse" x1="1103.2084" y1="862.5883" x2="790.5924" y2="545.6304">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	<ns0:polygon style="fill:url(#SVGID_00000061465570297637276560000001089243664190001597_);" points="775.66,612.44 1000.3,612.44    1000.3,738.69 838.06,738.69 775.3,675.93  " />
+	
+		<ns0:linearGradient id="SVGID_00000085244434520388587210000012020861553527258525_" gradientUnits="userSpaceOnUse" x1="986.5654" y1="977.6334" x2="673.9494" y2="660.6756">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	<ns0:polygon style="fill:url(#SVGID_00000085244434520388587210000012020861553527258525_);" points="751.08,738.69 838.06,738.69    999.56,900.19 999.56,988.33 909.92,988.33 750.48,828.89  " />
+	
+		<ns0:linearGradient id="SVGID_00000083781994437983639920000009388286002021506183_" gradientUnits="userSpaceOnUse" x1="870.1907" y1="1092.4139" x2="557.5747" y2="775.4561">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	<ns0:polygon style="fill:url(#SVGID_00000083781994437983639920000009388286002021506183_);" points="624.45,762.35 686.85,762.35    751.21,826.71 751.21,988.33 624.45,988.33  " />
+</ns0:g></ns0:svg>

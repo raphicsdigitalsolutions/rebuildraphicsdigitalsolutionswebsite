@@ -99,7 +99,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               {project.status}
             </span>
             <span className="text-xs font-mono text-neutral-400 uppercase hidden sm:inline">
-              // {project.source === 'behance' ? 'Behance Profile' : project.sourceVisibility === 'private' ? 'Private Project' : 'GitHub Repository'}
+              {project.source === 'behance' ? 'Behance artwork' : project.sourceVisibility === 'public' ? 'Public repository' : project.sourceVisibility === 'private' ? 'Private source' : 'Source not published'}
             </span>
           </div>
 
@@ -132,7 +132,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
 
             {/* External links are only rendered when the target is public and confirmed. */}
             <div className="pt-2 flex flex-wrap items-center gap-3">
-              {project.externalUrl && project.sourceVisibility !== 'private' ? (
+              {project.externalUrl && project.sourceVisibility !== 'private' && project.sourceVisibility !== 'unpublished' ? (
                 <a
                   href={project.externalUrl}
                   target="_blank"
@@ -147,7 +147,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                   ) : (
                     <>
                       <ExternalLink className="w-4 h-4" />
-                      <span>Open Behance Profile</span>
+                    <span>Open Original Behance Project</span>
                     </>
                   )}
                 </a>
@@ -155,6 +155,10 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-neutral-400">
                   <Github className="w-4 h-4" />
                   Private source — not linked publicly
+                </span>
+              ) : project.sourceVisibility === 'unpublished' ? (
+                <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-neutral-400">
+                  Source and demo are not published yet
                 </span>
               ) : null}
 
@@ -165,13 +169,28 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-200 text-xs font-medium border border-neutral-700 transition-colors"
                 >
-                  <span>Launch Live Demonstration</span>
+                  <span>Open Public Demo</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
             </div>
           </div>
         </div>
+
+        {project.imageUrl && (
+          <figure className="border-b border-neutral-850 bg-black">
+            <img
+              src={project.imageUrl}
+              alt={project.imageAlt || project.title}
+              className="max-h-[560px] w-full object-contain"
+              loading="eager"
+              decoding="async"
+            />
+            <figcaption className="px-6 py-3 text-[10px] font-mono text-neutral-500 sm:px-8">
+              Published project artwork · Behance
+            </figcaption>
+          </figure>
+        )}
 
         {/* Modal Body: Project Breakdown */}
         <div className="p-6 sm:p-8 space-y-8">

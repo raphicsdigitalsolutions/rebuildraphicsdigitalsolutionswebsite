@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * 
  * Individual Project Detail Page for Raphics Digital Solutions.
- * Accessible directly at /portfolio/:id or /project/:id.
+ * Accessible directly at /work/:id, with legacy project URL aliases supported.
  */
 
 import React from 'react';
@@ -39,7 +39,7 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
           The requested portfolio project or repository could not be located in our verified archive.
         </p>
         <button
-          onClick={() => navigate('/portfolio')}
+          onClick={() => navigate('/work')}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-xs font-semibold transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -65,6 +65,12 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
         return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
       case 'Experimental Project':
         return 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+      case 'Public Prototype':
+        return 'bg-sky-500/15 text-sky-300 border-sky-500/30';
+      case 'Pre-delivery':
+      case 'In Progress':
+      case 'In Development':
+        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
       default:
         return 'bg-neutral-800 text-neutral-300 border-neutral-700';
     }
@@ -77,7 +83,7 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
         {/* Navigation Breadcrumbs */}
         <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 mb-8">
           <button
-            onClick={() => navigate('/portfolio')}
+            onClick={() => navigate('/work')}
             className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
@@ -103,7 +109,13 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
                 {project.status}
               </span>
               <span className="px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs font-mono text-neutral-300">
-                {project.source === 'github' ? 'GitHub Software' : 'Behance Creative'}
+                {project.source === 'behance'
+                  ? 'Behance Creative'
+                  : project.sourceVisibility === 'public'
+                    ? 'GitHub Repository'
+                    : project.sourceVisibility === 'private'
+                      ? 'Private Project'
+                      : 'In Development'}
               </span>
             </div>
 
@@ -117,24 +129,41 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
 
             {/* Official Source Links */}
             <div className="pt-4 flex flex-wrap items-center gap-3">
-              <a
-                href={project.externalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-xs font-semibold tracking-wide transition-all shadow-[0_0_15px_rgba(213,31,22,0.4)]"
-              >
-                {project.source === 'github' ? (
-                  <>
-                    <Github className="w-4 h-4" />
-                    <span>View Repository on GitHub</span>
-                  </>
-                ) : (
-                  <>
-                    <ExternalLink className="w-4 h-4" />
-                    <span>View Project on Behance</span>
-                  </>
-                )}
-              </a>
+              {project.externalUrl && project.sourceVisibility !== 'private' && project.sourceVisibility !== 'unpublished' ? (
+                <a
+                  href={project.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-xs font-semibold tracking-wide transition-all"
+                >
+                  {project.source === 'github' ? (
+                    <>
+                      <Github className="w-4 h-4" />
+                      <span>View Public Repository</span>
+                    </>
+                  ) : (
+                    <>
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Open Original Behance Project</span>
+                    </>
+                  )}
+                </a>
+              ) : project.sourceVisibility === 'private' ? (
+                <span className="inline-flex items-center gap-2 border border-white/15 px-4 py-3 text-xs text-neutral-400">
+                  <Github className="w-4 h-4" /> Private source — not linked publicly
+                </span>
+              ) : project.sourceVisibility === 'unpublished' ? (
+                <span className="inline-flex items-center border border-white/15 px-4 py-3 text-xs text-neutral-400">
+                  Source and demo are not published yet
+                </span>
+              ) : null}
+
+              {project.liveDemoUrl && (
+                <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/15 px-5 py-3 text-xs text-neutral-200 transition-colors hover:border-[#D51F16] hover:text-white">
+                  <span>Open Public Demo</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
 
               <button
                 onClick={() => navigate('/contact')}
@@ -146,6 +175,13 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
             </div>
           </div>
         </header>
+
+        {project.imageUrl && (
+          <figure className="mb-12 border-y border-white/10 bg-black">
+            <img src={project.imageUrl} alt={project.imageAlt || project.title} className="max-h-[620px] w-full object-contain" loading="eager" decoding="async" />
+            <figcaption className="px-5 py-3 text-[10px] font-mono text-neutral-500">Published project artwork · Behance</figcaption>
+          </figure>
+        )}
 
         {/* Detailed Case Study Content */}
         <div className="space-y-10">
@@ -161,7 +197,7 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
           </section>
 
           {/* Problem & Solution Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {(project.problem || project.solution) && <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-6 rounded-3xl bg-neutral-950 border border-neutral-850 space-y-3">
               <div className="flex items-center gap-2 text-xs font-mono text-amber-400 font-semibold">
                 <AlertCircle className="w-4 h-4" />
@@ -181,10 +217,10 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
                 {project.solution}
               </p>
             </div>
-          </div>
+          </div>}
 
           {/* Key Specifications & Features */}
-          <section className="p-8 rounded-3xl bg-neutral-950 border border-neutral-850 space-y-4">
+          {project.mainFeatures.length > 0 && <section className="p-8 rounded-3xl bg-neutral-950 border border-neutral-850 space-y-4">
             <h2 className="text-xs font-mono uppercase tracking-wider text-[#D51F16] font-bold">
               02 // KEY SPECIFICATIONS & DELIVERABLES
             </h2>
@@ -199,10 +235,10 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
                 </div>
               ))}
             </div>
-          </section>
+          </section>}
 
           {/* Confirmed Tech Stack */}
-          <section className="p-6 rounded-2xl bg-neutral-950 border border-neutral-850 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          {project.techStack.length > 0 && <section className="p-6 rounded-2xl bg-neutral-950 border border-neutral-850 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <span className="text-xs font-mono text-neutral-400 uppercase">
               Confirmed Tech Stack & Tools:
             </span>
@@ -216,15 +252,15 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
                 </span>
               ))}
             </div>
-          </section>
+          </section>}
 
           {/* Technical Obstacles Overcome */}
-          <section className="p-6 rounded-2xl bg-neutral-900/40 border-l-2 border-[#D51F16] text-xs text-neutral-400 leading-relaxed">
+          {project.challenges && <section className="p-6 rounded-2xl bg-neutral-900/40 border-l-2 border-[#D51F16] text-xs text-neutral-400 leading-relaxed">
             <strong className="text-neutral-200 font-mono block mb-1">
               Engineering / Creative Obstacle Overcome:
             </strong>
             {project.challenges}
-          </section>
+          </section>}
 
           {/* Related Projects */}
           {related.length > 0 && (
@@ -236,7 +272,7 @@ export const ProjectDetailPage: React.FC<{ projectId?: string }> = ({ projectId 
                 {related.map((rel) => (
                   <div
                     key={rel.id}
-                    onClick={() => navigate(`/portfolio/${rel.id}`)}
+                    onClick={() => navigate(`/work/${rel.id}`)}
                     className="p-4 rounded-2xl bg-neutral-950 border border-neutral-850 hover:border-[#D51F16]/50 transition-all cursor-pointer group"
                   >
                     <span className="text-[10px] font-mono text-[#D51F16] block mb-1 uppercase">

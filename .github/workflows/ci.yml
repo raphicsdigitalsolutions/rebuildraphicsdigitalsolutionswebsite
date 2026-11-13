@@ -48,5 +48,18 @@ jobs:
           if (!fs.existsSync('dist/404.html')) throw new Error('GitHub Pages SPA fallback is missing');
           const fallback = fs.readFileSync('dist/404.html', 'utf8');
           if (!fallback.includes('/rebuildraphicsdigitalsolutionswebsite/')) throw new Error('404 fallback must reference the project base path');
+          const requiredRoutes = [
+            '/', '/services', '/services/creative-studio', '/services/digital-development',
+            '/services/ai-automation', '/work', '/work/customchatgpt', '/work/customraggpt',
+            '/work/finwise-ai', '/work/mediguide-ai', '/about', '/process', '/faq',
+            '/contact', '/privacy', '/terms',
+          ];
+          for (const route of requiredRoutes) {
+            const url = base + (route === '/' ? '/' : route);
+            if (!sitemap.includes('<loc>' + url + '</loc>')) throw new Error('Sitemap is missing ' + route);
+          }
+          for (const privateRoute of ['/work/echoes-of-the-lost-realm', '/work/voice-ai-agent', '/reviews', '/#/']) {
+            if (sitemap.includes(privateRoute)) throw new Error('Sitemap must not include ' + privateRoute);
+          }
           console.log('SEO assets verified for ' + base);
           NODE

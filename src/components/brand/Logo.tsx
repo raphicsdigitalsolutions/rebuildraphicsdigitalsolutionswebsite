@@ -19,39 +19,40 @@ export const Logo: React.FC<LogoProps> = ({
   height = 42,
   onClick,
 }) => {
+  const src = variant === 'emblem'
+    ? BRAND_CONFIG.logo.iconSrc
+    : variant === 'stacked'
+      ? BRAND_CONFIG.logo.stackedSrc
+      : BRAND_CONFIG.logo.imageSrc;
+
   const image = (
     <img
-      src={BRAND_CONFIG.logo.imageSrc}
+      src={src}
       alt={onClick ? '' : BRAND_CONFIG.logo.alt}
       aria-hidden={onClick ? true : undefined}
-      className="object-contain drop-shadow-[0_2px_8px_rgba(213,31,22,0.2)]"
-      style={{ height: `${height}px`, width: 'auto', maxWidth: 'none' }}
+      className="object-contain"
+      style={{ height: `${height}px`, width: 'auto', maxWidth: variant === 'full' ? 'min(62vw, 260px)' : 'auto' }}
       loading="eager"
       decoding="async"
     />
   );
 
   return (
-    <div className={`inline-flex items-center select-none ${className}`} title={BRAND_CONFIG.name}>
+    <span className={`inline-flex items-center select-none ${className}`} title={BRAND_CONFIG.name}>
       {onClick ? (
-        <button
-          type="button"
-          onClick={onClick}
+        <a
+          href={import.meta.env.BASE_URL || '/'}
+          onClick={(event) => {
+            event.preventDefault();
+            onClick();
+          }}
           aria-label={`Go to ${BRAND_CONFIG.name} homepage`}
           className="inline-flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D51F16]"
         >
-          {variant === 'emblem' ? (
-            <span className="relative block overflow-hidden" style={{ width: height, height }}>
-              {image}
-            </span>
-          ) : image}
-        </button>
-      ) : variant === 'emblem' ? (
-        <span className="relative block overflow-hidden" style={{ width: height, height }} title={BRAND_CONFIG.name}>
           {image}
-        </span>
+        </a>
       ) : image}
-    </div>
+    </span>
   );
 };
 

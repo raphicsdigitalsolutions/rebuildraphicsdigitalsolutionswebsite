@@ -36,9 +36,30 @@ const siteBasePath = siteUrl.pathname.replace(/\/+$/, '');
 const siteBaseUrl = `${siteOrigin}${siteBasePath}`;
 
 const routes = [
-  '/', '/about', '/creative', '/development', '/ai-lab',
-  '/services', '/portfolio', '/reviews', '/contact',
-  '/privacy', '/terms',
+  '/',
+  '/services',
+  '/services/creative-studio',
+  '/services/digital-development',
+  '/services/ai-automation',
+  '/work',
+  '/work/nutralife-mens-gummies',
+  '/work/nutralife-womens-gummies',
+  '/work/vitarelief-plus',
+  '/work/kidocare-paracetamol',
+  '/work/northforge-body-wash',
+  '/work/glowe-skincare-serum',
+  '/work/whyprotin-whey-protein',
+  '/work/customchatgpt',
+  '/work/customraggpt',
+  '/work/finwise-ai',
+  '/work/mediguide-ai',
+  '/work/rashid-traders-works',
+  '/about',
+  '/process',
+  '/faq',
+  '/contact',
+  '/privacy',
+  '/terms',
 ];
 
 const entries = routes.map((route) => {

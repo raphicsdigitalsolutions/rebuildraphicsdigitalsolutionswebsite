@@ -7,7 +7,7 @@
  * active route indicators, and mobile drawer.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Logo } from '../brand/Logo';
 import { BRAND_CONFIG } from '../../config/brand';
 import { useRouter } from '../../router/AgencyRouter';
@@ -21,7 +21,44 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const wasMenuOpen = useRef(false);
   const { currentPath, navigate } = useRouter();
+
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      if (wasMenuOpen.current) menuTriggerRef.current?.focus();
+      wasMenuOpen.current = false;
+      return;
+    }
+
+    wasMenuOpen.current = true;
+    mobileMenuRef.current?.querySelector<HTMLElement>('nav button')?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMobileMenuOpen(false);
+        return;
+      }
+      if (event.key !== 'Tab' || !mobileMenuRef.current) return;
+      const items = Array.from(mobileMenuRef.current.querySelectorAll<HTMLElement>('button, a[href]'))
+        .filter((item) => !item.hasAttribute('disabled'));
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,8 +85,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
   const navLinks = [
     { label: 'Services', path: '/services', id: 'services' },
-    { label: 'Work', path: '/portfolio', id: 'portfolio' },
+    { label: 'Work', path: '/work', id: 'portfolio' },
     { label: 'About', path: '/about', id: 'about' },
+    { label: 'Process', path: '/process', id: 'process' },
+    { label: 'FAQ', path: '/faq', id: 'faq' },
   ];
 
   const handleNavClick = (path: string, sectionId: string) => {
@@ -114,10 +153,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-700 bg-neutral-900/40 transition-colors"
-                title="Chat directly on WhatsApp"
+                title={`Open a WhatsApp message to ${BRAND_CONFIG.contact.whatsapp.display}; this number is not for calls`}
               >
                 <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
-                <span>WhatsApp</span>
+                <span>UK WhatsApp message</span>
               </a>
             ) : (
               <a
@@ -148,9 +187,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
           {/* Mobile Menu Trigger */}
           <button
+            ref={menuTriggerRef}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 rounded-xl text-neutral-300 hover:text-white hover:bg-neutral-900 border border-neutral-800 cursor-pointer"
-            aria-label="Toggle navigation menu"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -159,21 +201,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden bg-[#080808]/98 backdrop-blur-2xl flex flex-col pt-24 px-6 pb-8 justify-between animate-fade-in">
+        <div ref={mobileMenuRef} id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Agency navigation" className="fixed inset-0 z-40 lg:hidden bg-[#080808]/98 backdrop-blur-2xl flex flex-col pt-24 px-6 pb-8 justify-between animate-fade-in">
           <div className="space-y-4">
             <div className="text-[11px] font-mono uppercase text-neutral-500 tracking-widest pb-2 border-b border-neutral-850">
               Agency Navigation
             </div>
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.path, link.id)}
-                className="w-full text-left py-2.5 text-xl font-heading font-medium text-neutral-200 hover:text-[#D51F16] border-b border-neutral-900 flex items-center justify-between cursor-pointer"
-              >
-                <span>{link.label}</span>
-                <ArrowUpRight className="w-4 h-4 text-neutral-600" />
-              </button>
-            ))}
+            <nav aria-label="Mobile navigation" className="space-y-1">
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavClick(link.path, link.id)}
+                  className="w-full text-left py-2.5 text-xl font-heading font-medium text-neutral-200 hover:text-[#D51F16] border-b border-neutral-900 flex items-center justify-between cursor-pointer"
+                >
+                  <span>{link.label}</span>
+                  <ArrowUpRight className="w-4 h-4 text-neutral-600" aria-hidden="true" />
+                </button>
+              ))}
+            </nav>
           </div>
 
           <div className="space-y-3 pt-6 border-t border-neutral-850">

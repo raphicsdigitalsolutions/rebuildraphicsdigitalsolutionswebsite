@@ -11,6 +11,7 @@
 
 import React, { useState } from 'react';
 import { BRAND_CONFIG } from '../../config/brand';
+import { buildProjectInquiryMailto } from '../../utils/contact-mailto';
 import confetti from 'canvas-confetti';
 import {
   Mail,
@@ -22,10 +23,12 @@ import {
   ShieldCheck,
   ArrowUpRight,
   RotateCcw,
+  PhoneCall,
+  MapPin,
 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
-  const isGitHubPagesPreview = import.meta.env.VITE_GITHUB_PAGES === 'true';
+  const isGitHubPagesDeployment = import.meta.env.VITE_GITHUB_PAGES === 'true';
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -43,6 +46,7 @@ export const ContactSection: React.FC = () => {
     inquiryId: string;
     message: string;
   } | null>(null);
+  const [emailDraftUrl, setEmailDraftUrl] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,11 +59,20 @@ export const ContactSection: React.FC = () => {
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
-      setErrorMsg('Please enter a valid business email address.');
+      setErrorMsg('Please enter a valid email address.');
       return;
     }
     if (!formData.projectDescription.trim() || formData.projectDescription.trim().length < 10) {
       setErrorMsg('Please describe your project scope (minimum 10 characters).');
+      return;
+    }
+
+    if (formData.honeypot.trim()) return;
+
+    if (isGitHubPagesDeployment) {
+      const mailto = buildProjectInquiryMailto(BRAND_CONFIG.contact.email, formData);
+      setEmailDraftUrl(mailto);
+      window.location.href = mailto;
       return;
     }
 
@@ -143,8 +156,8 @@ export const ContactSection: React.FC = () => {
           {/* Left Column: Direct Channels & Agency Commitments (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Direct Contact Cards */}
-            <div className="p-6 rounded-3xl bg-neutral-950 border border-neutral-850 space-y-4">
+            {/* Direct Contact Channels */}
+            <div className="border-y border-neutral-800 py-5 space-y-4">
               <h3 className="text-lg font-heading font-bold text-white">
                 Direct Communication Channels
               </h3>
@@ -152,9 +165,9 @@ export const ContactSection: React.FC = () => {
               {/* Email direct */}
               <a
                 href={`mailto:${BRAND_CONFIG.contact.email}`}
-                className="flex items-start gap-4 p-4 rounded-2xl bg-neutral-900/70 border border-neutral-850 hover:border-[#D51F16]/50 transition-all group"
+                className="flex items-start gap-4 border-b border-neutral-900 pb-4 transition-colors group"
               >
-                <div className="p-3 rounded-xl bg-[#D51F16]/10 border border-[#D51F16]/20 text-[#D51F16]">
+                <div className="p-2 text-[#D51F16]">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
@@ -163,7 +176,7 @@ export const ContactSection: React.FC = () => {
                     <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-[#D51F16] transition-colors" />
                   </div>
                   <p className="text-xs text-neutral-400 leading-tight">
-                    Send RFPs, detailed briefs, NDAs, and project attachments.
+                    Send project briefs, enquiries, and attachments.
                   </p>
                   <span className="text-[11px] font-mono text-neutral-300 block pt-1">
                     {BRAND_CONFIG.contact.email}
@@ -171,43 +184,65 @@ export const ContactSection: React.FC = () => {
                 </div>
               </a>
 
-              {/* WhatsApp (only active if real number is configured) */}
+              {/* WhatsApp messaging */}
               {BRAND_CONFIG.contact.whatsapp.isConfigured && BRAND_CONFIG.contact.whatsapp.whatsappUrl ? (
                 <a
                   href={BRAND_CONFIG.contact.whatsapp.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-neutral-900/70 border border-neutral-850 hover:border-emerald-500/50 transition-all group"
+                  className="flex items-start gap-4 border-b border-neutral-900 pb-4 transition-colors group"
                 >
-                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <div className="p-2 text-emerald-400">
                     <MessageSquare className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-mono font-bold text-white">WhatsApp Messaging</span>
+                      <span className="text-xs font-mono font-bold text-white">UK WhatsApp · messages only</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-emerald-400 transition-colors" />
                     </div>
                     <p className="text-xs text-neutral-400 leading-tight">
-                      Instant project triage and voice notes.
+                      Message the agency at {BRAND_CONFIG.contact.whatsapp.display}. This number is not for calls.
                     </p>
                     <span className="text-[11px] font-mono text-emerald-400 block pt-1">
                       {BRAND_CONFIG.contact.whatsapp.display}
                     </span>
                   </div>
                 </a>
-              ) : (
-                <div className="p-4 rounded-2xl bg-neutral-900/40 border border-neutral-850 text-xs text-neutral-400 space-y-1">
-                  <span className="text-neutral-300 font-mono font-semibold block">Need immediate consultation?</span>
-                  <p className="text-neutral-400 leading-relaxed">
-                    Submit the discovery brief or email directly. Dedicated messaging lines are provided upon initial consultation.
-                  </p>
+              ) : null}
+
+              <a
+                href={BRAND_CONFIG.contact.phone.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 border-b border-neutral-900 pb-4 transition-colors group"
+              >
+                <div className="p-2 text-emerald-400"><MessageSquare className="w-5 h-5" /></div>
+                <div className="space-y-1">
+                  <span className="text-xs font-mono font-bold text-white">Pakistan WhatsApp</span>
+                  <span className="text-[11px] font-mono text-emerald-400 block">{BRAND_CONFIG.contact.phone.display}</span>
                 </div>
-              )}
+              </a>
+
+              <a href={BRAND_CONFIG.contact.phone.telUrl} className="flex items-start gap-4 border-b border-neutral-900 pb-4 transition-colors group">
+                <div className="p-2 text-[#D51F16]"><PhoneCall className="w-5 h-5" /></div>
+                <div className="space-y-1">
+                  <span className="text-xs font-mono font-bold text-white">Call in Pakistan</span>
+                  <span className="text-[11px] font-mono text-neutral-300 block">{BRAND_CONFIG.contact.phone.display}</span>
+                </div>
+              </a>
+
+              <a href={BRAND_CONFIG.contact.locationUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 transition-colors group">
+                <div className="p-2 text-[#D51F16]"><MapPin className="w-5 h-5" /></div>
+                <div className="space-y-1">
+                  <span className="text-xs font-mono font-bold text-white">Location</span>
+                  <span className="text-[11px] font-mono text-neutral-300 block">{BRAND_CONFIG.contact.location}</span>
+                </div>
+              </a>
 
             </div>
 
             {/* Commitment Box */}
-            <div className="p-6 rounded-3xl bg-neutral-950 border border-neutral-850 space-y-3">
+            <div className="border-b border-neutral-800 py-5 space-y-3">
               <div className="flex items-center gap-2 text-xs font-mono text-[#D51F16]">
                 <Clock className="w-4 h-4" />
                 <span>WHAT HAPPENS NEXT?</span>
@@ -215,7 +250,7 @@ export const ContactSection: React.FC = () => {
               <ul className="space-y-2 text-xs text-neutral-300">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>We can review project details after a successful submission.</span>
+                  <span>Use email or WhatsApp to contact the agency directly.</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
@@ -223,7 +258,7 @@ export const ContactSection: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Mutual NDA signed prior to proprietary asset exchange upon request.</span>
+                  <span>Please do not include passwords or sensitive personal data in your brief.</span>
                 </li>
               </ul>
             </div>
@@ -231,53 +266,50 @@ export const ContactSection: React.FC = () => {
           </div>
 
           {/* Right Column: Project Inquiry Form (7 cols) */}
-          <div className="lg:col-span-7 p-6 sm:p-10 rounded-3xl bg-neutral-950 border border-neutral-800 shadow-2xl relative">
+          <div className="lg:col-span-7 border-y border-neutral-800 py-6 sm:py-10 relative">
             
-            {isGitHubPagesPreview ? (
+            {isGitHubPagesDeployment && emailDraftUrl ? (
               <div className="py-10 text-center space-y-5">
                 <div className="w-16 h-16 rounded-full bg-[#D51F16]/10 border border-[#D51F16]/30 flex items-center justify-center mx-auto text-[#D51F16]">
                   <Mail className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-white">
-                  Preview Mode — Contact Form Offline
+                  Email draft prepared
                 </h3>
                 <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
-                  This GitHub Pages preview is a static website, so it does not run the inquiry API. The form will be connected when the production backend is configured.
+                  Your email app should open with the brief filled in. The website has not sent it; review the message and press Send to complete your inquiry.
                 </p>
                 <a
-                  href={`mailto:${BRAND_CONFIG.contact.email}?subject=${encodeURIComponent('Project inquiry — Raphics Digital Solutions')}`}
+                  href={emailDraftUrl}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#D51F16] hover:bg-[#B81912] text-white text-sm font-semibold transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>Email Raphics Digital Solutions</span>
+                  <span>Open email draft</span>
                 </a>
+                <div>
+                  <button type="button" onClick={() => setEmailDraftUrl(null)} className="text-xs text-neutral-400 underline underline-offset-4 hover:text-white">
+                    Edit project details
+                  </button>
+                </div>
               </div>
             ) : successData ? (
               <div className="py-12 text-center space-y-4 animate-fade-in">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-white">
-                  Inquiry Recorded Successfully
-                </h3>
-                <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
-                  {successData.message}
-                </p>
+                <h3 className="text-2xl font-heading font-bold text-white">Inquiry recorded</h3>
+                <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">{successData.message}</p>
                 <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 inline-block font-mono text-xs text-[#D51F16]">
                   Reference ID: {successData.inquiryId}
                 </div>
                 <div className="pt-4">
-                  <button
-                    onClick={() => setSuccessData(null)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-850 text-xs text-neutral-300 hover:text-white border border-neutral-700 cursor-pointer transition-colors"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                    <span>Submit Another Inquiry</span>
+                  <button onClick={() => setSuccessData(null)} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 text-xs text-neutral-300 hover:text-white border border-neutral-700 cursor-pointer transition-colors">
+                    <RotateCcw className="w-3.5 h-3.5" /> Submit another inquiry
                   </button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form noValidate onSubmit={handleSubmit} className="space-y-5">
                 
                 {/* Hidden Honeypot Spam Trap */}
                 <div className="hidden" aria-hidden="true">
@@ -298,13 +330,13 @@ export const ContactSection: React.FC = () => {
                     Project Brief & Discovery Form
                   </h3>
                   <span className="text-xs text-neutral-400">
-                    Your brief is sent to the website backend when it is available.
+                    {isGitHubPagesDeployment ? 'Your email app opens with the brief filled in; you review and send it.' : 'Your brief is stored by the website server. Email alerts are not configured.'}
                   </span>
                 </div>
 
                 {/* Error Banner */}
                 {errorMsg && (
-                  <div className="p-3.5 rounded-xl bg-red-950/60 border border-red-800 text-red-200 text-xs flex items-center gap-2">
+                  <div role="alert" className="p-3.5 rounded-xl bg-red-950/60 border border-red-800 text-red-200 text-xs flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
                     <span>{errorMsg}</span>
                   </div>
@@ -313,12 +345,16 @@ export const ContactSection: React.FC = () => {
                 {/* Row 1: Name & Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-neutral-300 block">
+                    <label htmlFor="fullName" className="text-xs font-mono text-neutral-300 block">
                       Full Name *
                     </label>
                     <input
                       type="text"
+                      id="fullName"
+                      name="fullName"
                       required
+                      maxLength={100}
+                      autoComplete="name"
                       placeholder="Your full name"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -327,12 +363,16 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-neutral-300 block">
-                      Business Email *
+                    <label htmlFor="email" className="text-xs font-mono text-neutral-300 block">
+                      Email *
                     </label>
                     <input
                       type="email"
+                      id="email"
+                      name="email"
                       required
+                      maxLength={120}
+                      autoComplete="email"
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -344,11 +384,15 @@ export const ContactSection: React.FC = () => {
                 {/* Row 2: Company & Service */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-neutral-300 block">
+                    <label htmlFor="company" className="text-xs font-mono text-neutral-300 block">
                       Company / Organization (Optional)
                     </label>
                     <input
                       type="text"
+                      id="company"
+                      name="company"
+                      maxLength={120}
+                      autoComplete="organization"
                       placeholder="Brand or company name"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -357,10 +401,13 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-neutral-300 block">
+                    <label htmlFor="serviceRequired" className="text-xs font-mono text-neutral-300 block">
                       Service Required *
                     </label>
                     <select
+                      id="serviceRequired"
+                      name="serviceRequired"
+                      required
                       value={formData.serviceRequired}
                       onChange={(e) => setFormData({ ...formData, serviceRequired: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-white focus:outline-none focus:border-[#D51F16]"
@@ -393,10 +440,12 @@ export const ContactSection: React.FC = () => {
                 {/* Row 3: Budget (Optional) & Preferred Contact Method */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-neutral-300 block">
+                    <label htmlFor="projectBudget" className="text-xs font-mono text-neutral-300 block">
                       Estimated Budget (Optional)
                     </label>
                     <select
+                      id="projectBudget"
+                      name="projectBudget"
                       value={formData.projectBudget}
                       onChange={(e) => setFormData({ ...formData, projectBudget: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-white focus:outline-none focus:border-[#D51F16]"
@@ -410,10 +459,12 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-neutral-300 block">
+                    <label htmlFor="preferredContactMethod" className="text-xs font-mono text-neutral-300 block">
                       Preferred Contact Method
                     </label>
                     <select
+                      id="preferredContactMethod"
+                      name="preferredContactMethod"
                       value={formData.preferredContactMethod}
                       onChange={(e) =>
                         setFormData({ ...formData, preferredContactMethod: e.target.value })
@@ -422,25 +473,28 @@ export const ContactSection: React.FC = () => {
                     >
                       <option value="Email">Email Communication</option>
                       <option value="Google Meet / Zoom">Video Call (Google Meet)</option>
-                      <option value="WhatsApp">WhatsApp (if number provided)</option>
+                      <option value="WhatsApp">WhatsApp</option>
                     </select>
                   </div>
                 </div>
 
                 {/* Row 4: Project Description */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-neutral-300 block">
-                    Project Scope & Requirements *
+                    <label htmlFor="projectDescription" className="text-xs font-mono text-neutral-300 block">
+                      Project Scope & Requirements *
                   </label>
                   <textarea
+                    id="projectDescription"
+                    name="projectDescription"
                     required
+                    maxLength={5000}
                     rows={4}
                     placeholder="Describe your design, packaging, software, or AI requirements, target timeline, or questions..."
                     value={formData.projectDescription}
                     onChange={(e) =>
                       setFormData({ ...formData, projectDescription: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#D51F16] leading-relaxed"
+                    className="w-full resize-none px-4 py-3 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#D51F16] leading-relaxed"
                   />
                 </div>
 
@@ -463,15 +517,15 @@ export const ContactSection: React.FC = () => {
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>Send Project Inquiry</span>
+                        <span>{isGitHubPagesDeployment ? 'Prepare Email Draft' : 'Save Project Inquiry'}</span>
                       </>
                     )}
                   </button>
                 </div>
 
-                <div className="flex items-center justify-center gap-2 text-[11px] font-mono text-neutral-400 pt-2">
+                <div className="flex items-center justify-center gap-2 text-[11px] font-mono text-neutral-400 pt-2" aria-live="polite">
                   <ShieldCheck className="w-3.5 h-3.5 text-neutral-400" />
-                  <span>Confidentiality respected. We review all briefs under strict discretion.</span>
+                  <span>Please avoid sending sensitive personal or account information.</span>
                 </div>
 
               </form>

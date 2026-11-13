@@ -10,6 +10,9 @@
     --brand-surface-card: #151515;
     --brand-border: #222222;
     --brand-muted: #999999;
+
+    scrollbar-color: #262626 #080808;
+    scrollbar-width: thin;
   }
 
   body {

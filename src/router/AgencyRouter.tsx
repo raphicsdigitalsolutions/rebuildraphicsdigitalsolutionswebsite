@@ -4,7 +4,7 @@
  * 
  * Lightweight, robust HTML5 History API router for Raphics Digital Solutions.
  * Supports:
- * - Direct page URLs and refresh (/about, /portfolio, /portfolio/:id, /services/:id, etc.)
+ * - Direct page URLs and refresh (/about, /work, /work/:id, /services/:id, etc.)
  * - Browser Back and Forward buttons (popstate)
  * - Dynamic document title updates
  * - Clean programmatic navigation without heavy external packages
@@ -32,7 +32,7 @@ const RouterContext = createContext<RouterContextType>({
 
 export const useRouter = () => useContext(RouterContext);
 
-const APP_BASE_URL = import.meta.env.BASE_URL || '/';
+const APP_BASE_URL = (typeof import.meta.env !== 'undefined' && import.meta.env.BASE_URL) || '/';
 const APP_BASE_PREFIX = APP_BASE_URL === '/' ? '' : APP_BASE_URL.replace(/\/+$/, '');
 
 export function parseRoute(pathname: string): RouteState {
@@ -41,14 +41,21 @@ export function parseRoute(pathname: string): RouteState {
     : pathname;
   const clean = appPath.toLowerCase().replace(/\/+$/, '') || '/';
 
-  // Match /portfolio/:id or /project/:id
-  const portfolioMatch = clean.match(/^\/(portfolio|project)\/([a-z0-9_-]+)$/);
+  // Match /work/:id and legacy project detail aliases.
+  const portfolioMatch = clean.match(/^\/(work|portfolio|project)\/([a-z0-9_-]+)$/);
   if (portfolioMatch) {
     return {
-      path: '/portfolio/:id',
+      path: '/work/:id',
       projectId: portfolioMatch[2],
     };
   }
+
+  const servicePageAliases: Record<string, string> = {
+    '/services/creative-studio': '/creative',
+    '/services/digital-development': '/development',
+    '/services/ai-automation': '/ai-lab',
+  };
+  if (servicePageAliases[clean]) return { path: servicePageAliases[clean] };
 
   // Match /services/:id
   const serviceMatch = clean.match(/^\/services\/([a-z0-9_-]+)$/);
@@ -68,7 +75,10 @@ export function parseRoute(pathname: string): RouteState {
     '/ai-lab',
     '/services',
     '/portfolio',
-    '/reviews',
+    '/work',
+    '/process',
+    '/faq',
+    '/404',
     '/contact',
     '/privacy',
     '/terms',
@@ -78,8 +88,7 @@ export function parseRoute(pathname: string): RouteState {
     return { path: clean };
   }
 
-  // Fallback to home
-  return { path: '/' };
+  return { path: '/404' };
 }
 
 export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -117,7 +126,7 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   // Sync document title based on route
   useEffect(() => {
-    const baseTitle = 'Raphics Digital Solutions | Digital Magic for Real Success';
+    const baseTitle = 'Raphics Digital Solutions | Digital Magic For Real Success';
     switch (route.path) {
       case '/about':
         document.title = `About Us | ${baseTitle}`;
@@ -134,17 +143,23 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       case '/services':
         document.title = `Services & Capabilities | ${baseTitle}`;
         break;
-      case '/portfolio':
-        document.title = `Selected Work & Repositories | ${baseTitle}`;
+      case '/work':
+        document.title = `Selected Work | ${baseTitle}`;
         break;
-      case '/portfolio/:id':
+      case '/work/:id':
         document.title = `Project Case Study: ${route.projectId} | ${baseTitle}`;
         break;
       case '/services/:id':
         document.title = `Service: ${route.serviceId} | ${baseTitle}`;
         break;
-      case '/reviews':
-        document.title = `Client Feedback & Professional Profiles | ${baseTitle}`;
+      case '/process':
+        document.title = `Project Process | ${baseTitle}`;
+        break;
+      case '/faq':
+        document.title = `Frequently Asked Questions | ${baseTitle}`;
+        break;
+      case '/404':
+        document.title = `Page Not Found | ${baseTitle}`;
         break;
       case '/contact':
         document.title = `Start a Project | ${baseTitle}`;

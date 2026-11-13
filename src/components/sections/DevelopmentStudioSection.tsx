@@ -232,7 +232,7 @@ export const DevelopmentStudioSection: React.FC = () => {
                   SSR/SSG hybrid rendering, Tailwind CSS design system, Motion micro-interactions, and hardware-accelerated WebGL 3D scenes.
                 </p>
                 <div className="space-y-1.5 text-[11px] font-mono text-neutral-400 pt-2 border-t border-neutral-800">
-                  <div>✓ Sub-second First Contentful Paint</div>
+                  <div>✓ Performance budgets shaped to the project</div>
                   <div>✓ Strict accessibility & responsive layouts</div>
                 </div>
               </div>

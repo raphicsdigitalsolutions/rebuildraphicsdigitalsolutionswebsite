@@ -1,57 +1,34 @@
 /**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- * 
- * Verified Portfolio Data for Raphics Digital Solutions.
- * Source Materials:
- * - Behance Creative Archive: https://www.behance.net/artisticatta
- * - GitHub Organization Repositories: https://github.com/raphicsdigitalsolutions
- * 
- * Integrity Guidelines:
- * - Exact, direct repository URLs (not generic profile links).
- * - Honest project statuses: Live Product, Working Prototype, Development Project, Experimental Project, Open Source Project.
- * - No manufactured business metrics or exaggerated commercial claims.
+ * Curated portfolio entries linked to their original public source.
+ * Behance entries use published artwork; technical entries link to repositories
+ * or verified demos. Private and unpublished work is clearly labelled.
  */
 
 export type ProjectSource = 'behance' | 'github';
-export type ProjectStatus = 
-  | 'Live Product' 
-  | 'Working Prototype' 
-  | 'Development Project' 
-  | 'Experimental Project' 
-  | 'Open Source Project'
+export type ProjectStatus =
   | 'Published Portfolio Work'
-  | 'Public Repository'
   | 'Public Prototype'
-  | 'Private Repository';
+  | 'Public Repository'
+  | 'Pre-delivery'
+  | 'In Progress'
+  | 'In Development';
 
-export type BehanceCategory = 
-  | 'Branding & Identity'
+export type ProjectVisibility = 'public' | 'private' | 'profile' | 'unpublished';
+export type ProjectCategory =
   | 'Packaging Design'
   | 'Label Design'
-  | 'Food & Beverage'
   | 'Cosmetics & Skincare'
-  | 'Product Mockups'
-  | 'Print Design'
-  | 'Social Media Design';
-
-export type GitHubCategory = 
   | 'AI & Machine Learning'
   | 'Web & SaaS Platform'
   | 'Voice & Agents'
-  | 'Interactive & Graphics'
-  | 'Mobile Applications';
-
-export type ProjectCategory = BehanceCategory | GitHubCategory;
+  | 'Interactive & Graphics';
 
 export interface PortfolioProject {
   id: string;
   title: string;
   source: ProjectSource;
-  /** Whether the linked source is public, private, or a public profile page. */
-  sourceVisibility?: 'public' | 'private' | 'profile';
+  sourceVisibility: ProjectVisibility;
   category: ProjectCategory;
-  subcategory?: string;
   status: ProjectStatus;
   tagline: string;
   overview: string;
@@ -62,6 +39,8 @@ export interface PortfolioProject {
   challenges: string;
   externalUrl: string;
   liveDemoUrl?: string;
+  imageUrl?: string;
+  imageAlt?: string;
   featured: boolean;
   visualTheme: {
     primaryColor: string;
@@ -71,32 +50,31 @@ export interface PortfolioProject {
   };
 }
 
+const behanceImage = (asset: string) =>
+  `https://mir-s3-cdn-cf.behance.net/projects/404/${asset}`;
+
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
-  // ==================== BEHANCE CREATIVE PROJECTS ====================
   {
     id: 'nutralife-mens-gummies',
     title: "NutraLife Men's Multivitamin Gummies",
     source: 'behance',
-    sourceVisibility: "profile",
+    sourceVisibility: 'profile',
     category: 'Packaging Design',
-    subcategory: 'Food & Beverage',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
+    status: 'Published Portfolio Work',
+    tagline: 'Product packaging artwork published on Behance.',
+    overview: 'View the original packaging artwork and project context on Behance.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: 'https://www.behance.net/gallery/255380865/NutraLife-Mens-Multivitamin-Gummies-Packaging',
+    imageUrl: behanceImage('680c01255380865.Y3JvcCwxMTM0LDg4NywyNjYsMA.png'),
+    imageAlt: "NutraLife Men's Multivitamin Gummies packaging artwork by Atta ur Rehman Siddiqui",
     featured: true,
     visualTheme: {
-      primaryColor: '#F97316',
-      gradient: 'from-orange-600/30 via-neutral-900 to-black',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
       badgeText: 'PACKAGING DESIGN',
       icon: 'Box',
     },
@@ -105,625 +83,336 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     id: 'nutralife-womens-gummies',
     title: "NutraLife Women's Multivitamin Gummies",
     source: 'behance',
-    sourceVisibility: "profile",
+    sourceVisibility: 'profile',
     category: 'Packaging Design',
-    subcategory: 'Food & Beverage',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
-    featured: true,
+    status: 'Published Portfolio Work',
+    tagline: 'Product packaging artwork published on Behance.',
+    overview: 'View the original packaging artwork and project context on Behance.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: 'https://www.behance.net/gallery/255379779/NutraLife-Womens-Multivitamin-Gummies-Packaging',
+    imageUrl: behanceImage('663f6d255379779.Y3JvcCwxMzA5LDEwMjQsMTEzLDA.png'),
+    imageAlt: "NutraLife Women's Multivitamin Gummies packaging artwork by Atta ur Rehman Siddiqui",
+    featured: false,
     visualTheme: {
-      primaryColor: '#EC4899',
-      gradient: 'from-pink-600/30 via-neutral-900 to-black',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
       badgeText: 'PACKAGING DESIGN',
-      icon: 'Sparkles',
+      icon: 'Box',
     },
   },
   {
     id: 'vitarelief-plus',
     title: 'VitaRelief Plus Pain Relief Tablets',
     source: 'behance',
-    sourceVisibility: "profile",
+    sourceVisibility: 'profile',
     category: 'Label Design',
-    subcategory: 'Packaging Design',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
+    status: 'Published Portfolio Work',
+    tagline: 'Packaging artwork published on Behance.',
+    overview: 'View the original packaging artwork and project context on Behance.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: 'https://www.behance.net/gallery/255378695/VitaRelief-Plus-Pain-Relief-Tablets-Packaging',
     featured: false,
     visualTheme: {
-      primaryColor: '#3B82F6',
-      gradient: 'from-blue-600/30 via-neutral-900 to-black',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
       badgeText: 'LABEL DESIGN',
-      icon: 'Shield',
+      icon: 'Layers',
     },
   },
   {
     id: 'kidocare-paracetamol',
     title: 'KidoCare Paracetamol Chewable Tablets',
     source: 'behance',
-    sourceVisibility: "profile",
+    sourceVisibility: 'profile',
     category: 'Packaging Design',
-    subcategory: 'Label Design',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
+    status: 'Published Portfolio Work',
+    tagline: 'Product packaging artwork published on Behance.',
+    overview: 'View the original packaging artwork and project context on Behance.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: 'https://www.behance.net/gallery/255378253/KidoCare-Paracetamol-120-mg-Chewable-Tablets-Packaging',
+    imageUrl: behanceImage('208762255378253.Y3JvcCwxMzA5LDEwMjQsMjEwLDA.png'),
+    imageAlt: 'KidoCare Paracetamol Chewable Tablets packaging artwork by Atta ur Rehman Siddiqui',
     featured: false,
     visualTheme: {
-      primaryColor: '#10B981',
-      gradient: 'from-emerald-600/30 via-neutral-900 to-black',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
       badgeText: 'PACKAGING DESIGN',
-      icon: 'Heart',
+      icon: 'Box',
     },
   },
   {
     id: 'northforge-body-wash',
     title: 'Northforge Heavy Duty Body Wash',
     source: 'behance',
-    sourceVisibility: "profile",
-    category: 'Product Mockups',
-    subcategory: 'Packaging Design',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
+    sourceVisibility: 'profile',
+    category: 'Packaging Design',
+    status: 'Published Portfolio Work',
+    tagline: 'Product packaging artwork published on Behance.',
+    overview: 'View the original packaging artwork and project context on Behance.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: 'https://www.behance.net/gallery/255377929/Northforge-Heavy-Duty-Body-Wash-Packaging',
+    imageUrl: behanceImage('fd3ed3255377929.Y3JvcCwxNDAyLDEwOTYsMCwxMw.png'),
+    imageAlt: 'Northforge Heavy Duty Body Wash packaging artwork by Atta ur Rehman Siddiqui',
     featured: true,
     visualTheme: {
-      primaryColor: '#F59E0B',
-      gradient: 'from-amber-600/30 via-neutral-900 to-black',
-      badgeText: 'PRODUCT MOCKUP',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'PACKAGING DESIGN',
       icon: 'Layers',
     },
   },
   {
     id: 'glowe-skincare-serum',
-    title: 'Glowé Skincare Serum & Radiant Glow',
+    title: 'Glowé Skincare — Radiant Glow Serum',
     source: 'behance',
-    sourceVisibility: "profile",
+    sourceVisibility: 'profile',
     category: 'Cosmetics & Skincare',
-    subcategory: 'Packaging Design',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
-    featured: true,
-    visualTheme: {
-      primaryColor: '#D4AF37',
-      gradient: 'from-yellow-600/30 via-neutral-900 to-black',
-      badgeText: 'COSMETICS & SKINCARE',
-      icon: 'Sparkles',
-    },
-  },
-  {
-    id: 'beardix-serum',
-    title: 'Beardix Beard Growth Serum',
-    source: 'behance',
-    sourceVisibility: "profile",
-    category: 'Cosmetics & Skincare',
-    subcategory: 'Label Design',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
+    status: 'Published Portfolio Work',
+    tagline: 'Skincare packaging artwork published on Behance.',
+    overview: 'View the original packaging artwork and project context on Behance.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: 'https://www.behance.net/gallery/255374499/Glow-Skincare-Radiant-Glow-Serum-Packaging',
+    imageUrl: behanceImage('5a903e255374499.Y3JvcCwxMzA5LDEwMjQsNTgsMA.png'),
+    imageAlt: 'Glowé Skincare Radiant Glow Serum packaging artwork by Atta ur Rehman Siddiqui',
     featured: false,
     visualTheme: {
-      primaryColor: '#B45309',
-      gradient: 'from-amber-700/30 via-neutral-900 to-black',
-      badgeText: 'COSMETICS & SKINCARE',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'SKINCARE PACKAGING',
       icon: 'Sparkles',
     },
   },
   {
     id: 'whyprotin-whey-protein',
-    title: 'Whyprotin 100% Whey Isolate Packaging',
+    title: 'Whyprotin Whey Protein Packaging',
     source: 'behance',
-    sourceVisibility: "profile",
+    sourceVisibility: 'profile',
     category: 'Packaging Design',
-    subcategory: 'Food & Beverage',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
-    featured: true,
+    status: 'Published Portfolio Work',
+    tagline: 'Product packaging artwork published on Behance.',
+    overview: 'View the original packaging artwork and project context on Behance.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: 'https://www.behance.net/gallery/255373467/Whyprotin-Whey-Protein-packaging',
+    imageUrl: behanceImage('72a495255373467.Y3JvcCwxMzA5LDEwMjQsMTM2LDA.png'),
+    imageAlt: 'Whyprotin Whey Protein packaging artwork by Atta ur Rehman Siddiqui',
+    featured: false,
     visualTheme: {
       primaryColor: '#D51F16',
-      gradient: 'from-red-600/30 via-neutral-900 to-black',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
       badgeText: 'PACKAGING DESIGN',
-      icon: 'Zap',
-    },
-  },
-  {
-    id: 'dark-roast-coffee',
-    title: 'Artisan Dark Roast Coffee Pouches',
-    source: 'behance',
-    sourceVisibility: "profile",
-    category: 'Food & Beverage',
-    subcategory: 'Packaging Design',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
-    featured: false,
-    visualTheme: {
-      primaryColor: '#78350F',
-      gradient: 'from-stone-700/30 via-neutral-900 to-black',
-      badgeText: 'FOOD & BEVERAGE',
-      icon: 'Coffee',
-    },
-  },
-  {
-    id: 'himalayan-brew-tea',
-    title: 'Himalayan Brew Premium Green Tea',
-    source: 'behance',
-    sourceVisibility: "profile",
-    category: 'Food & Beverage',
-    subcategory: 'Packaging Design',
-    status: "Published Portfolio Work",
-    tagline: "Selected packaging and visual design work from the founder’s Behance portfolio.",
-    overview: "This selected design entry is listed on the founder’s Behance profile. Open the profile to inspect the available original artwork and any project context published there.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-
-    ],
-    techStack: [
-
-    ],
-    challenges: "",
-    externalUrl: 'https://www.behance.net/artisticatta',
-    featured: false,
-    visualTheme: {
-      primaryColor: '#059669',
-      gradient: 'from-emerald-700/30 via-neutral-900 to-black',
-      badgeText: 'FOOD & BEVERAGE',
-      icon: 'Feather',
-    },
-  },
-
-  // ==================== GITHUB REPOSITORIES (EXACT REPOSITORY URLS) ====================
-  {
-    id: 'soulsketch-ai',
-    title: 'SoulSketch-AI',
-    source: 'github',
-    sourceVisibility: "private",
-    category: 'AI & Machine Learning',
-    status: "Private Repository",
-    tagline: "Android and Flutter app concept for soulmate portraits and compatibility experiences.",
-    overview: "The repository README describes a mobile application with a soulmate portrait experience, compatibility analysis and a guided questionnaire. The source repository is private, so implementation details are not linked publicly.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-      "Soulmate portrait generation experience",
-      "Compatibility and astrology-themed analysis",
-      "Seven-step guided questionnaire",
-      "Android native and Flutter app projects described in the repository"
-    ],
-    techStack: [
-      "Kotlin",
-      "Jetpack Compose",
-      "Flutter",
-      "Dart"
-    ],
-    challenges: "",
-    externalUrl: "",
-    featured: true,
-    visualTheme: {
-      primaryColor: '#8B5CF6',
-      gradient: 'from-purple-600/30 via-neutral-900 to-black',
-      badgeText: 'OPEN SOURCE',
-      icon: 'Cpu',
-    },
-  },
-  {
-    id: 'skycast',
-    title: 'SKYCAST',
-    source: 'github',
-    sourceVisibility: "private",
-    category: 'Mobile Applications',
-    status: "Private Repository",
-    tagline: "Flutter weather forecast app created as an internship task.",
-    overview: "The repository README describes a Flutter weather application created for Task 3 of the Auspify Technologies Flutter Development Internship. It uses Open-Meteo weather and geocoding APIs.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-      "Current weather and hourly forecast",
-      "Seven-day weather forecast",
-      "City search and GPS-based weather lookup",
-      "Offline cache and saved favorite cities",
-      "Light, dark and system theme options"
-    ],
-    techStack: [
-      "Flutter",
-      "Dart 3",
-      "Material Design 3",
-      "Provider",
-      "Open-Meteo API"
-    ],
-    challenges: "",
-    externalUrl: "",
-    featured: true,
-    visualTheme: {
-      primaryColor: '#0EA5E9',
-      gradient: 'from-sky-600/30 via-neutral-900 to-black',
-      badgeText: 'LIVE PRODUCT',
-      icon: 'CloudRain',
-    },
-  },
-
-  {
-    id: 'pixelcraft-ai-agent',
-    title: 'pixelcraft-ai-agent',
-    source: 'github',
-    sourceVisibility: "private",
-    category: 'AI & Machine Learning',
-    status: "Private Repository",
-    tagline: "Knowledge-based AI customer representative prototype.",
-    overview: "The repository README describes a Python and Streamlit customer-support assistant for a print packaging and brand identity agency. It uses a structured JSON knowledge base and OpenAI function calling. The source repository is private.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-      "Knowledge-base answers for services and FAQs",
-      "Lead capture after customer intent is established",
-      "English, Roman Urdu and Urdu language support",
-      "Password-gated lead review panel"
-    ],
-    techStack: [
-      "Python",
-      "Streamlit",
-      "OpenAI API"
-    ],
-    challenges: "",
-    externalUrl: "",
-    featured: true,
-    visualTheme: {
-      primaryColor: '#F43F5E',
-      gradient: 'from-rose-600/30 via-neutral-900 to-black',
-      badgeText: 'OPEN SOURCE',
-      icon: 'Layers',
+      icon: 'Box',
     },
   },
   {
     id: 'customchatgpt',
-    title: 'customchatgpt',
+    title: 'NEXORA AI — Custom ChatGPT',
     source: 'github',
-    sourceVisibility: "public",
+    sourceVisibility: 'public',
     category: 'AI & Machine Learning',
-    status: "Public Repository",
-    tagline: "NEXORA AI — Streamlit AI workspace with optional web search.",
-    overview: "NEXORA AI is a Streamlit-based AI workspace with day and night themes, session-level chat history, model selection and optional OpenAI Responses API web search. The README documents a public Streamlit demo and explains that this is a session-oriented app, not a full account system.",
-    problem: "",
-    solution: "",
+    status: 'Public Prototype',
+    tagline: 'Streamlit AI workspace with optional web search and source links.',
+    overview: 'A session-based AI workspace with model selection, conversation history, assistant settings, and optional OpenAI Responses API web search. The repository describes it as a single-user/session app rather than a multi-user account service.',
+    problem: 'Bring chat, session history, assistant settings, and optional web research into one focused workspace.',
+    solution: 'A Streamlit prototype that keeps conversations in the active session and displays source links when web search returns them.',
     mainFeatures: [
-      "Session-based AI chat workspace",
-      "Day and night appearance modes",
-      "Optional live web search with source links",
-      "Configurable assistant instructions and response style",
-      "Public Streamlit demonstration"
+      'Model selection and configurable assistant instructions',
+      'Session-level conversation history',
+      'Optional web search with source links',
+      'Day and night appearance modes',
     ],
-    techStack: [
-      "Python",
-      "Streamlit",
-      "OpenAI API"
-    ],
-    challenges: "",
+    techStack: ['Python', 'Streamlit', 'OpenAI Responses API'],
+    challenges: '',
     externalUrl: 'https://github.com/raphicsdigitalsolutions/customchatgpt',
-    featured: false,
+    liveDemoUrl: 'https://attanexora-ai.streamlit.app/',
+    featured: true,
     visualTheme: {
-      primaryColor: '#06B6D4',
-      gradient: 'from-cyan-600/30 via-neutral-900 to-black',
-      badgeText: 'OPEN SOURCE',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'AI WORKSPACE',
       icon: 'MessageSquare',
     },
   },
   {
     id: 'customraggpt',
-    title: 'customraggpt',
+    title: 'NEXORA Knowledge Studio',
     source: 'github',
-    sourceVisibility: "public",
+    sourceVisibility: 'public',
     category: 'AI & Machine Learning',
-    status: "Public Prototype",
-    tagline: "NEXORA Knowledge Studio — document research with source passages.",
-    overview: "A public Streamlit document-research prototype. Users can upload PDF, DOCX, CSV, JSON, TXT and Markdown files, then ask questions with relevant source passages attached to answers.",
-    problem: "",
-    solution: "",
+    status: 'Public Prototype',
+    tagline: 'Document research with answers linked to source passages.',
+    overview: 'A Streamlit document-research prototype. It accepts PDF, DOCX, CSV, JSON, TXT, and Markdown files, then returns answers with relevant source passages.',
+    problem: 'Make it easier to ask questions across a set of uploaded documents and inspect the passages used in an answer.',
+    solution: 'A document upload and question-answering workflow with source passages attached to responses.',
     mainFeatures: [
-      "PDF, DOCX, CSV, JSON, TXT and Markdown ingestion",
-      "Document question answering",
-      "Source passages attached to responses",
-      "Streamlit interface with session-based API-key entry"
+      'PDF, DOCX, CSV, JSON, TXT, and Markdown file support',
+      'Question answering across uploaded documents',
+      'Source passages shown with answers',
+      'Session-based API key entry',
     ],
-    techStack: [
-      "Python",
-      "Streamlit",
-      "OpenAI API"
-    ],
-    challenges: "",
+    techStack: ['Python', 'Streamlit', 'OpenAI API'],
+    challenges: '',
     externalUrl: 'https://github.com/raphicsdigitalsolutions/customraggpt',
-    featured: true,
-    visualTheme: {
-      primaryColor: '#D51F16',
-      gradient: 'from-red-600/30 via-neutral-900 to-black',
-      badgeText: 'DEVELOPMENT PROJECT',
-      icon: 'Database',
-    },
-  },
-  {
-    id: 'nova-voice-agent',
-    title: 'nova-voice-agent',
-    source: 'github',
-    sourceVisibility: "private",
-    category: 'Voice & Agents',
-    status: "Private Repository",
-    tagline: "Nova — 3D realtime voice studio built as a Streamlit application.",
-    overview: "The repository README describes a single-file Streamlit voice agent with a Three.js animated orb, browser-side WebRTC connection and live transcript. Each browser user supplies an API key; the repository is private.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-      "Animated 3D shader orb with audio-reactive movement",
-      "WebRTC voice connection and live transcript",
-      "Listening, thinking and speaking states",
-      "Language preference and responsive layout",
-      "Microphone and audio error messaging"
-    ],
-    techStack: [
-      "Python",
-      "Streamlit",
-      "Three.js",
-      "WebRTC",
-      "OpenAI Realtime API"
-    ],
-    challenges: "",
-    externalUrl: "",
-    featured: true,
-    visualTheme: {
-      primaryColor: '#A855F7',
-      gradient: 'from-purple-600/30 via-neutral-900 to-black',
-      badgeText: 'EXPERIMENTAL',
-      icon: 'Mic',
-    },
-  },
-  {
-    id: 'rashid-traders-works',
-    title: 'rashid-traders-works',
-    source: 'github',
-    sourceVisibility: "private",
-    category: 'Web & SaaS Platform',
-    status: "Private Repository",
-    tagline: "Wholesale mobile-spare-parts billing, inventory and repair system — test / pre-delivery.",
-    overview: "The repository README documents a cloud edition with a Vercel frontend, Cloudflare Workers API and Cloudflare D1 database. Its stated status is TEST / PRE-DELIVERY: basic dashboard connectivity has been observed, while backup/restore, security, end-to-end regression, PDF and device checks remain release gates.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-      "Wholesale spare-parts billing and inventory workflows",
-      "Mobile-repair workflow support",
-      "Vercel frontend deployment",
-      "Cloudflare Workers API",
-      "Cloudflare D1 database",
-      "Manual WhatsApp sharing; automated delivery is not documented"
-    ],
-    techStack: [
-      "Vercel",
-      "Cloudflare Workers",
-      "Cloudflare D1"
-    ],
-    challenges: "The repository’s release-readiness notes list backup/restore, security configuration, end-to-end regression, PDF review and hardware/printer checks as outstanding.",
-    externalUrl: "",
-    featured: true,
-    visualTheme: {
-      primaryColor: '#2563EB',
-      gradient: 'from-blue-600/30 via-neutral-900 to-black',
-      badgeText: 'DEVELOPMENT PROJECT',
-      icon: 'Briefcase',
-    },
-  },
-  {
-    id: 'mediguide-ai',
-    title: 'MediGuide-AI',
-    source: 'github',
-    sourceVisibility: "public",
-    category: 'AI & Machine Learning',
-    status: "Public Prototype",
-    tagline: "Educational Streamlit prototype for medical-information guidance — not a medical device.",
-    overview: "MediGuide AI is an educational course prototype. Its README explicitly states that it does not provide diagnosis or treatment and must not be used for healthcare decisions. Demonstrations should use fictional data only.",
-    problem: "",
-    solution: "",
-    mainFeatures: [
-      "Streamlit-based educational prototype",
-      "Structured response parsing and streamed explanation",
-      "English and Urdu language options",
-      "Visible medical disclaimer and emergency guidance",
-      "Not intended for diagnosis, treatment or clinical decisions"
-    ],
-    techStack: [
-      "Python",
-      "Streamlit",
-      "LangChain",
-      "OpenAI API",
-      "SQLite"
-    ],
-    challenges: "The repository README warns that its emergency keyword check is not exhaustive and local SQLite caching is unencrypted. It must not be used with real patient data.",
-    externalUrl: 'https://github.com/raphicsdigitalsolutions/MediGuide-AI',
     featured: false,
     visualTheme: {
-      primaryColor: '#14B8A6',
-      gradient: 'from-teal-600/30 via-neutral-900 to-black',
-      badgeText: 'WORKING PROTOTYPE',
-      icon: 'Shield',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'DOCUMENT RESEARCH',
+      icon: 'FileText',
     },
   },
   {
     id: 'finwise-ai',
-    title: 'FinWise-AI',
+    title: 'FinWise AI',
     source: 'github',
-    sourceVisibility: "public",
-    category: 'Web & SaaS Platform',
-    status: "Public Prototype",
-    tagline: "Educational Streamlit prototype for personal budget analysis.",
-    overview: "FinWise AI is an educational project for personal financial analysis and budgeting. Its README states that it is not financial, investment, tax or legal advice and does not connect to bank accounts or execute transactions.",
-    problem: "",
-    solution: "",
+    sourceVisibility: 'public',
+    category: 'AI & Machine Learning',
+    status: 'Public Prototype',
+    tagline: 'Educational prototype for personal budgeting and financial analysis.',
+    overview: 'A Streamlit educational prototype that combines deterministic budget calculations with a separately labelled AI explanation. It is not financial, investment, tax, or legal advice and does not connect to bank accounts or execute transactions.',
+    problem: 'Show how budget calculations and AI-generated educational commentary can appear together while remaining distinct.',
+    solution: 'The prototype calculates totals and ratios in Python, then presents an AI narrative as a separate educational layer.',
     mainFeatures: [
-      "Income and expense breakdown",
-      "Deterministic budget calculations and ratios",
-      "Structured educational AI explanations",
-      "Streaming responses",
-      "In-memory and SQLite cache options"
+      'Income and expense categories',
+      'Deterministic budget calculations and ratios',
+      'Separate rule-based indicators and AI commentary',
+      'Visible financial education disclaimer',
     ],
-    techStack: [
-      "Python",
-      "Streamlit",
-      "LangChain",
-      "OpenAI API",
-      "SQLite"
-    ],
-    challenges: "The README warns that SQLite caching stores prompts and responses in plaintext. Use fictional demonstration data only; never enter bank credentials or account numbers.",
+    techStack: ['Python', 'Streamlit', 'LangChain', 'OpenAI API'],
+    challenges: 'The README warns that optional SQLite caching stores prompts and responses in plaintext. Use fictional demonstration data only.',
     externalUrl: 'https://github.com/raphicsdigitalsolutions/FinWise-AI',
     featured: false,
     visualTheme: {
-      primaryColor: '#6366F1',
-      gradient: 'from-indigo-600/30 via-neutral-900 to-black',
-      badgeText: 'DEVELOPMENT PROJECT',
-      icon: 'DollarSign',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'EDUCATIONAL PROTOTYPE',
+      icon: 'Wallet',
     },
   },
   {
-    id: 'learning-adventure',
-    title: 'Learning-Adventure',
+    id: 'mediguide-ai',
+    title: 'MediGuide AI',
     source: 'github',
-    sourceVisibility: "private",
-    category: 'Interactive & Graphics',
-    status: "Private Repository",
-    tagline: "Early-learning and school-readiness Android app for children aged 1–5.",
-    overview: "The repository README describes an early-learning Android app with age-banded activities, a parent area and a gentle reward system. The source repository is private.",
-    problem: "",
-    solution: "",
+    sourceVisibility: 'public',
+    category: 'AI & Machine Learning',
+    status: 'Public Prototype',
+    tagline: 'Safety-focused educational prototype for patient guidance.',
+    overview: 'A Streamlit course prototype demonstrating structured and streamed AI responses. The repository states that it is not a medical device, does not provide diagnosis or treatment, and must not be used for healthcare decisions. Demonstrations should use fictional data only.',
+    problem: 'Demonstrate a structured AI guidance flow while making its educational scope and limits visible.',
+    solution: 'A prototype with a visible disclaimer, emergency guidance, response parsing, and English or Urdu output options.',
     mainFeatures: [
-      "Early-learning activities for ages 1–5",
-      "Letter, number, shape, matching and tracing play zones",
-      "Positive reinforcement without penalties",
-      "Parent area and local progress persistence"
+      'Structured response parsing and streamed explanation',
+      'English and Urdu answer options',
+      'Visible medical disclaimer and emergency guidance',
+      'Not for diagnosis, treatment, or clinical decisions',
     ],
-    techStack: [
-      "Kotlin",
-      "Jetpack Compose",
-      "Android Room",
-      "Coroutines and Flow"
-    ],
-    challenges: "",
-    externalUrl: "",
+    techStack: ['Python', 'Streamlit', 'LangChain', 'OpenAI API'],
+    challenges: 'The repository warns that its emergency phrase check is not exhaustive and must not be treated as a way to rule out an emergency.',
+    externalUrl: 'https://github.com/raphicsdigitalsolutions/MediGuide-AI',
     featured: false,
     visualTheme: {
-      primaryColor: '#EAB308',
-      gradient: 'from-yellow-600/30 via-neutral-900 to-black',
-      badgeText: 'OPEN SOURCE',
-      icon: 'Award',
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'EDUCATIONAL PROTOTYPE',
+      icon: 'HeartPulse',
     },
   },
   {
-    id: 'chromaflow-liquid-logic',
-    title: 'CHROMAFLOW-LIQUID-LOGIC',
+    id: 'rashid-traders-works',
+    title: 'Rashid Traders Works',
     source: 'github',
-    sourceVisibility: "private",
-    category: 'Interactive & Graphics',
-    status: "Private Repository",
-    tagline: "CHROMAFLOW: LIQUID LOGIC — Unity 3D Android liquid-sorting game.",
-    overview: "The Unity project README describes a 3D flask-based liquid-sorting game with procedural flask visuals, campaign progression and local save/settings. The current documented phase is source implementation; Unity Editor compilation, Android APK packaging and physical-device testing remain pending.",
-    problem: "",
-    solution: "",
+    sourceVisibility: 'private',
+    category: 'Web & SaaS Platform',
+    status: 'Pre-delivery',
+    tagline: 'Wholesale billing, inventory, and mobile-repair system in pre-delivery testing.',
+    overview: 'The project README describes a cloud edition for mobile-spare-parts wholesale, billing, inventory, and repair workflows. The source repository is private. Its release notes list further checks before it can be treated as production-ready.',
+    problem: 'Bring billing, inventory, and repair workflows for a wholesale business into one connected system.',
+    solution: 'A deployed web front end backed by a Cloudflare Workers API and Cloudflare D1 database. The project remains in pre-delivery testing.',
     mainFeatures: [
-      "Procedural 3D glass flasks and liquid-pour animation",
-      "Liquid-sort rules and legal-move validation",
-      "Undo, restart, hint and solved-state handling",
-      "50 seeded campaign boards with source-verified solution witnesses",
-      "Five environment palettes and local progression"
+      'Billing and inventory workflows',
+      'Mobile-repair workflow support',
+      'Web front end, API, and database deployed as separate services',
+      'Manual WhatsApp sharing',
     ],
-    techStack: [
-      "Unity 6.3",
-      "C#",
-      "Android"
-    ],
-    challenges: "The repository notes that the campaign still needs manual difficulty curation and playtesting. Source-level verification is not proof of a completed Android APK.",
-    externalUrl: "",
+    techStack: ['Vercel', 'Cloudflare Workers', 'Cloudflare D1'],
+    challenges: 'The project README identifies backup and restore, security configuration, end-to-end regression, PDF review, and target-device checks as remaining release gates.',
+    externalUrl: '',
+    liveDemoUrl: 'https://rashid-traders-works-frontend.vercel.app/',
     featured: true,
     visualTheme: {
       primaryColor: '#D51F16',
-      gradient: 'from-red-600/30 via-neutral-900 to-black',
-      badgeText: 'EXPERIMENTAL',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'PRE-DELIVERY',
+      icon: 'Briefcase',
+    },
+  },
+  {
+    id: 'echoes-of-the-lost-realm',
+    title: 'Echoes of the Lost Realm',
+    source: 'github',
+    sourceVisibility: 'private',
+    category: 'Interactive & Graphics',
+    status: 'In Progress',
+    tagline: '3D adventure game currently in development.',
+    overview: 'This project is still in progress. A public preview and source link are not available yet.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: '',
+    featured: false,
+    visualTheme: {
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'IN PROGRESS',
       icon: 'Compass',
+    },
+  },
+  {
+    id: 'voice-ai-agent',
+    title: 'Voice AI Agent',
+    source: 'github',
+    sourceVisibility: 'unpublished',
+    category: 'Voice & Agents',
+    status: 'In Development',
+    tagline: 'Voice agent project in progress; public source and demo are not published yet.',
+    overview: 'This work is in development. A public repository and demo will be linked when they are ready.',
+    problem: '',
+    solution: '',
+    mainFeatures: [],
+    techStack: [],
+    challenges: '',
+    externalUrl: '',
+    featured: false,
+    visualTheme: {
+      primaryColor: '#D51F16',
+      gradient: 'from-neutral-800 via-neutral-950 to-black',
+      badgeText: 'IN DEVELOPMENT',
+      icon: 'Mic',
     },
   },
 ];

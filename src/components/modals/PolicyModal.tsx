@@ -71,10 +71,8 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
                 1. Information Collected
               </h3>
               <p>
-                When you submit an inquiry through our contact form, we collect the details you provide:
-                your name, email address, optional organization name, selected service, estimated budget
-                range, and project brief. This information is stored in our inquiry records solely to evaluate
-                your project scope and reply to your request.
+                The hosted website prepares your project brief as an email in your email application. It does
+                not submit or store those form details. The message is sent only if you review and send it.
               </p>
 
               <h3 className="text-sm font-heading font-bold text-white pt-2">
@@ -88,17 +86,15 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
                 3. Third-Party Platforms
               </h3>
               <p>
-                Our website links to official external profiles on platforms including GitHub, Behance,
-                Fiverr, Upwork, and FusionArt. When interacting with those platforms, their respective
-                privacy policies and terms of service apply.
+                Our website loads fonts from Google Fonts and links to selected work and official agency
+                social accounts. When you open those providers, their own privacy policies and terms apply.
               </p>
 
               <h3 className="text-sm font-heading font-bold text-white pt-2">
                 4. Data Inquiries & Contact
               </h3>
               <p>
-                For questions regarding your submitted inquiry details or to request removal of your contact record,
-                you may reach our team directly at {BRAND_CONFIG.contact.email}.
+                For questions about a message you sent, contact us at {BRAND_CONFIG.contact.email}.
               </p>
             </>
           ) : (
@@ -115,7 +111,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
               </h3>
               <p>
                 All creative design, packaging dielines, 3D visualization, software engineering, and AI
-                automation projects are carried out under written project agreements or platform contracts
+                automation projects are carried out under written project agreements
                 specifying deliverables, estimated timelines, and revision parameters.
               </p>
 

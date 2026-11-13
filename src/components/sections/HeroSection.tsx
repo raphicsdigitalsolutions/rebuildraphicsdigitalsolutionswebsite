@@ -45,7 +45,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreWork, onStart
       <a href="#services" className="group inline-flex items-center gap-2 text-neutral-400 transition-colors hover:text-white">
         Discover what we do <ArrowDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-1" />
       </a>
-      <span className="hidden sm:block">Digital magic for real success.</span>
+      <span className="hidden sm:block">Digital Magic For Real Success.</span>
     </div>
   </section>
 );

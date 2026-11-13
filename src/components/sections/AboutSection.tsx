@@ -1,147 +1,64 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- * 
- * About Section for Raphics Digital Solutions.
- * "CREATIVE MINDS. TECHNOLOGICAL THINKING. REAL-WORLD SOLUTIONS."
- * Connects agency vision, creative philosophy, software rigor, and international track record.
- */
-
 import React from 'react';
-import { BRAND_CONFIG } from '../../config/brand';
-import { Sparkles, Code2, Cpu, Globe2, Award, Terminal, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, Code2, Layers3, ShieldCheck, Sparkles } from 'lucide-react';
+import { useRouter } from '../../router/AgencyRouter';
+
+const principles = [
+  {
+    title: 'Design with purpose',
+    description: 'Brand identity, packaging, labels, and campaign visuals shaped around the product and its audience.',
+    Icon: Sparkles,
+  },
+  {
+    title: 'Build for the task',
+    description: 'Websites, applications, and business software scoped to the workflows they need to support.',
+    Icon: Code2,
+  },
+  {
+    title: 'Use AI thoughtfully',
+    description: 'Assistants and automations designed around approved information, clear limits, and human review.',
+    Icon: Layers3,
+  },
+  {
+    title: 'Agree the work clearly',
+    description: 'Scope, deliverables, milestones, and support are discussed for each project before work begins.',
+    Icon: ShieldCheck,
+  },
+];
 
 export const AboutSection: React.FC = () => {
+  const { navigate } = useRouter();
+
   return (
-    <section id="about" className="relative py-28 bg-[#0a0a0a] border-t border-neutral-900 overflow-hidden">
-      {/* Subtle Grid & Lighting Accent */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
-      <div className="absolute -top-32 right-0 w-96 h-96 bg-[#D51F16]/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Pill & Heading */}
-        <div className="max-w-3xl space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-xs font-mono text-[#D51F16]">
-            <span>01 // WHO WE ARE</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight font-heading text-white leading-tight">
-            Creative Minds.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-200 to-neutral-400">
-              Technological Thinking.
-            </span>{' '}
-            <span className="text-[#D51F16]">Real-World Solutions.</span>
+    <section id="about" className="relative border-t border-white/[0.08] bg-[#0a0a0a] py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="mb-14 max-w-3xl space-y-5" data-reveal>
+          <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#d9534c]">About Raphics</p>
+          <h2 className="text-3xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl">
+            Creative thinking. <span className="text-neutral-500">Technical care.</span>
           </h2>
-
-          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal">
-            Raphics Digital Solutions brings creativity, engineering, and artificial intelligence together
-            to help businesses build distinctive brands and powerful digital experiences.
-            We work across visual identity, packaging, web development, custom software, and intelligent
-            automation &mdash; connecting creative vision with practical technology.
+          <p className="max-w-2xl text-sm leading-7 text-neutral-400 sm:text-base">
+            Raphics Digital Solutions brings creative design, digital development, and practical AI automation into one studio. The work ranges from product identity and packaging to websites, business software, and information assistants.
           </p>
         </div>
 
-        {/* 4 Core Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          
-          {/* Pillar 1: Creative Philosophy */}
-          <div className="p-6 rounded-3xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 transition-all group">
-            <div className="w-12 h-12 rounded-2xl bg-[#D51F16]/10 border border-[#D51F16]/20 flex items-center justify-center mb-5 text-[#D51F16] group-hover:scale-110 transition-transform">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-heading font-bold text-white mb-2">
-              Creative Philosophy
-            </h3>
-            <p className="text-sm text-neutral-400 leading-relaxed">
-              We reject formulaic templates. Every identity and package is engineered with geometric intention, tactile realism, and visual contrast that commands shelf attention.
-            </p>
-          </div>
-
-          {/* Pillar 2: Development Expertise */}
-          <div className="p-6 rounded-3xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 transition-all group">
-            <div className="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-neutral-700 flex items-center justify-center mb-5 text-neutral-200 group-hover:scale-110 transition-transform">
-              <Code2 className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-heading font-bold text-white mb-2">
-              Development Expertise
-            </h3>
-            <p className="text-sm text-neutral-400 leading-relaxed">
-              We build websites, web applications, custom business software, and dashboards using technologies suited to each project’s requirements.
-            </p>
-          </div>
-
-          {/* Pillar 3: AI & Automation */}
-          <div className="p-6 rounded-3xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 transition-all group">
-            <div className="w-12 h-12 rounded-2xl bg-[#D51F16]/10 border border-[#D51F16]/20 flex items-center justify-center mb-5 text-[#D51F16] group-hover:scale-110 transition-transform">
-              <Cpu className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-heading font-bold text-white mb-2">
-              AI Capabilities
-            </h3>
-            <p className="text-sm text-neutral-400 leading-relaxed">
-              We develop practical AI-assisted workflows, Retrieval-Augmented Generation (RAG) knowledge systems, custom agents, and voice interfaces.
-            </p>
-          </div>
-
-          {/* Pillar 4: Global Freelance Rigor */}
-          <div className="p-6 rounded-3xl bg-neutral-900/60 border border-neutral-800/80 hover:border-[#D51F16]/50 transition-all group">
-            <div className="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-neutral-700 flex items-center justify-center mb-5 text-neutral-200 group-hover:scale-110 transition-transform">
-              <Globe2 className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-heading font-bold text-white mb-2">
-              Global Delivery
-            </h3>
-            <p className="text-sm text-neutral-400 leading-relaxed">
-              The founder maintains individual professional profiles on Fiverr, Upwork, and FusionArt. These profiles document personal freelance work and are distinct from agency-level ratings or performance metrics.
-            </p>
-          </div>
-
+        <div className="grid gap-x-8 md:grid-cols-2 lg:grid-cols-4">
+          {principles.map(({ title, description, Icon }) => (
+            <article key={title} className="border-t border-white/15 py-6">
+              <Icon className="mb-7 h-5 w-5 text-[#D51F16]" aria-hidden="true" />
+              <h3 className="text-lg font-medium tracking-tight text-white">{title}</h3>
+              <p className="mt-3 text-xs leading-6 text-neutral-400">{description}</p>
+            </article>
+          ))}
         </div>
 
-        {/* Agency vs Founder Credential Integrity Box */}
-        <div className="p-8 rounded-3xl bg-neutral-950 border border-neutral-800 relative overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div className="lg:col-span-8 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 uppercase tracking-wider">
-                <Terminal className="w-4 h-4 text-[#D51F16]" />
-                <span>Transparent Professional Track Record</span>
-              </div>
-              <h4 className="text-2xl font-heading font-bold text-white">
-                Independent Agency Built Around Creative and Technical Services
-              </h4>
-              <p className="text-sm text-neutral-400 leading-relaxed">
-                Raphics Digital Solutions operates as an independent, multi-disciplinary digital agency.
-                Our foundation combines the founder’s creative and technical experience with Raphics Digital Solutions’ services across design, software development, and AI. Individual platform reviews and ratings remain attributed to the original profiles.
-              </p>
-            </div>
-
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
-              <a
-                href={BRAND_CONFIG.profiles.behance.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-2xl bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 text-xs font-mono text-neutral-200 transition-colors group"
-              >
-                <span>Behance Creative Gallery</span>
-                <ArrowUpRight className="w-4 h-4 text-[#D51F16] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-
-              <a
-                href={BRAND_CONFIG.profiles.github.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-2xl bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 text-xs font-mono text-neutral-200 transition-colors group"
-              >
-                <span>GitHub Software Repositories</span>
-                <ArrowUpRight className="w-4 h-4 text-[#D51F16] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-            </div>
-
-          </div>
+        <div className="mt-10 flex flex-wrap gap-5 border-t border-white/10 pt-6">
+          <button onClick={() => navigate('/process')} className="group inline-flex items-center gap-2 text-sm text-neutral-200 hover:text-white">
+            See the project process <ArrowRight className="h-4 w-4 text-[#D51F16] transition-transform group-hover:translate-x-1" />
+          </button>
+          <button onClick={() => navigate('/work')} className="group inline-flex items-center gap-2 text-sm text-neutral-200 hover:text-white">
+            Explore selected work <ArrowRight className="h-4 w-4 text-[#D51F16] transition-transform group-hover:translate-x-1" />
+          </button>
         </div>
-
       </div>
     </section>
   );

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="65 400 410 475" role="img" aria-label="Raphics Digital Solutions secondary stacked logo for dark backgrounds"><ns0:style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_00000023251235042016482300000012223640740655252145_);}
+	.st2{fill:url(#SVGID_00000003067654557411317140000009508995988346607023_);}
+	.st3{fill:url(#SVGID_00000106106369350094137330000009639567604967641238_);}
+	.st4{fill:#FFFFFF;}
+	.st5{font-family:'MADETOMMY-Bold';}
+	.st6{font-size:50.8956px;}
+	.st7{font-family:'MADETOMMY';}
+	.st8{font-size:36.382px;}
+	.st9{fill:url(#SVGID_00000129925521358368879290000015657536708638017192_);}
+	.st10{fill:url(#SVGID_00000024716382601278834670000012609572043899278209_);}
+	.st11{fill:url(#SVGID_00000081614968403969945000000008639983517802745986_);}
+	.st12{fill:url(#SVGID_00000018218599382336114100000002720538215515817900_);}
+	.st13{fill:url(#SVGID_00000100370866236241682140000018223541657655215036_);}
+	.st14{fill:url(#SVGID_00000144302671803566374820000000094825776011247251_);}
+	.st15{fill:url(#SVGID_00000149383682110831807970000009576954737839993522_);}
+	.st16{fill:url(#SVGID_00000165230053086392516990000010863388217888767119_);}
+	.st17{font-size:26.3361px;}
+	.st18{font-size:18.8259px;}
+	.st19{font-size:36.0472px;}
+</ns0:style><ns0:g>
+	
+		<ns0:linearGradient id="SVGID_00000123432758136780339890000014600986267669654679_" gradientUnits="userSpaceOnUse" x1="440.5159" y1="782.3854" x2="127.8999" y2="465.4275">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	
+		<ns0:rect x="80.14" y="416.92" style="fill:url(#SVGID_00000123432758136780339890000014600986267669654679_);" width="87.07" height="88.45" />
+	
+		<ns0:linearGradient id="SVGID_00000155145098724260014940000016853926917567484603_" gradientUnits="userSpaceOnUse" x1="557.4421" y1="667.0609" x2="244.8262" y2="350.103">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	<ns0:polygon style="fill:url(#SVGID_00000155145098724260014940000016853926917567484603_);" points="229.89,416.92 454.53,416.92    454.53,543.16 292.3,543.16 229.53,480.4  " />
+	
+		<ns0:linearGradient id="SVGID_00000152962314062165326240000012961403900460123581_" gradientUnits="userSpaceOnUse" x1="440.7991" y1="782.106" x2="128.1831" y2="465.1482">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	<ns0:polygon style="fill:url(#SVGID_00000152962314062165326240000012961403900460123581_);" points="205.31,543.16 292.3,543.16    453.79,704.66 453.79,792.81 364.16,792.81 204.71,633.36  " />
+	
+		<ns0:linearGradient id="SVGID_00000108267920403402919780000005250512156311857556_" gradientUnits="userSpaceOnUse" x1="324.4244" y1="896.8865" x2="11.8085" y2="579.9286">
+		<ns0:stop offset="0" style="stop-color:#AA2C24" />
+		<ns0:stop offset="1" style="stop-color:#DE2E26" />
+	</ns0:linearGradient>
+	<ns0:polygon style="fill:url(#SVGID_00000108267920403402919780000005250512156311857556_);" points="78.69,566.82 141.09,566.82    205.44,631.18 205.44,792.81 78.69,792.81  " />
+</ns0:g><ns0:g>
+	<ns0:text transform="matrix(1 0 0 1 80.1384 837.847)" class="st4 st5 st17">Raphics Digital Solutions</ns0:text>
+	<ns0:text transform="matrix(1 0 0 1 113.2233 863.5131)" class="st4 st7 st18">Digital Magic For Real Success</ns0:text>
+</ns0:g></ns0:svg>

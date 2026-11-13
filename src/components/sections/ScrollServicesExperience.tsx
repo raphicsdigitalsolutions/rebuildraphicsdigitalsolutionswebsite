@@ -15,7 +15,7 @@ const STORY_STAGES = [
     body: 'Distinctive identities, considered packaging and visual systems that make a brand feel unmistakably yours.',
     details: ['Brand identity', 'Label & packaging', 'Campaign design'],
     action: 'Explore creative',
-    path: '/creative',
+    path: '/services/creative-studio',
   },
   {
     number: '02',
@@ -24,7 +24,7 @@ const STORY_STAGES = [
     body: 'Thoughtful websites, custom platforms and business software designed around the way people actually work.',
     details: ['Websites & web apps', 'CRM & dashboards', 'Custom software'],
     action: 'Explore development',
-    path: '/development',
+    path: '/services/digital-development',
   },
   {
     number: '03',
@@ -33,7 +33,7 @@ const STORY_STAGES = [
     body: 'Practical AI assistants, connected workflows and automation that take repetitive work off your team’s plate.',
     details: ['AI chatbots & agents', 'Voice experiences', 'Business automation'],
     action: 'Explore AI solutions',
-    path: '/ai-lab',
+    path: '/services/ai-automation',
   },
 ];
 

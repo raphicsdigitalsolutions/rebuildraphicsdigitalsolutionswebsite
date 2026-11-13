@@ -62,7 +62,7 @@ function createMonogramCurve() {
   ], false, 'centripetal', 0.42);
 }
 
-export const MinimalHeroVisual: React.FC = () => {
+export const MinimalHeroVisual: React.FC<{ className?: string }> = ({ className = '' }) => {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -237,7 +237,7 @@ export const MinimalHeroVisual: React.FC = () => {
   }, []);
 
   return (
-    <div className="minimal-hero-visual relative mx-auto h-[clamp(240px,41vh,390px)] w-full sm:h-[clamp(280px,43vh,420px)]" role="img" aria-label="Sculpted red and chrome Raphics ribbon form">
+    <div className={`minimal-hero-visual relative mx-auto h-[clamp(240px,41vh,390px)] w-full sm:h-[clamp(280px,43vh,420px)] ${className}`} role="img" aria-label="Sculpted red and chrome Raphics ribbon form">
       <div className="hero-sculpture-aura pointer-events-none absolute inset-[7%] rounded-full" />
       <div ref={mountRef} className="relative z-10 h-full w-full" />
       <div className="hero-static-sculpture pointer-events-none absolute inset-0 z-10" aria-hidden="true">

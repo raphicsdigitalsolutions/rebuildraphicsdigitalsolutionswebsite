@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from '../../router/AgencyRouter';
 
-const questions = [
+export const FAQ_ITEMS = [
   {
     question: 'What kind of work can Raphics take on?',
     answer: 'The studio works across brand identity, packaging and visual design; websites, web applications and business software; and custom AI assistants, knowledge systems and workflow automation.',
@@ -49,7 +49,7 @@ export const FAQPage: React.FC = () => {
         </header>
 
         <div className="divide-y divide-white/10 border-y border-white/10">
-          {questions.map(({ question, answer }) => (
+          {FAQ_ITEMS.map(({ question, answer }) => (
             <details key={question} className="group py-5">
               <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-base font-medium text-white marker:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D51F16]">
                 {question}

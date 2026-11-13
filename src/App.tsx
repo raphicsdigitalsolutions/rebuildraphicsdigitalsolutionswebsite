@@ -24,6 +24,8 @@ import { WhyRaphicsSection } from './components/sections/WhyRaphicsSection';
 import { SelectedWorkSection } from './components/sections/SelectedWorkSection';
 import { ProcessSection } from './components/sections/ProcessSection';
 import { ContactSection } from './components/sections/ContactSection';
+import { StudioDifferenceSection } from './components/sections/StudioDifferenceSection';
+import { FAQPreviewSection } from './components/sections/FAQPreviewSection';
 import { ProjectDetailPage } from './components/pages/ProjectDetailPage';
 import { FAQPage } from './components/pages/FAQPage';
 import { NotFoundPage } from './components/pages/NotFoundPage';
@@ -153,6 +155,8 @@ function AgencyContent() {
       <ScrollServicesExperience onOpenService={navigate} />
       <FeaturedWorkSection />
       <ApproachSection />
+      <StudioDifferenceSection />
+      <FAQPreviewSection />
       <ClosingCTASection />
     </>
   );
